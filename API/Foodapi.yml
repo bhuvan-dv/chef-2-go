@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: Food Search API
+  description: API for searching dishes in the menu
+  version: 'v1.0'
+servers:
+  - url: http://localhost:5000/food
+
+paths:
+    /food:
+      get:
+        operationId: search-menu
+        description: Search dishes in the menu
+        parameters:
+          - name: Indian
+            in: query 
+            required: false
+            example: Butter Chicken
+            schema:
+              type: string
+          - name: Italian
+            in: query
+            required: false
+            example: Pasta
+            schema:
+              type: string 
+          - name: Chinese
+            in: query
+            required: false
+            example: Noodles
+            schema:
+              type: string 
+        responses:
+          "200":
+            description: Successful search
+            content:
+              application/json:
+                schema:
+                  type: object 
+                  $ref: "#/components/schemas/Menu"
+          "404":
+            description: Error 
+            content:
+              application/json:
+                schema:
+                  type: object 
+                  $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Menu:
+      type: object 
+      properties:
+        name:
+          type: string 
+          examples:
+            - Fried Rice
+    Error:    
+      type: object  
+      properties: 
+        code:
+          type: string 
+          decription: Error code 
+          examples:   
+            - Dish not found    
+        message:
+          type: string 
+          decription: Error message
+          examples:   
+            - Dish not found in menu
+            
+
+
+
+
+
+
+
