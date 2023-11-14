@@ -4,13 +4,13 @@ info:
   version: 1.0.0
   description: API for managing user accounts
 
-security:
-  - apikey_auth: []
 
 paths:
   /users:
     post:
       summary: Create user
+      security: 
+        - apikey_auth: []
       description: Create a new user (chef, customer, or admin)
       requestBody:
         required: true
@@ -53,6 +53,8 @@ paths:
 
     get:
       summary: Get all users
+      security: 
+        - apikey_auth: []
       description: Retrieve a list of all users
       responses:
         '200':
@@ -74,6 +76,8 @@ paths:
     get:
       operationId: "get-user-by-id"
       description: Get user details by ID
+      security: 
+        - apikey_auth: []
       parameters:
         - name: "userId"
           in: "path"
@@ -102,6 +106,8 @@ paths:
 
     put:
       summary: Update user
+      security: 
+        - apikey_auth: []
       description: Update an existing user
       parameters:
         - name: userId
@@ -151,6 +157,8 @@ paths:
 
     delete:
       summary: Delete user
+      security: 
+        - apikey_auth: []
       description: Delete an existing user
       parameters:
         - name: userId
