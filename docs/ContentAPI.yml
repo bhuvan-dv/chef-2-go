@@ -1,0 +1,464 @@
+openapi: 3.1.0
+
+info:
+  title: chef2go content API
+  description: REST API for the content section on the chef2go website
+  version: "v1.0"
+
+paths:
+  /discussions:
+    get:
+      summary: Get discussions
+      description: Get a list of discussions
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MyResponse"
+      security:
+        - api_key: []
+    post:
+      summary: Create a discussion
+      description: Create a new discussion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Discussion"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MyResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /videos:
+    get:
+      summary: Get videos
+      description: Get a list of videos
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MyResponse"
+      security:
+        - api_key: []
+    post:
+      summary: Create a video
+      description: Create a new video
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Video"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MyResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /articles:
+    get:
+      summary: Get articles
+      description: Get a list of articles
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MyResponse"
+      security:
+        - api_key: []
+    post:
+      summary: Create an article
+      description: Create a new article
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Article"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MyResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /images:
+    get:
+      summary: Get images
+      description: Get a list of images
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MyResponse"
+      security:
+        - api_key: []
+    post:
+      summary: Create an image
+      description: Create a new image
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Image"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MyResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /discussions/{discussionId}:
+    delete:
+      summary: Delete a discussion
+      description: Delete a specific discussion by ID
+      parameters:
+        - name: discussionId
+          in: path
+          description: ID of the discussion to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /videos/{videoId}:
+    delete:
+      summary: Delete a video
+      description: Delete a specific video by ID
+      parameters:
+        - name: videoId
+          in: path
+          description: ID of the video to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /articles/{articleId}:
+    delete:
+      summary: Delete an article
+      description: Delete a specific article by ID
+      parameters:
+        - name: articleId
+          in: path
+          description: ID of the article to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /images/{imageId}:
+    delete:
+      summary: Delete an image
+      description: Delete a specific image by ID
+      parameters:
+        - name: imageId
+          in: path
+          description: ID of the image to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Discussion:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+        author_id:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        deleted:
+          type: boolean
+
+    Video:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        url:
+          type: string
+        author_id:
+          type: integer
+        paid:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        deleted:
+          type: boolean
+
+    Article:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+        author_id:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        deleted:
+          type: boolean
+
+    Image:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        url:
+          type: string
+        author_id:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        deleted:
+          type: boolean
+
+    MyResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+      examples:
+        - example-1:
+            value:
+              id: 123
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: The error code
+        message:
+          type: string
+          description: A brief description of the error
+        details:
+          type: object
+          description: Additional details about the error
+      examples:
+        - example-1:
+            value:
+              code: 404
+              message: Not Found
+              details:
+                reason: "Resource not found"
+
+    SuccessfulResponse:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/MyResponse"
+      examples:
+        - example-1:
+            value:
+              id: 123
+
+    UnauthorizedResponse:
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+      examples:
+        - example-1:
+            value:
+              code: 401
+              message: Unauthorized
+              details:
+                reason: "Invalid API key"
+
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: Authorization
+      in: header
