@@ -1,0 +1,154 @@
+openapi: 3.1.0
+info:
+  title: Order API
+  description: API for fetching all details regarding the order
+  version: "v1.0"
+servers:
+  - url: http://localhost:5000/food
+
+paths:
+  /order/{order_id}:
+    get:
+      description: fetch order information which is already present in DB based on order ID
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          example: 1223
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successful display order information
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Order"
+        "204":
+          description: No order present in DB, place new order
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/NoOrdersYet"
+        "404":
+          description: Error
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/OrderError"
+  /order:
+    put:
+      description: For Creating a new orders only
+      requestBody:
+        description: Contains all details regarding order object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderPlaced"
+
+      responses:
+        "201":
+          description: Successful order placed
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/OrderPlaced"
+        "404":
+          description: Error
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/NoOrderError"
+components:
+  schemas:
+    Order:
+      type: object
+      properties:
+        OrderID:
+          type: integer
+        orderTime:
+          type: integer
+          example:
+            - 1699944393097
+        quantity:
+          type: integer
+          example:
+            - 2
+        transportation:
+          type: string
+          example:
+            - self Pick up
+        price:
+          type: integer
+          example:
+            - 20.8
+    OrderPlaced:
+      type: object
+      properties:
+        orderID:
+          type: integer
+          example:
+            - 1223
+        orderTime:
+          type: integer
+          example:
+            - 1699944393097
+        quantity:
+          type: integer
+          example:
+            - 2
+        transportation:
+          type: string
+          example:
+            - self Pick up
+        price:
+          type: integer
+          example:
+            - 20.8
+        message:
+          type: string
+          description: Order Successfully Placed
+          example:
+            - Order Successfully Placed
+
+    NoOrdersYet:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Internal server error
+          example:
+            - No intial Orders
+        message:
+          type: string
+          description: message
+          example:
+            - Place your first order, no order information yet to display
+
+    OrderError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+          description: Error message
+          example:
+            - Order not found in listing
+
+    NoOrderError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+          description: Error message
+          example:
+            - Order not Processed
