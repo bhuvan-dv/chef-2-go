@@ -4,7 +4,7 @@ info:
   description: API for searching dishes in the menu
   version: 'v1.0'
 servers:
-  - url: http://localhost:5000/food
+  - url: http://localhost:5000
 
 paths:
     /food:
@@ -59,7 +59,7 @@ components:
       properties: 
         code:
           type: string 
-          decription: Error code 
+          description: Error code 
           examples:   
             - Dish not found    
         message:
