@@ -9,10 +9,10 @@ const initialize = (app) => {
     app.use(cors());
     app.use(express.json());
     app.use(express.urlencoded());
-    mongoose.connect('mongodb+srv://mikkilik:Mongodb123456@info6150fall2023.8609v.mongodb.net/coursedb?retryWrites=true&w=majority');
-    registerRouter(app);
     //TODO MongoDB connection
+    mongoose.connect('mongodb+srv://mikkilik:Mongodb123456@info6150fall2023.8609v.mongodb.net/coursedb?retryWrites=true&w=majority');
     //TODO Initialize routes
+    registerRouter(app);
 }
 
 export default initialize;
