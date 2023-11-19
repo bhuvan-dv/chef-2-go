@@ -19,8 +19,10 @@ const RecipeSchema = new Schema(
             type: String,
             required: true,
             quanity: {
-                type: Number,
-
+                type: String,
+            },
+            unitType: {
+                type: String
             }
         },
         Video: {
