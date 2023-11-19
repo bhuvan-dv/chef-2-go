@@ -1,6 +1,6 @@
 import express from 'express';
 
-import initialize from './app/app.js';
+import initialize from './app.js';
 
 const app = express();
 
