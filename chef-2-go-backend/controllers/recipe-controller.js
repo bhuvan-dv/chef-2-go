@@ -5,8 +5,8 @@ import { setResponse, setErrorResponse } from './response-handler.js'
 export const find = async (request, response) => {
     try {
         const params = { ...request.query };
-        const recipe = await recipeService.search(params);
-        setResponse(recipe, response);
+        const recipes = await recipeService.search(params);
+        setResponse(recipes, response);
     } catch (err) {
         setErrorResponse(err, response);
     }
