@@ -34,7 +34,9 @@ export const get = async (request, response) => {
 //Create a new recipe
 export const post = async (request, response) => {
     try {
+        console.log(`body: ${request}`);
         const newRecipe = { ...request.body };
+        console.log(`recipe: ${newRecipe}`);
         const recipe = await recipeService.save(newRecipe);
         setResponse(recipe, response);
     }

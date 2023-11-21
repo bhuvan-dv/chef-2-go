@@ -2,6 +2,7 @@ import * as userService from "../services/user-service.js";
 import validator from "validator";
 import { setResponse, setErrorResponse, setSignupError } from "./response-handler.js";
 import { createToken } from "../utilities/token.js";
+import { request, response } from "express";
 export const loginUser = async (request, response) => {
     try {
         const { email, password } = request.body;
@@ -14,7 +15,15 @@ export const loginUser = async (request, response) => {
         //sending token in response
         setResponse({ email, token }, response);
     } catch (err) {
-        setErrorResponse(err, response);
+        console.error("Login Error:", err);
+
+        if (err.name === "ValidationError") {
+            setErrorResponse(400, err.message, response);
+        } else if (err.name === "UnauthorizedError") {
+            setErrorResponse(401, "Unauthorized", response);
+        } else {
+            setErrorResponse(500, "Internal Server Error", response);
+        }
     }
 }
 
@@ -30,23 +39,29 @@ export const signupUser = async (request, response) => {
         //sending token in response
         setResponse({ email, token }, response);
     } catch (err) {
-        setSignupError(err, response);
+        console.error("Signup Error:", err);
+
+        if (err.name === "ValidationError") {
+            setSignupError(400, err.message, response);
+        } else if (err.name === "MongoError" && err.code === 11000) {
+            setSignupError(409, "Email or username already exists", response);
+        } else {
+            setErrorResponse(500, "Internal Server Error", response);
+        }
     }
 }
 
-export const searchChef = async (request, response) =>{
-    const {searchByCat, searchTerm} = request.body;
+export const deleteUser = async (request, response) =>{
     try {
-        if (searchByCat === "username") {
-            const chef = await userService.searchChefByUserName(searchTerm);
-            console.log(`chef: ${chef}`);
-            setResponse(chef,response);
+        console.log(`id: ${request.params.id}`);
+        const id = request.params.id;
+        const result = await userService.deleteUser(id);
+        setResponse(result, response);
+    } catch (err) {
+        if (err.name === "CastError" && err.kind === "ObjectId") {
+            setErrorResponse(404, "User Not Found", response);
+        } else {
+            setErrorResponse(500, "Internal Server Error", response);
         }
-        else if(searchByCat === "name"){
-            const chefs = await userService.searchChefsbyName(searchTerm);
-            setResponse(chefs,response);
-        }
-    } catch (error) {
-        
     }
 }
