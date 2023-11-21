@@ -34,6 +34,8 @@ Update an existing recipe identified by recipeId.
 DELETE /recipes/{recipeId}
 Delete a recipe identified by recipeId.
 
+### REST API for Ingredient
+The Ingredient API is a Node.js-based application utilizing Express and MongoDB with Mongoose, designed to manage information about ingredients and the stores where they are available. The project follows a structured architecture with separate modules for defining the schema (ingredient-model.js), handling CRUD operations (ingredient-service.js), managing HTTP requests and responses (ingredient-controller.js), and defining API routes (ingredient-routes.js). 
 
 ### Object Model
 
