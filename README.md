@@ -20,6 +20,20 @@ Go to the project directory
 ```bash
   use live-server extension on vs code
 ```
+### Rest API for Recipe
+
+Created REST API for Recipe management
+GET /recipes
+Retrieve a list of all recipes in the database.
+POST /recipes
+Create a new recipe in the database.
+GET /recipes/{recipeId}
+Retrieve details for a specific recipe identified by recipeId.
+PUT /recipes/{recipeId}
+Update an existing recipe identified by recipeId.
+DELETE /recipes/{recipeId}
+Delete a recipe identified by recipeId.
+
 
 ### Object Model
 
