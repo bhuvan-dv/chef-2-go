@@ -13,10 +13,15 @@ import { setResponse, setErrorResponse } from './response-handler.js'
 export const find = async (request, response) => {
     try {
         const params = { ...request.query };
-        const recipes = await recipeService.search(params);
-        setResponse(recipes, response);
+        const recipe = await recipeService.search(params);
+        response.status(200)
+            .json(recipe);
     } catch (err) {
-        setErrorResponse(err, response);
+        response.status(404)
+            .json({
+                code: "Error",
+                message: "No Recipes"
+            })
     }
 }
 
@@ -25,9 +30,14 @@ export const get = async (request, response) => {
     try {
         const id = request.params.id;
         const recipe = await recipeService.find(id);
-        setResponse(recipe, response);
+        response.status(200)
+            .json(recipe);
     } catch (err) {
-        setErrorResponse(err, response);
+        response.status(404)
+            .json({
+                code: "Error",
+                message: "Recipe Not Found"
+            })
     }
 }
 
@@ -38,10 +48,14 @@ export const post = async (request, response) => {
         const newRecipe = { ...request.body };
         console.log(`recipe: ${newRecipe}`);
         const recipe = await recipeService.save(newRecipe);
-        setResponse(recipe, response);
-    }
-    catch (err) {
-        setErrorResponse(err, response);
+        response.status(200)
+            .json(recipe);
+    } catch (err) {
+        response.status(401)
+            .json({
+                code: "Error",
+                message: "Unauthorized request"
+            })
     }
 }
 
@@ -51,21 +65,14 @@ export const put = async (request, response) => {
         const id = request.params.id;
         const updatedRecipe = { ...request.body };
         const recipe = await recipeService.update(updatedRecipe, id);
-        setResponse(recipe, response);
+        response.status(200)
+            .json(recipe);
     } catch (err) {
-        setErrorResponse(err, response);
-    }
-}
-
-//Partially update a recipe by its ID
-export const patch = async (request, response) => {
-    try {
-        const id = request.params.id;
-        const updatedRecipe = { ...request.body };
-        const recipe = await recipeService.update(updatedRecipe, id);
-        setResponse(recipe, response);
-    } catch (err) {
-        setErrorResponse(err, response);
+        response.status(400)
+            .json({
+                code: "Error",
+                message: "Invalid Input"
+            })
     }
 }
 
@@ -74,8 +81,13 @@ export const remove = async (request, response) => {
     try {
         const id = request.params.id;
         const recipe = await recipeService.remove(id);
-        setResponse({}, response);
+        response.status(200)
+            .json(recipe);
     } catch (err) {
-        setErrorResponse(err, response);
+        response.status(404)
+            .json({
+                code: "Error",
+                message: "Recipe not Found"
+            })
     }
 }
