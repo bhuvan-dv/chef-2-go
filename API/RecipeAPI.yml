@@ -1,0 +1,222 @@
+openapi: 3.1.0
+info:
+  title: Recipe Management API
+  version: 1.0.0
+  description: API for managing cooking recipes
+
+paths:
+  /recipes:
+    post:
+      summary: Create recipe
+      description: Create a new recipe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                chef:
+                  type: string
+                ingredients:
+                  type: array
+                  items:
+                    type: string
+                instructions:
+                  type: string
+              required:
+                - title
+                - chef
+                - ingredients
+                - instructions
+            example:
+              title: "Spaghetti"
+              chef: "Keerthana"
+              ingredients: ["Tomato sauce", "Spaghetti", "Onion", "Garlic"]
+              instructions: "..."
+      responses:
+        '201':
+          description: Recipe created successfully
+          content:
+            application/json:
+              example:
+                recipeId: 1
+                title: "Spaghetti"
+                chef: "Keerthana"
+                ingredients: ["Tomato sauce", "Spaghetti", "Onion", "Garlic"]
+                instructions: "..."
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    get:
+      summary: Get all recipes
+      description: Retrieve a list of all recipes
+      responses:
+        '200':
+          description: Recipes found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecipesList"
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Recipes not found
+
+  /recipes/{recipeId}:
+    get:
+      operationId: "get-recipe-by-id"
+      description: Get recipe details by ID
+      parameters:
+        - name: "recipeId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Recipe"
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Recipe not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    put:
+      summary: Update recipe
+      description: Update an existing recipe
+      parameters:
+        - name: recipeId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID of the recipe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                ingredients:
+                  type: array
+                  items:
+                    type: string
+                instructions:
+                  type: string
+              required:
+                - title
+                - ingredients
+                - instructions
+            example:
+              title: "Spaghetti"
+              ingredients: ["Tomato sauce", "Spaghetti", "Onion", "Garlic"]
+              instructions: "..."
+      responses:
+        '200':
+          description: Recipe updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Recipe"
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Recipe not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    delete:
+      summary: Delete recipe
+      description: Delete an existing recipe
+      parameters:
+        - name: recipeId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID of the recipe
+      responses:
+        '204':
+          description: Recipe deleted successfully
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Recipe not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    RecipesList:
+      type: array
+      items:
+        $ref: "#/components/schemas/Recipe"
+    Recipe:
+      type: object
+      properties:
+        recipeId:
+          type: integer
+        title:
+          type: string
+        chef:
+          type: string
+        cuisine:
+          type: string
+        ingredients:
+          type: array
+          items:
+            type: string
+        instructions:
+          type: string
+    Error:    
+      type: object  
+      properties: 
+        code:
+          type: string 
+          decription: Error code 
+          examples:   
+            - Recipe not found    
+        message:
+          type: string 
+          decription: Error message
+          examples:   
+            - Recipe not found
