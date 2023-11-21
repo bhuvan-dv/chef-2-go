@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+// Define Mongoose schema for Ingredient model
+
 const Schema = mongoose.Schema;
 const IngridentSchema = new Schema({
   name: {
