@@ -1,0 +1,18 @@
+Design relationship for search by on site
+
+Search by food?
+    Display all the chefs who prepare that food
+
+Search by Chef?
+    Display all the food chef prepare
+
+
+#Future plans
+
+search by location?
+    Display all the chefs in that location
+
+
+Order
+
+we need to split it into cart and Order

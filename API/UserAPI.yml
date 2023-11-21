@@ -1,13 +1,16 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: User Management API
   version: 1.0.0
   description: API for managing user accounts
 
+
 paths:
   /users:
     post:
       summary: Create user
+      security: 
+        - apikey_auth: []
       description: Create a new user (chef, customer, or admin)
       requestBody:
         required: true
@@ -50,6 +53,8 @@ paths:
 
     get:
       summary: Get all users
+      security: 
+        - apikey_auth: []
       description: Retrieve a list of all users
       responses:
         '200':
@@ -71,6 +76,8 @@ paths:
     get:
       operationId: "get-user-by-id"
       description: Get user details by ID
+      security: 
+        - apikey_auth: []
       parameters:
         - name: "userId"
           in: "path"
@@ -99,6 +106,8 @@ paths:
 
     put:
       summary: Update user
+      security: 
+        - apikey_auth: []
       description: Update an existing user
       parameters:
         - name: userId
@@ -148,6 +157,8 @@ paths:
 
     delete:
       summary: Delete user
+      security: 
+        - apikey_auth: []
       description: Delete an existing user
       parameters:
         - name: userId
@@ -173,38 +184,51 @@ paths:
                 $ref: "#/components/schemas/Error"
 
 components:
+  securitySchemes:
+    apikey_auth:
+      type: apiKey
+      in: header
+      name: api_key
   schemas:
     UsersList:
       type: array
       items:
-        $ref: "#/components/schema/User"
+        $ref: "#/components/schemas/UsersList"
     User:
       type: object
       properties:
         user_id:
           type: integer
-          example: 1
+          examples:
+            - 1
         username:
           type: string
-          example: "chef_john"
+          examples: 
+            - "chef_john"
         name:
           type: string
-          example: "John Doe"
+          examples: 
+            - "John Doe"
         bio:
           type: string
-          example: "Experienced chef specializing in Italian cuisine."
+          examples: 
+            - "Experienced chef specializing in Italian cuisine."
         profile_picture:
           type: string
-          example: "/images/chef_john.jpg"
+          examples: 
+            - "/images/chef_john.jpg"
         email:
           type: string
-          example: "john@example.com"
+          examples: 
+            - "john@example.com"
         phone_number:
           type: string
-          example: "+1234567890"
+          examples: 
+            - "+1234567890"
         address:
           type: string
-          example: "123 Main Street, Cityville"
+          examples: 
+            - "123 Main Street, Cityville"
         geolocation:
           $ref: "#/components/schemas/Geolocation"
         authentication:
@@ -216,22 +240,25 @@ components:
         customer_specific:
           $ref: "#/components/schemas/CustomerSpecific"
         security:
-          $ref: "#/components/schemas/Security"
+          $ref: "#/components/securitySchemes/apikey_auth"
     Geolocation:
       type: object
       properties:
         latitude:
           type: number
-          example: 37.7749
+          examples: 
+            - 37.7749
         longitude:
           type: number
-          example: -122.4194
+          examples: 
+            - -122.4194
     Authentication:
       type: object
       properties:
         api_key:
           type: string
-          example: "abcdef123456"
+          examples: 
+            - "abcdef123456"
         oauth_providers:
           type: array
           items:
@@ -241,16 +268,19 @@ components:
       properties:
         provider:
           type: string
-          example: "google"
+          examples: 
+            - "google"
         oauth_token:
           type: string
-          example: "xyz789"
+          examples: 
+            - "xyz789"
     Preferences:
       type: object
       properties:
         cuisine:
           type: string
-          example: "Italian"
+          examples: 
+            - "Italian"
         dietary_restrictions:
           type: array
           items:
@@ -271,10 +301,12 @@ components:
       properties:
         dish_name:
           type: string
-          example: "Spaghetti Bolognese"
+          examples: 
+            - "Spaghetti Bolognese"
         price:
           type: number
-          example: 15.99
+          examples: 
+            - 15.99
         ingredients:
           type: array
           items:
@@ -291,30 +323,38 @@ components:
       properties:
         order_id:
           type: integer
-          example: 101
+          examples: 
+            - 101
         chef_id:
           type: integer
-          example: 1
+          examples: 
+            - 1
         dish_name:
           type: string
-          example: "Spaghetti Bolognese"
+          examples: 
+            - "Spaghetti Bolognese"
         price:
           type: number
-          example: 15.99
+          examples: 
+            - 15.99
         status:
           type: string
-          example: "delivered"
+          examples: 
+            - "delivered"
         date_ordered:
           type: string
-          example: "2023-01-15"
+          examples: 
+            - "2023-01-15"
     Error:
       type: object
       properties:
         code:
           type: string
           description: Error code
-          example: "AuthenticationError"
+          examples: 
+            - "AuthenticationError"
         message:
           type: string
           description: Error message
-          example: "user is not authenticated"
+          examples: 
+            - "user is not authenticated"
