@@ -11,7 +11,7 @@ const initialize = (app) => {
     app.use(express.json());
     app.use(express.urlencoded());
     //TODO MongoDB connection
-    mongoose.connect('mongodb+srv://chef-2-go-admin:Masters2023@chef-2-go.k7uo2cb.mongodb.net/?retryWrites=true&w=majority');
+    mongoose.connect("mongodb+srv://chef-2-go-admin:Masters2023@chef-2-go.k7uo2cb.mongodb.net/?retryWrites=true&w=majority");
     //TODO Initialize routes
     registerRouter(app);
 }
