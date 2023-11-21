@@ -15,9 +15,12 @@ const RecipeSchema = new Schema(
             type: Array,
             required: true
         },
-        ingridents: {
-            type: String,
+        ingredients: {
+            type: Array,
             required: true,
+            name: {
+                type: String
+            },
             quanity: {
                 type: String,
             },
@@ -29,8 +32,7 @@ const RecipeSchema = new Schema(
             type: String,
         },
         gifs: {
-            type: String,
-            required: true
+            type: String
         }
     },
     {
