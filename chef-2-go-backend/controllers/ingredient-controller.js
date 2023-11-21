@@ -1,7 +1,11 @@
+// API controllers using ingredient service and response handlers
+
 import * as ingredientService from "../services/ingredient-service.js";
 
 import { setErrorResponse, setResponse } from "./response-handler.js";
 
+
+// Get an ingredient by ID
 export const get = async (request, response) => {
   try {
     const id = request.params.id;
@@ -12,6 +16,7 @@ export const get = async (request, response) => {
   }
 };
 
+// Create a new ingredient
 export const post = async (request, response) => {
   try {
     console.log(request.body);
