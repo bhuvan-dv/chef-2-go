@@ -28,7 +28,6 @@ export const signup = async (name, username, email, password) => {
 }
 
 export const login = async (username, email, password) => {
-    console.log(`Entered here`);
     //validation
     if (!email || !password) {
         throw Error('All Fields must be filled');
@@ -56,12 +55,7 @@ export const login = async (username, email, password) => {
     return user;
 }
 
-export const searchChefsbyName = async (searchTerm) =>{
-    const chefs = User.find({ name: { $regex: new RegExp(searchTerm) } });
-    return chefs;
-}
-
-export const searchChefByUserName = async (username) =>{
-    const chef = await User.findOne({ username: username });
-    return chef;
+export const deleteUser = async (id) =>{
+    console.log("destination");
+    return await User.findByIdAndDelete(id).exec();
 }
