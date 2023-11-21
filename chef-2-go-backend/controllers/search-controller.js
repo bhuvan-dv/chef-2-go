@@ -13,6 +13,10 @@ export const searchChef = async (request, response) =>{
             const chefs = await searchService.searchChefsbyName(searchTerm);
             setResponse(chefs,response);
         }
+        else if(searchByCat === "recipe"){
+            const recipes = await searchService.searchRecipes(searchTerm);
+            setResponse(chefs,response);
+        }
     } catch (error) {
         if (error.response) {
             // The request was made and the server responded with a status code

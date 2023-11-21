@@ -11,3 +11,7 @@ export const searchChefByUserName = async (username) =>{
     const chef = await User.find({ username: username });
     return chef;
 }
+
+export const searchRecipes = async (searchTerm) =>{
+    const recipes = await Recipe.find({ name: { $regex: new RegExp(searchTerm) } });
+}
