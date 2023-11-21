@@ -34,8 +34,37 @@ Update an existing recipe identified by recipeId.
 DELETE /recipes/{recipeId}
 Delete a recipe identified by recipeId.
 
+<<<<<<< HEAD
+### User Authentication API
+The API allows users to sign up, log in, and delete their accounts. Passwords are securely hashed using bcrypt, and token-based authentication is implemented for user sessions.
+
+controllers: Contains the controller functions that handle HTTP requests and interact with the service layer.
+models: Defines the MongoDB schema for the user and exports the user model.
+services: Implements the business logic for user authentication and interacts with the MongoDB database using the user model.
+utilities: Contains utility functions such as token generation.
+routes: Defines the API routes using Express, routing HTTP requests to the corresponding controller functions.
+
+API Endpoints:
+
+POST /signup: Sign up a new user. Requires name, username, email, and password in the request body.
+POST /login: Log in a user. Requires either username or email and password in the request body.
+DELETE /:id: Delete a user by their ID. Requires the user ID as a parameter in the URL.
+
+Error Handling:
+
+Validation errors (e.g., empty fields, invalid email) return a 400 status code with an error message.
+Unauthorized errors return a 401 status code with an "Unauthorized" message.
+Internal server errors return a 500 status code with an "Internal Server Error" message.
+
+Security:
+
+User passwords are hashed using bcrypt for secure storage.
+Token-based authentication is implemented for user sessions.
+
+=======
 ### REST API for Ingredient
 The Ingredient API is a Node.js-based application utilizing Express and MongoDB with Mongoose, designed to manage information about ingredients and the stores where they are available. The project follows a structured architecture with separate modules for defining the schema (ingredient-model.js), handling CRUD operations (ingredient-service.js), managing HTTP requests and responses (ingredient-controller.js), and defining API routes (ingredient-routes.js). 
+>>>>>>> 503b8ba9bc3cacf8cb787501a3f2e5fe64995c2d
 
 ### Object Model
 
