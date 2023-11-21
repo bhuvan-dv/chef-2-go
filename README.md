@@ -34,6 +34,7 @@ Update an existing recipe identified by recipeId.
 DELETE /recipes/{recipeId}
 Delete a recipe identified by recipeId.
 
+<<<<<<< HEAD
 ### User Authentication API
 The API allows users to sign up, log in, and delete their accounts. Passwords are securely hashed using bcrypt, and token-based authentication is implemented for user sessions.
 
@@ -60,6 +61,10 @@ Security:
 User passwords are hashed using bcrypt for secure storage.
 Token-based authentication is implemented for user sessions.
 
+=======
+### REST API for Ingredient
+The Ingredient API is a Node.js-based application utilizing Express and MongoDB with Mongoose, designed to manage information about ingredients and the stores where they are available. The project follows a structured architecture with separate modules for defining the schema (ingredient-model.js), handling CRUD operations (ingredient-service.js), managing HTTP requests and responses (ingredient-controller.js), and defining API routes (ingredient-routes.js). 
+>>>>>>> 503b8ba9bc3cacf8cb787501a3f2e5fe64995c2d
 
 ### Object Model
 
