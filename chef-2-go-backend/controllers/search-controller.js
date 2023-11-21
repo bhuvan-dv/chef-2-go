@@ -1,27 +1,28 @@
 import * as searchService from "../services/search-service.js";
 import { setResponse, setErrorResponse, setSignupError } from "./response-handler.js";
 
-export const searchChef = async (request, response) =>{
-    const {searchByCat, searchTerm} = request.body;
+// Function to search for a chef, chef by name, or recipe based on search category
+export const searchChef = async (request, response) => {
+    const { searchByCat, searchTerm } = request.body;
     try {
         if (searchByCat === "username") {
+            // Search for a chef by username
             const chef = await searchService.searchChefByUserName(searchTerm);
             console.log(`chef: ${chef}`);
-            setResponse(chef,response);
-        }
-        else if(searchByCat === "name"){
+            setResponse(chef, response);
+        } else if (searchByCat === "name") {
+            // Search for chefs by name
             const chefs = await searchService.searchChefsbyName(searchTerm);
-            setResponse(chefs,response);
-        }
-        else if(searchByCat === "recipe"){
+            setResponse(chefs, response);
+        } else if (searchByCat === "recipe") {
+            // Search for recipes
             const recipes = await searchService.searchRecipes(searchTerm);
-            setResponse(chefs,response);
+            setResponse(recipes, response);
         }
     } catch (error) {
+        // Error handling
         if (error.response) {
             // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-
             const statusCode = error.response.status;
             const errorMessage = error.response.data;
 
@@ -42,4 +43,4 @@ export const searchChef = async (request, response) =>{
             setErrorResponse(500, "Internal Server Error", response);
         }
     }
-}
+};

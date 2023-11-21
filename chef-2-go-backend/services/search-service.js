@@ -1,17 +1,23 @@
 import User from "../models/user-model.js";
 import Recipe from "../models/recipe-model.js";
 
-
-export const searchChefsbyName = async (searchTerm) =>{
-    const chefs = User.find({ name: { $regex: new RegExp(searchTerm) } });
+// Search for chefs by name using a case-insensitive regular expression match
+export const searchChefsbyName = async (searchTerm) => {
+    // Using $regex to perform a case-insensitive search for the given name
+    const chefs = User.find({ name: { $regex: new RegExp(searchTerm, 'i') } });
     return chefs;
 }
 
-export const searchChefByUserName = async (username) =>{
+// Search for a chef by username
+export const searchChefByUserName = async (username) => {
+    // Finding a user with the specified username
     const chef = await User.find({ username: username });
     return chef;
 }
 
-export const searchRecipes = async (searchTerm) =>{
-    const recipes = await Recipe.find({ name: { $regex: new RegExp(searchTerm) } });
+// Search for recipes by name using a case-insensitive regular expression match
+export const searchRecipes = async (searchTerm) => {
+    // Using $regex to perform a case-insensitive search for the given recipe name
+    const recipes = await Recipe.find({ name: { $regex: new RegExp(searchTerm, 'i') } });
+    return recipes;
 }
