@@ -1,0 +1,49 @@
+
+1. git init: Initializes a new Git repository.
+
+2. git clone <repository>: Creates a copy of a remote repository on your local machine.
+
+3. git add <file>: Adds changes in a file to the staging area.
+
+4. git add . or git add -A: Adds all changes in the working directory to the staging area.
+
+5. git commit -m "message": Commits the staged changes with a descriptive message.
+
+6. git status: Shows the status of changes as untracked, modified, or staged.
+
+7. git diff: Shows the differences between the working directory and the last commit.
+
+8. git log: Displays a log of commits, showing commit messages, authors, and timestamps.
+
+9. git pull: Fetches changes from a remote repository and merges them into the current branch.
+
+10. git push: Pushes local changes to a remote repository.
+
+11. git branch: Lists all local branches and indicates the current branch.
+
+12. git branch <branch_name>: Creates a new branch with the specified name.
+
+13. git checkout <branch_name>: Switches to the specified branch.
+
+14. git merge <branch_name>: Merges changes from the specified branch into the current branch.
+
+15. git remote -v: Lists all remote repositories and their URLs.
+
+16. git fetch: Fetches changes from a remote repository without merging them.
+
+17. git reset <file>: Unstages changes for a specific file.
+
+18. git reset --hard: Discards all changes in the working directory and staging area.
+
+19. git stash: Temporarily saves changes that are not ready to be committed.
+
+20. git stash apply: command to apply stashed changes back to your working directory
+
+20. git tag <tag_name>: Creates a lightweight tag for the current commit.
+
+21. git show <tag_name>: Shows the details of a specific tag.
+
+22. git fetch --all : fetches all branches from all remotes, updating your local repository with any changes made in the remote branches.
+
+23. git diff main: To see the differences (diff) between the main branch and your current branch
+
