@@ -1,6 +1,13 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+
+const ROLES = {
+    ADMIN: "admin",
+    CHEF: "chef",
+    CUSTOMER: "customer"
+}
+
 const UserSchema = new Schema({
     email: {
         type: String,
@@ -16,6 +23,12 @@ const UserSchema = new Schema({
     },
     username:{
         type: String,
+        required: true,
+        unique:true
+    },
+    role:{
+        type: String,
+        enum: Object.values(ROLES), // Restrict values to those defined in ROLES
         required: true
     }
 });

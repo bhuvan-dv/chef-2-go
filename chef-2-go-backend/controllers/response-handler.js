@@ -6,16 +6,17 @@ export const setResponse = (data, response) => {
        .json(data);
 }
 
-export const setErrorResponse = (err, response) => {
-    response.status(500)
+export const setErrorResponse = (statuscode, err, response) => {
+    console.log(`errorMsg: ${err}`);
+    response.status(statuscode)
     .json({
-     code: "ServiceError",
-     message: "Error occured while processing your request."
+     code: err.code,
+     message: err.message
     })
 }
 
-export const setSignupError = (err, response) =>{
-    response.status(500)
+export const setSignupError = (statuscode, err, response) =>{
+    response.status(statuscode)
     .json({
         message: err.message
     })

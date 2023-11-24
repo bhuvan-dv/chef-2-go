@@ -5,9 +5,9 @@ import { createToken } from "../utilities/token.js";
 import { request, response } from "express";
 export const loginUser = async (request, response) => {
     try {
-        const { email, password } = request.body;
+        const { email, password, username } = request.body;
         console.log(`email: ${email}, password: ${password}`);
-        const user = await userService.login(null,email, password);
+        const user = await userService.login(username,email, password);
 
         //creating token 
         const token = createToken(user._id);
@@ -22,15 +22,15 @@ export const loginUser = async (request, response) => {
         } else if (err.name === "UnauthorizedError") {
             setErrorResponse(401, "Unauthorized", response);
         } else {
-            setErrorResponse(500, "Internal Server Error", response);
+            setErrorResponse(500, err, response);
         }
     }
 }
 
 export const signupUser = async (request, response) => {
-    const { name, username, email, password } = request.body;
+    const { name, username, email, password, role } = request.body;
     try {
-        const user = await userService.signup(name, username, email, password);
+        const user = await userService.signup(name, username, email, password, role);
         console.log(user);
         //creating token 
         const token = createToken((user._id).toString());

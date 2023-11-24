@@ -47,3 +47,5 @@
 
 23. git diff main: To see the differences (diff) between the main branch and your current branch
 
+24. git remote add origin <github repo link> : helps you to connect your local repository into the github repository
+
