@@ -1,0 +1,18 @@
+immutable : attribute which can be used to make value immutable in our schema
+for example: createdDate -> once it is set it cannot be changed later, we can achieve that using above attribute in Schema
+
+const RecipeSchema = Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    createdDate: {
+        type: Date,
+        default: () => Date.now(), // if nothing is passed it will pass current dateTime as default value
+        immutable: true // this makes this attribute as immutable meaning we cannot change it's value once it is assigned.
+        valiate:{ // this helps us to add custom validation
+            validator: v => v >= Date.now(),
+            message: props => `${props.value} is below ${Date.now()}`
+        }
+    }
+})

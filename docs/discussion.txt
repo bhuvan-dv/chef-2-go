@@ -16,3 +16,25 @@ search by location?
 Order
 
 we need to split it into cart and Order
+
+
+Recipe:
+    Recipe.find({name: searchTerm}) -> would return all the Recipes which matches the searchTerm // we will use regex to match -> [recipes] 
+    Recipe.exist({name: searchTerm}) -> would return boolean either record exist or not!
+
+Chef:
+    User.find({name: searchTerm}) -> would search chef by name // will use regex -> [chefs]
+    User.findOne({username: searchTerm}) -> would return one record, and we use exact match.
+
+number of pages
+
+1. landing page
+2. login page
+3. signup page
+4. search result display page
+    a. recipes display
+    b. chefs display
+5. individual recipe display page
+6. individual chef display page
+7. payment page
+8. user information page
