@@ -1,0 +1,27 @@
+Roles:
+    1. admin
+    2. chef
+    3. customer
+
+UserSchema:
+    name:
+    username:
+    email:
+    password:
+    role:
+
+admin
+    1. Can view all the chefs 
+    2. can view all the recipes
+    3. can perform CRUD on all the recipes
+    4. can perform CRUD on all the chefs
+    5. can perform CRUD on all the users
+
+chef:
+    1. Can view all recipes
+    2. can perform CRUD on only his recipes
+    3. can perform CRUD on his user account
+
+customer:
+    1. can perform search on all the recipes
+    2. can perform CRUD on his user account
