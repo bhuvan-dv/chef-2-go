@@ -132,3 +132,7 @@ dist
 #mongoDB doubt file
 
 docs/mongoDB.txt
+
+figma images
+
+.DS_Store

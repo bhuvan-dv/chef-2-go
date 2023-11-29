@@ -12,6 +12,7 @@ Search by Chef?
 search by location?
     Display all the chefs in that location
 
+ *** we must have a middleware for all the api calls except login/ signup to check whether person is logged in or not
 
 Order
 
