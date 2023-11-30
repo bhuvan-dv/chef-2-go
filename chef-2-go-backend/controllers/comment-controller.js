@@ -9,7 +9,7 @@ export const find = async (request, response) => {
         const comment = await commentService.findComment(id);
         setResponse(comment, response);
     } catch (error) {
-        setErrorResponse(error, response);
+        setErrorResponse(401,error, response);
     }
 }
 
@@ -20,7 +20,7 @@ export const post = async (request, response) => {
         const comment = await commentService.createComment(newComment);
         setResponse(comment, response);
     } catch (error) {
-        setErrorResponse(error, response);
+        setErrorResponse(401,error, response);
     }
 }
 
@@ -32,7 +32,7 @@ export const put = async (request, response) => {
         const comment = await commentService.updateComment(updateComment,id);
         setResponse(comment, response);
     } catch (error) {
-        setErrorResponse(error, response);
+        setErrorResponse(401,error, response);
     }
 }
 
@@ -44,6 +44,6 @@ export const remove = async (request, response) => {
         const comment = await commentService.deleteComment(deleteCommentID);
         setResponse({ del: "comment deleted Successfully" }, response);
     } catch (error) {
-        setErrorResponse(error, response);
+        setErrorResponse(401,error, response);
     }
 }
