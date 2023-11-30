@@ -33,6 +33,11 @@ const RecipeSchema = new Schema(
         },
         gifs: {
             type: String
+        },
+        comment: {
+            type: String,
+            // ref: 'Comment',
+            default: null
         }
     },
     {
