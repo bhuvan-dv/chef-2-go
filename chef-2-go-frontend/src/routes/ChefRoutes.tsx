@@ -1,7 +1,8 @@
 import { useRoutes } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import NotFound from "../pages/PageNotFound/NotFound";
-
+import Login from "../components/authComponent/Login";
+import Signup from "../components/authComponent/Signup";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes= useRoutes([
@@ -12,6 +13,14 @@ let ChefRoutes = () => {
         {
             path: "*",
             element: <NotFound />,
+        },
+        {
+            path: "login",
+            element: <Login />,
+        },
+        {
+            path: "signup",
+            element: <Signup />,
         },
     ]);
 
