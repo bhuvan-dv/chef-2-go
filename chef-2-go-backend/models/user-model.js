@@ -30,6 +30,10 @@ const UserSchema = new Schema({
         type: String,
         enum: Object.values(ROLES), // Restrict values to those defined in ROLES
         required: true
+    },
+    isPremiumUser:{
+        type: Boolean,
+        default: false
     }
 });
 
