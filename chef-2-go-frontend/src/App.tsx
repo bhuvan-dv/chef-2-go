@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import logo from './logo.svg';
 import './App.css';
 import { Routes, Route } from "react-router-dom";
@@ -13,6 +14,21 @@ function App() {
       <Route path="/" element={<Home/>} />
       <Route path="/signup" element={<SignUp/>} />
     </Routes>
+=======
+import { BrowserRouter as Router } from "react-router-dom";
+import Navbar from './components/Navbar';
+import ChefRoutes from './routes/ChefRoutes';
+function App() {
+  return (
+   <Router>
+      <header>
+        <Navbar/>
+      </header>
+      <main>
+        <ChefRoutes/>
+      </main>
+   </Router>
+>>>>>>> main
   );
 }
 
