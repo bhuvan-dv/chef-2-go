@@ -1,15 +1,17 @@
-import ingredient from "../models/ingredient-model.js";
+import {IngridentModel} from "../models/ingredient-model.js";
 
 
 // Find ingredient by ID
 export const find = async (id) => {
-  const ingredient = await ingredient.findById(id).exec();
+  const ingredient = await IngridentModel.findById(id).exec();
   return ingredient;
 };
 
 
 // Save a new ingredient
 export const save = async (newingredient) => {
-  const ingredient = new ingredient(newingredient);
+  console.log('inside service class');
+  console.log(JSON.stringify(newingredient));
+  const ingredient = new IngridentModel(newingredient);
   return await ingredient.save();
 };

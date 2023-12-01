@@ -1,6 +1,6 @@
 // API controllers using ingredient service and response handlers
 
-import * as ingredientService from "../services/ingredient-service.js";
+import {save, find} from "../services/ingredient-service.js";
 
 import { setErrorResponse, setResponse } from "./response-handler.js";
 
@@ -9,9 +9,10 @@ import { setErrorResponse, setResponse } from "./response-handler.js";
 export const get = async (request, response) => {
   try {
     const id = request.params.id;
-    const ingrident = await ingredientService.findById(id);
+    const ingrident = await find(id);
     setResponse(ingrident, response);
   } catch (error) {
+    console.log(`req: ${request}`)
     setErrorResponse(error, response);
   }
 };
@@ -21,10 +22,13 @@ export const post = async (request, response) => {
   try {
     console.log(request.body);
     const newingredient = { ...request.body };
-    const ingrident = await ingredientService.save(newingredient);
+    console.log(`entered here:::`);
+    const ingrident = await save(newingredient);
     console.log(ingrident);
     setResponse(ingrident, response);
   } catch (error) {
+    console.log(`req post controller: ${JSON.stringify(request.body)}`)
+    console.log(`req post controller: ${JSON.stringify(error)}`)
     setErrorResponse(error, response);
   }
 };

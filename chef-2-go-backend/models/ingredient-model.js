@@ -25,6 +25,6 @@ const IngridentSchema = new Schema({
   },
 });
 
-const IngridentModel = mongoose.model("ingredient", IngridentSchema);
+export const IngridentModel = mongoose.model("ingredient", IngridentSchema);
 
-export default IngridentModel;
+// export default IngridentModel;

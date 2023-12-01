@@ -60,9 +60,9 @@ const Login = (props: Props) => {
         <div className="flex flex-col">
             <form className="signin-form flex flex-col justify-center h-screen items-center gap-5">
                 <div className="tagline-container">
-                <Typography variant="h5" gutterBottom style={{ fontFamily: 'Agbalumo, Dancing Script, Neucha, sans-serif' }}>
-                    Unlock Culinary Delights with a Click
-                </Typography>
+                    <Typography variant="h5" gutterBottom style={{ fontFamily: 'Agbalumo, Dancing Script, Neucha, sans-serif' }}>
+                        Unlock Culinary Delights with a Click
+                    </Typography>
                 </div>
                 <div className="icon-container">
                 <   img src="" alt="" />
@@ -111,6 +111,11 @@ const Login = (props: Props) => {
                     />
                 </div>
                  }
+                <div className="login-note-container">
+                    <Typography variant="body2" gutterBottom >
+                        note: sign in using username or email
+                    </Typography>
+                </div>
                 <div className="button-container">
                     <Button
                         variant={btnVarinat}
