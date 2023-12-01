@@ -7,6 +7,26 @@ Welcome to the Chef2go website repository.
 ### Project Description
 Code2chef serves as a comprehensive online platform tailored specifically for students, functioning as a convenient one-stop shop for ordering food. The platform goes beyond mere food delivery, offering students exclusive deals and granting them access to premium experiences. One standout feature is the ability to explore a curated collection of chef-created recipes, providing a unique and enriching culinary experience. Whether students are looking for a quick meal or seeking inspiration for their own cooking endeavors, this platform is designed to cater to their diverse needs, making it a go-to destination for food enthusiasts on campus.
 
+Key Features:
+1.Login:
+Fields: Username and Password are two fields used for authenticating the user. The username can be email id.Password must be at least 8 characters long and must have at least 1 special character and at the most 2 special characters. Password should have at least 1 number. The username and password key-value will be verified immediately when the user clicks on login button.
+
+2.Signup / Register:
+ Fields: Username, Password, Confirm Password. The Username can be email id.Password and Confirm Password must be at least 8 characters long and must have at least 1 special character and at the most 2 special characters. Password should have at least 1 number. Both Password and Confirm Password should be exactly matching. Once the user clicks the sign-up button, verification email link must be sent to verify the user.
+
+3.Search by Chef:
+Dive into a world of culinary creativity with the "Search by Chef" feature, showcasing a comprehensive list of recipes crafted by talented chefs.
+Students can seamlessly order directly from the featured chefs, transforming their meal experience into a personalized and chef-curated delight.
+
+4.Search by Recipes:
+Empowering students to explore and discover new flavors, the "Search by Recipes" option allows users to find their desired dishes effortlessly.
+Place orders based on specific recipes, ensuring a tailored and satisfying dining experience.
+
+5.Premium Subscription Benefits:
+For students with a premium subscription, exclusive recipe videos directly from the chefs are unlocked, providing step-by-step guidance for a hands-on cooking experience.
+This premium feature enhances the platform, making it an ideal choice for students who aspire to elevate their culinary skills.
+In essence, Code2Chef redefines the online food platform landscape by offering not just meals but an immersive culinary journey. It caters to the diverse needs of students, making it the go-to destination for those who appreciate the fusion of convenience, exclusive deals, and premium culinary experiences.
+
 ### Run Locally
 
 Clone the project
@@ -20,9 +40,10 @@ Go to the project directory
 ```bash
   use live-server extension on vs code
 ```
+
 ### Rest API for Recipe
 
-Created REST API for Recipe management
+REST API for Recipe management
 GET /recipes
 Retrieve a list of all recipes in the database.
 POST /recipes
@@ -34,7 +55,7 @@ Update an existing recipe identified by recipeId.
 DELETE /recipes/{recipeId}
 Delete a recipe identified by recipeId.
 
-<<<<<<< HEAD
+
 ### User Authentication API
 The API allows users to sign up, log in, and delete their accounts. Passwords are securely hashed using bcrypt, and token-based authentication is implemented for user sessions.
 
@@ -61,10 +82,9 @@ Security:
 User passwords are hashed using bcrypt for secure storage.
 Token-based authentication is implemented for user sessions.
 
-=======
+
 ### REST API for Ingredient
 The Ingredient API is a Node.js-based application utilizing Express and MongoDB with Mongoose, designed to manage information about ingredients and the stores where they are available. The project follows a structured architecture with separate modules for defining the schema (ingredient-model.js), handling CRUD operations (ingredient-service.js), managing HTTP requests and responses (ingredient-controller.js), and defining API routes (ingredient-routes.js). 
->>>>>>> 503b8ba9bc3cacf8cb787501a3f2e5fe64995c2d
 
 ### Object Model
 
