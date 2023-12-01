@@ -5,7 +5,7 @@
 Welcome to the Chef2go website repository.
 
 ### Project Description
-Code2chef serves as a comprehensive online platform tailored specifically for students, functioning as a convenient one-stop shop for ordering food. The platform goes beyond mere food delivery, offering students exclusive deals and granting them access to premium experiences. One standout feature is the ability to explore a curated collection of chef-created recipes, providing a unique and enriching culinary experience. Whether students are looking for a quick meal or seeking inspiration for their own cooking endeavors, this platform is designed to cater to their diverse needs, making it a go-to destination for food enthusiasts on campus.
+Chef2go serves as a comprehensive online platform tailored specifically for students, functioning as a convenient one-stop shop for ordering food. The platform goes beyond mere food delivery, offering students exclusive deals and granting them access to premium experiences. One standout feature is the ability to explore a curated collection of chef-created recipes, providing a unique and enriching culinary experience. Whether students are looking for a quick meal or seeking inspiration for their own cooking endeavors, this platform is designed to cater to their diverse needs, making it a go-to destination for food enthusiasts on campus.
 
 Key Features:
 1.Login:
@@ -25,7 +25,7 @@ Place orders based on specific recipes, ensuring a tailored and satisfying dinin
 5.Premium Subscription Benefits:
 For students with a premium subscription, exclusive recipe videos directly from the chefs are unlocked, providing step-by-step guidance for a hands-on cooking experience.
 This premium feature enhances the platform, making it an ideal choice for students who aspire to elevate their culinary skills.
-In essence, Code2Chef redefines the online food platform landscape by offering not just meals but an immersive culinary journey. It caters to the diverse needs of students, making it the go-to destination for those who appreciate the fusion of convenience, exclusive deals, and premium culinary experiences.
+In essence, Chef2go redefines the online food platform landscape by offering not just meals but an immersive culinary journey. It caters to the diverse needs of students, making it the go-to destination for those who appreciate the fusion of convenience, exclusive deals, and premium culinary experiences.
 
 ### Run Locally
 
