@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import {AccountCircleOutlined, PersonPinCircleOutlined, EmailOutlined, VpnKeyOutlined} from '@mui/icons-material';
+import { AccountCircleOutlined, PersonPinCircleOutlined, EmailOutlined, VpnKeyOutlined } from '@mui/icons-material';
 //css import
 import './Signup.css';
 type Props = {
@@ -36,65 +36,97 @@ const Signup: React.FC<Props> = (props) => {
         setShowPassword(!showPassword);
     };
 
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        if (e?.target?.value) {
+            setEmail(e?.target?.value);
+        }
+    }
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        if (e?.target?.value) {
+            setName(e?.target?.value);
+        }
+    }
+    const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        if (e?.target?.value) {
+            setUsername(e?.target?.value);
+        }
+    }
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        if (e?.target?.value) {
+            setPassword(e?.target?.value);
+        }
+    }
+
     return (
         <div className="flex flex-col">
             <form className="signup-form flex flex-col justify-center h-screen items-center gap-5">
                 <div className="tagline-container">
-                <Typography variant="h5" gutterBottom style={{ fontFamily: 'Agbalumo, Dancing Script, Neucha, sans-serif' }} >
-                    Your Taste Journey Begins Here
-                </Typography>
+                    <Typography variant="h5" gutterBottom style={{ fontFamily: 'Agbalumo, Dancing Script, Neucha, sans-serif' }} >
+                        Your Taste Journey Begins Here
+                    </Typography>
                 </div>
                 <div className="icon-container">
-                <   img src="" alt="" />
+                    <   img src="" alt="" />
                 </div>
                 <div className="name-container w-1/2 flex gap-2 items-center">
-                    <AccountCircleOutlined fontSize="large"/>
+                    <AccountCircleOutlined fontSize="large" />
                     <TextField
                         required
                         id="outlined-required"
                         label="Name"
                         placeholder="Basavaraj Patil"
-                        className="name-input w-full" />
-                </div>
-                <div className="username-container w-1/2 flex gap-2 items-center">
-                    <PersonPinCircleOutlined fontSize="large"/>
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="User Name"
-                        placeholder="basupatil1213"
-                        className="username-input w-full"
+                        className="name-input w-full"
+                        onChange={handleNameChange}
                     />
                 </div>
-                <div className="email-container w-1/2 flex gap-2 items-center">
-                    <EmailOutlined fontSize="large"/>
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="Email"
-                        placeholder="patil.ba@northeastern.edu"
-                        className="email-input w-full"
-                    />
-                </div>
-                <div className="password-container w-1/2 flex gap-2 items-center">
-                    <VpnKeyOutlined fontSize="large"/>
-                    <TextField
-                        id="outlined-password-input-required"
-                        label="Password*"
-                        type={showPassword ? 'text' : 'password'}
-                        autoComplete="current-password"
-                        className="password-input w-full"
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton onClick={handleTogglePasswordVisibility} edge="end">
-                                        {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                </div>
+                {name &&
+                    <div className="username-container w-1/2 flex gap-2 items-center">
+                        <PersonPinCircleOutlined fontSize="large" />
+                        <TextField
+                            required
+                            id="outlined-required"
+                            label="User Name"
+                            placeholder="basupatil1213"
+                            className="username-input w-full"
+                            onChange={handleUserNameChange}
+                        />
+                    </div>
+                }
+                {username &&
+                    <div className="email-container w-1/2 flex gap-2 items-center">
+                        <EmailOutlined fontSize="large" />
+                        <TextField
+                            required
+                            id="outlined-required"
+                            label="Email"
+                            placeholder="patil.ba@northeastern.edu"
+                            className="email-input w-full"
+                            onChange={handleEmailChange}
+                        />
+                    </div>
+                }
+                {email &&
+                    <div className="password-container w-1/2 flex gap-2 items-center">
+                        <VpnKeyOutlined fontSize="large" />
+                        <TextField
+                            id="outlined-password-input-required"
+                            label="Password*"
+                            type={showPassword ? 'text' : 'password'}
+                            autoComplete="current-password"
+                            className="password-input w-full"
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton onClick={handleTogglePasswordVisibility} edge="end">
+                                            {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                            onChange={handlePasswordChange}
+                        />
+                    </div>
+                }
                 <div className="button-container"> {/* css classes:  flex gap-2 */}
                     <Button
                         variant={btnVarinat}

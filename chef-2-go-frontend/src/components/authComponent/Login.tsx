@@ -38,6 +38,23 @@ const Login = (props: Props) => {
         setShowPassword(!showPassword);
     };
 
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        if(e?.target?.value){
+            setEmail(e?.target?.value);
+        }
+    }
+
+    const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        if(e?.target?.value){
+            setUsername(e?.target?.value);
+        }
+    }
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        if(e?.target?.value){
+            setPassword(e?.target?.value);
+        }
+    }
+
 
     return (
         <div className="flex flex-col">
@@ -58,6 +75,7 @@ const Login = (props: Props) => {
                         label="User Name"
                         placeholder="basupatil1213"
                         className="username-input w-full"
+                        onChange={handleUserNameChange}
                     />
                 </div>
                 <div className="email-container w-1/2 flex gap-2 items-center">
@@ -68,8 +86,10 @@ const Login = (props: Props) => {
                         label="Email"
                         placeholder="patil.ba@northeastern.edu"
                         className="email-input w-full"
+                        onChange={handleEmailChange}
                     />
                 </div>
+                {(email !== '' || username !== '' )&&
                 <div className="password-container w-1/2 flex gap-2 items-center">
                     <VpnKeyOutlined fontSize="large"/>
                     <TextField
@@ -87,8 +107,10 @@ const Login = (props: Props) => {
                                 </InputAdornment>
                             ),
                         }}
+                        onChange={handlePasswordChange}
                     />
                 </div>
+                 }
                 <div className="button-container">
                     <Button
                         variant={btnVarinat}
