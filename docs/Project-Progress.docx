@@ -1,0 +1,16 @@
+Project: CHEF 2 Go
+
+Team Members: 
+1. Basavaraj Patil
+2. Bhuvan Dama Venkatesh Raj
+3. Keerthana Mikkili
+4. Shreyas Hanumanthagouda Patil
+
+Project Progress:
+
+1. Basavaraj Patil
+    a. Developed UserAPI for login, signup feature
+    b. Built SearchAPI to search chefs and recipes by name and also to search chef by username
+    c. Developed front end for login and signup page
+    d. Working on integrating front end with backend for login and sign up actions
+    e. Working on building landing page for the website

@@ -2,12 +2,12 @@
 import React, { useState } from 'react';
 
 // material ui imports
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, TextField, Typography, CardContent, CardActions } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import {PersonPinCircleOutlined, EmailOutlined, VpnKeyOutlined} from '@mui/icons-material';
+import { PersonPinCircleOutlined, EmailOutlined, VpnKeyOutlined } from '@mui/icons-material';
 
 //css import
 import './Login.css';
@@ -39,18 +39,18 @@ const Login = (props: Props) => {
     };
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        if(e?.target?.value){
+        if (e?.target?.value) {
             setEmail(e?.target?.value);
         }
     }
 
     const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        if(e?.target?.value){
+        if (e?.target?.value) {
             setUsername(e?.target?.value);
         }
     }
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        if(e?.target?.value){
+        if (e?.target?.value) {
             setPassword(e?.target?.value);
         }
     }
@@ -58,75 +58,81 @@ const Login = (props: Props) => {
 
     return (
         <div className="flex flex-col">
-            <form className="signin-form flex flex-col justify-center h-screen items-center gap-5">
-                <div className="tagline-container">
-                    <Typography variant="h5" gutterBottom style={{ fontFamily: 'Agbalumo, Dancing Script, Neucha, sans-serif' }}>
-                        Unlock Culinary Delights with a Click
-                    </Typography>
-                </div>
-                <div className="icon-container">
-                <   img src="" alt="" />
-                </div>
-                <div className="username-container w-1/2 flex gap-2 items-center">
-                    <PersonPinCircleOutlined fontSize="large"/>
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="User Name"
-                        placeholder="basupatil1213"
-                        className="username-input w-full"
-                        onChange={handleUserNameChange}
-                    />
-                </div>
-                <div className="email-container w-1/2 flex gap-2 items-center">
-                    <EmailOutlined fontSize="large"/>
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="Email"
-                        placeholder="patil.ba@northeastern.edu"
-                        className="email-input w-full"
-                        onChange={handleEmailChange}
-                    />
-                </div>
-                {(email !== '' || username !== '' )&&
-                <div className="password-container w-1/2 flex gap-2 items-center">
-                    <VpnKeyOutlined fontSize="large"/>
-                    <TextField
-                        id="outlined-password-input-required"
-                        label="Password*"
-                        type={showPassword ? 'text' : 'password'}
-                        autoComplete="current-password"
-                        className="password-input w-full"
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton onClick={handleTogglePasswordVisibility} edge="end">
-                                        {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
-                        }}
-                        onChange={handlePasswordChange}
-                    />
-                </div>
-                 }
-                <div className="login-note-container">
-                    <Typography variant="body2" gutterBottom >
-                        note: sign in using username or email
-                    </Typography>
-                </div>
-                <div className="button-container">
-                    <Button
-                        variant={btnVarinat}
-                        className="signin-button"
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                    >Sign In
-                    </Button>
-                </div>
-            </form>
-        </div>
+            <CardContent style={{backgroundColor:"yellow"}}>
+                <form className="signin-form flex flex-col justify-center h-screen items-center gap-5">
+                    <div className="tagline-container">
+                        <Typography variant="h5" gutterBottom style={{ fontFamily: 'Agbalumo, Dancing Script, Neucha, sans-serif' }}>
+                            Unlock Culinary Delights with a Click
+                        </Typography>
+                    </div>
+                    <div className="icon-container">
+                        <   img src="" alt="" />
+                    </div>
+                    <div className="username-container w-1/2 flex gap-2 items-center">
+                        <PersonPinCircleOutlined fontSize="large" />
+                        <TextField
+                            required
+                            id="outlined-required"
+                            label="User Name"
+                            placeholder="basupatil1213"
+                            className="username-input w-full"
+                            onChange={handleUserNameChange}
+                        />
+                    </div>
+                    <div className="email-container w-1/2 flex gap-2 items-center">
+                        <EmailOutlined fontSize="large" />
+                        <TextField
+                            required
+                            id="outlined-required"
+                            label="Email"
+                            placeholder="patil.ba@northeastern.edu"
+                            className="email-input w-full"
+                            onChange={handleEmailChange}
+                        />
+                    </div>
+                    {(email !== '' || username !== '') &&
+                        <div className="password-container w-1/2 flex gap-2 items-center">
+                            <VpnKeyOutlined fontSize="large" />
+                            <TextField
+                                id="outlined-password-input-required"
+                                label="Password*"
+                                type={showPassword ? 'text' : 'password'}
+                                autoComplete="current-password"
+                                className="password-input w-full"
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton onClick={handleTogglePasswordVisibility} edge="end">
+                                                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                }}
+                                onChange={handlePasswordChange}
+                            />
+                        </div>
+                    }
+                    <div className="login-note-container">
+                        <Typography variant="body2" gutterBottom >
+                            note: sign in using username or email
+                        </Typography>
+                    </div>
+
+                    <CardActions>
+
+                        <div className="button-container">
+                            <Button
+                                variant={btnVarinat}
+                                className="signin-button"
+                                onMouseEnter={handleMouseEnter}
+                                onMouseLeave={handleMouseLeave}
+                            >Sign In
+                            </Button>
+                        </div>
+                    </CardActions>
+                </form>
+            </CardContent>
+        </div >
     );
 }
 
