@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from './components/Navbar';
 import ChefRoutes from './routes/ChefRoutes';
+import About from './pages/About/About';
 function App() {
   return (
    <Router>
@@ -9,7 +10,8 @@ function App() {
         <Navbar/>
       </header>
       <main>
-        <ChefRoutes/>
+        {/* <ChefRoutes/> */}
+        <About/>
       </main>
    </Router>
   );
