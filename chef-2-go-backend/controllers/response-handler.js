@@ -8,7 +8,7 @@ export const setResponse = (data, response) => {
 
 export const setErrorResponse = (statuscode, err, response) => {
     console.log(`errorMsg: ${err}`);
-    response.status(statuscode)
+    response?.status(statuscode)
     .json({
      code: err.code,
      message: err.message
