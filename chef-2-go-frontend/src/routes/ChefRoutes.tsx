@@ -4,6 +4,8 @@ import NotFound from "../pages/PageNotFound/NotFound";
 import Login from "../components/authComponent/Login";
 import Signup from "../components/authComponent/Signup";
 import About from "../pages/About/About";
+import LoginPage from "../pages/LogIn/LoginPage";
+import SignupPage from "../pages/Signup/SignupPage";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes= useRoutes([
@@ -16,12 +18,12 @@ let ChefRoutes = () => {
             element: <NotFound />,
         },
         {
-            path: "login",
-            element: <Login />,
+            path: "/login",
+            element: <LoginPage />,
         },
         {
             path: "signup",
-            element: <Signup />,
+            element: <SignupPage />,
         },
         {
             path:"about",
