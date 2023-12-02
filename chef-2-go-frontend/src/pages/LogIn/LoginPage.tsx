@@ -1,5 +1,5 @@
 import React from 'react'
-import Login from '../../components/authComponent/Login'
+import {Login} from '../../components/index';
 import signinPageImg from './resources/log-in-page-img.png';
 import signInImage from './resources/signin-page-image.png';
 import './Login.css';
