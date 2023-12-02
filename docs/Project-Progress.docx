@@ -21,3 +21,12 @@ Project Progress:
     c. Working on premium features page
     d. Working on front-end for videos feature page
     e. Working on navbar 
+
+3. Bhuvan Dama Venkatesh Raj
+    a. Developed CommentAPI for (Creating, Fetching, Delete, Updating) comments
+    b. Created wireframes for Recipe and search
+    c. Developed initial setup for react router DOM to map all routes using useRoute hook.
+    d. Working on integrating front end with backend for login and sign up actions
+    e. Working on building add a recipe and recipe components for the website
+    f. Working on building protected routes for entire application
+    g. Working on a few subscription services
