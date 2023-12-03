@@ -13,7 +13,10 @@ module.exports = {
         'off-white':'#FAF9F6'
       },
       fontFamily:{
-        loginpage:["Agbalumo","Dancing Script", "Neucha", "sans-serif"],
+        'loginpage':["Agbalumo","Dancing Script", "Neucha", "sans-serif"],
+        'navbar-right':['Questa Sans', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Tahoma', 'sans-serif'],
+        'left-navbar-link':['Morion', 'Arial Narrow', 'Arial', 'sans-serif'],
+        'Nova-Square':'Nova Square'
       }
     },
   },

@@ -1,5 +1,5 @@
 import { useRoutes } from "react-router-dom";
-import Home from "../pages/Home/Home";
+import HomePage from "../pages/Home/HomePage";
 import NotFound from "../pages/PageNotFound/NotFound";
 import Login from "../components/authComponent/Login";
 import Signup from "../components/authComponent/Signup";
@@ -7,12 +7,13 @@ import About from "../pages/About/About";
 import LoginPage from "../pages/LogIn/LoginPage";
 import SignupPage from "../pages/Signup/SignupPage";
 import PricingPage from "../pages/Premium/PricingPage";
+import IconDrop from "../components/IconsDrop/IconDrop";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes= useRoutes([
         {
             path: "/",
-            element: <Home />,
+            element: <HomePage />,
         },
         {
             path: "*",
@@ -29,6 +30,10 @@ let ChefRoutes = () => {
         {
             path:"about",
             element:<About/>
+        },
+        {
+            path:"exp-icon",
+            element: <IconDrop/>
         },
         {
             path:"premium",
