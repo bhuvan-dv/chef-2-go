@@ -34,10 +34,6 @@ let ChefRoutes = () => {
         {
             path:"exp-icon",
             element: <IconDrop/>
-        },
-        {
-            path:"navbar",
-            element: <NavBar/>
         }
     ]);
 
