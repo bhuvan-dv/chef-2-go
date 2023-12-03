@@ -1,5 +1,5 @@
 import React from 'react'
-import Signup from '../../components/authComponent/Signup'
+import { Signup } from "../../components/index";
 import './SignupPage.css'
 import signupPageImg from './resources/signup-page-image.png'
 
