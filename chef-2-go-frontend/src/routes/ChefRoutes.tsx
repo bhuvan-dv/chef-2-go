@@ -6,6 +6,7 @@ import Signup from "../components/authComponent/Signup";
 import About from "../pages/About/About";
 import LoginPage from "../pages/LogIn/LoginPage";
 import SignupPage from "../pages/Signup/SignupPage";
+import PricingPage from "../pages/Premium/PricingPage";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes= useRoutes([
@@ -28,6 +29,10 @@ let ChefRoutes = () => {
         {
             path:"about",
             element:<About/>
+        },
+        {
+            path:"premium",
+            element:<PricingPage />
         }
     ]);
 
