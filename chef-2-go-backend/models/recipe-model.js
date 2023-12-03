@@ -28,7 +28,7 @@ const RecipeSchema = new Schema(
                 type: String
             }
         },
-        Video: {
+        video: {
             type: String,
         },
         gifs: {
