@@ -1,13 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Dancing+Script&family=Neucha&family=Nova+Square&display=swap');
+@font-face {
+    font-family: 'Morion';
+    src: url('./resources/morion-regular.c5d43538.woff2') format('woff2'); /* Adjust the file extension and path accordingly */
+    font-weight: normal;
+    font-style: normal;
+  }
 .navbar-main-container{
     height: 100vh;
-    background-image: url('./resources/background-image.png');
+    background-image: url('./resources/bg-image.jpeg');
     background-size: cover;
+    background-color: rgb(213, 8, 8);
     color: white;
 }
 
 .font-style{
-    font-family: 'Nova Square';
+    font-family: 'Morion';/*'Nova Square';*/
     font-weight: bold;
     /* , Verdana, Geneva, Tahoma, sans-serif; */
 }
