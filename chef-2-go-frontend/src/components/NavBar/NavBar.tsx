@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import './NavBar.css'
+import gsap from 'gsap';
+import { TwelveMp } from '@mui/icons-material';
 
 const NavBar = () => {
+    // GSAP learning
+
+
+    // expirement
     return (
         // main div
         <div className="navbar-main-container flex justify-between">
@@ -9,7 +15,7 @@ const NavBar = () => {
             <div className="left-navbar w-1/2 h-1/2 self-center flex flex-col justify-between items-start font-left-navbar-link  ">
                 <div className="left-navrbar__items flex justify-around w-1/2 text-3xl font-Nova-Square self-center">
                     {/* contact */}
-                    <a href="/" className="hover:border">Contact</a>
+                    <a href="/" className="">Contact</a>
                     {/* FAQ */}
                     <a href="/">FAQs</a>
                 </div>
@@ -23,19 +29,19 @@ const NavBar = () => {
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae provident velit necessitatibus nemo. Cumque nam quisquam eos reprehenderit a sapiente quaerat eligendi libero alias laborum amet iusto tenetur aut eaque quas, neque molestias, non, quam nobis quo labore? Quam doloremque impedit doloribus ipsum libero cupiditate fugit odit debitis laboriosam corrupti.</p>
                 </div>
             </div>
-            <div className="right-navbar w-1/2 h-1/2 self-center flex flex-col justify-between gap-10 text-6xl  font-Nova-Square">
+            <div className="right-navbar w-1/2 h-1/2 self-center flex flex-col justify-between gap-10 text-6xl  font-Nova-Square ">
                 <div className="right-navbar-items font-Nova-Square self-center hover:border-b-4">
                     <a href='/'>
                         Mission
                     </a>
                 </div>
-                <div className="right-navbar-items self-center">
+                <div className="right-navbar-items self-center hover:border-b-4">
                     <a href='/'>Chefs</a>
                 </div>
-                <div className="right-navbar-items self-center">
+                <div className="right-navbar-items self-center hover:border-b-4">
                     <a href='/'>Recipes</a>
                 </div>
-                <div className="right-navbar-items self-center">
+                <div className="right-navbar-items self-center hover:border-b-4">
                     <a href='/'>Shop</a>
                 </div>
             </div>
