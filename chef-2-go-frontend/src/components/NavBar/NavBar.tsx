@@ -1,43 +1,34 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import './NavBar.css'
 import gsap from 'gsap';
-import { TwelveMp } from '@mui/icons-material';
+import { initializeNavBarAnimation } from './NavBarAnimation';
 
 type NavBarProps = {
-    setNavBarState: React.Dispatch<React.SetStateAction<boolean>>,
     navbarState : boolean
 }
 
 const NavBar = (props: NavBarProps) => {
     // GSAP learning
-    const {navbarState, setNavBarState} = props;
-    let navBarMenu:any = useRef(null);
-    let navBarTimeline:any = useRef(null);
+    const {navbarState} = props;
+    const navBarMenu = useRef<HTMLDivElement>(null);
+    const leftNavBar = useRef<HTMLDivElement>(null);
+    const rightNavBar = useRef<HTMLDivElement>(null);
+    const navBarTimeline = useRef<gsap.core.Timeline | null>(null);
 
-    useEffect(() =>{
-        navBarTimeline.current = gsap.timeline({paused:true});
-        navBarTimeline.current.fromTo([navBarMenu],{
-            duration: 0,
-            y:"-100%"
-        },{
-            duration: 0.75,
-            y:"0%",
-            ease:"power3.inout",
-            stagger:{
-                amount: 0.5
-            }
-        })
-    }, [])
+    useEffect(() => {
+        navBarTimeline.current = initializeNavBarAnimation(navBarMenu.current!, leftNavBar.current!, rightNavBar.current!);
+    }, []);
 
-    useEffect(() =>{
-        navbarState ? navBarTimeline.current.play() : navBarTimeline.current.reverse()
-    }, [navbarState])
+    useEffect(() => {
+        navbarState ? navBarTimeline.current?.play() : navBarTimeline.current?.reverse();
+    }, [navbarState]);
     // expirement
+    
     return (
         // main div
-        <div ref={el => (navBarMenu = el)} className="navbar-main-container flex justify-between">
+        <div ref={navBarMenu} className="navbar-main-container flex justify-between">
             {/* lefft div */}
-            <div className="left-navbar w-1/2 h-1/2 self-center flex flex-col justify-between items-start font-left-navbar-link  ">
+            <div ref={leftNavBar} className="left-navbar w-1/2 h-1/2 self-center flex flex-col justify-between items-start font-left-navbar-link  ">
                 <div className="left-navrbar__items flex justify-around w-1/2 text-3xl font-Nova-Square self-center">
                     {/* contact */}
                     <a href="/" className="">Contact</a>
@@ -54,7 +45,7 @@ const NavBar = (props: NavBarProps) => {
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae provident velit necessitatibus nemo. Cumque nam quisquam eos reprehenderit a sapiente quaerat eligendi libero alias laborum amet iusto tenetur aut eaque quas, neque molestias, non, quam nobis quo labore? Quam doloremque impedit doloribus ipsum libero cupiditate fugit odit debitis laboriosam corrupti.</p>
                 </div>
             </div>
-            <div className="right-navbar w-1/2 h-1/2 self-center flex flex-col justify-between gap-10 text-6xl  font-Nova-Square ">
+            <div ref={rightNavBar}  className="right-navbar w-1/2 h-1/2 self-center flex flex-col justify-between gap-10 text-6xl  font-Nova-Square ">
                 <div className="right-navbar-items font-Nova-Square self-center hover:border-b-4">
                     <a href='/'>
                         Mission

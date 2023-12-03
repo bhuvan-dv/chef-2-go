@@ -6,18 +6,6 @@ import { Menu, Clear } from '@mui/icons-material';
 const Home = () => {
   const [isNavBarOpen, setIsNavBarOpen] = useState(false);
 
-  // const handleIconClick = () => {
-  //   const navBar = document.getElementById('navbar');
-
-  //   if (isNavBarOpen) {
-  //     gsap.to(navBar, { duration: 0.5, height: 0, ease: 'power2.inOut' });
-  //   } else {
-  //     gsap.to(navBar, { duration: 0.5, height: 'auto', ease: 'power2.inOut' });
-  //   }
-
-  //   setIsNavBarOpen(!isNavBarOpen);
-  // };
-
   return (
     <div>
       <div>
@@ -32,7 +20,7 @@ const Home = () => {
 
       {/* Render NavBar based on the state */}
       {/* {isNavBarOpen &&  */}
-      <NavBar navbarState={isNavBarOpen} setNavBarState={setIsNavBarOpen}/>
+      <NavBar navbarState={isNavBarOpen}/>
       {/* } */}
     </div>
   );
