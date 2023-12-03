@@ -8,6 +8,7 @@ import LoginPage from "../pages/LogIn/LoginPage";
 import SignupPage from "../pages/Signup/SignupPage";
 import PricingPage from "../pages/Premium/PricingPage";
 import IconDrop from "../components/IconsDrop/IconDrop";
+import RecipeHome from "../pages/Recipe/RecipeHome";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes= useRoutes([
@@ -38,6 +39,10 @@ let ChefRoutes = () => {
         {
             path:"premium",
             element:<PricingPage />
+        },
+        {
+            path:"recipe",
+            element: <RecipeHome />
         }
     ]);
 
