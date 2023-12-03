@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Dancing+Script&family=Neucha&family=Nova+Square&display=swap');
+.navbar-main-container{
+    height: 100vh;
+    background-image: url('./resources/background-image.png');
+    background-size: cover;
+    color: white;
+    /* font-family: 'Nova Square', sans-serif; */
+    /* font-family:  */
+    font-family: 'Nova Square', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.font-style{
+    font-family: 'Nova Square';
+    font-weight: bold;
+    /* , Verdana, Geneva, Tahoma, sans-serif; */
+}

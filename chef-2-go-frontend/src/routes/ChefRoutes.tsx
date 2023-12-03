@@ -7,6 +7,7 @@ import About from "../pages/About/About";
 import LoginPage from "../pages/LogIn/LoginPage";
 import SignupPage from "../pages/Signup/SignupPage";
 import IconDrop from "../components/IconsDrop/IconDrop";
+import { NavBar } from "../components/index";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes= useRoutes([
@@ -33,6 +34,10 @@ let ChefRoutes = () => {
         {
             path:"exp-icon",
             element: <IconDrop/>
+        },
+        {
+            path:"navbar",
+            element: <NavBar/>
         }
     ]);
 
