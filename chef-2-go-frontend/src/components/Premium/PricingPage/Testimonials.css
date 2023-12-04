@@ -1,0 +1,12 @@
+@keyframes moveRightToLeft {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .move-right-to-left {
+    animation: moveRightToLeft 5s linear infinite; /* Adjust the duration as needed */
+  }
