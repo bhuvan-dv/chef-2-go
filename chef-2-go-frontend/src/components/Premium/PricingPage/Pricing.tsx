@@ -1,4 +1,3 @@
-// components/premium/PricingPage/Pricing.tsx
 
 // to do: while adding features add mui icons
 

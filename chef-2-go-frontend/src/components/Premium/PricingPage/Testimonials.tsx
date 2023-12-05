@@ -1,4 +1,3 @@
-// components/premium/PricingPage/Testimonials.tsx
 
 import React from 'react';
 import './Testimonials.css';
