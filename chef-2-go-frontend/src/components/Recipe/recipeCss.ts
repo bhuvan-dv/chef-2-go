@@ -10,7 +10,8 @@ const TitleContStyling: CSSProperties = {
     position: "relative",
     overflow: "hidden",
     backgroundSize: "cover",
-    backgroundImage: `url(${`https://cdn.sanity.io/images/bhil6ydp/production/02a328cd3166c0e91e937ae2d9fb78c0ce17e9b5-6000x4000.jpg?w=2560&fm=webp`})`
+    backgroundImage: `url(${`https://cdn.sanity.io/images/bhil6ydp/production/02a328cd3166c0e91e937ae2d9fb78c0ce17e9b5-6000x4000.jpg?w=2560&fm=webp`})`,
+    maxWidth:"100%"
 };
 const TitleStyling: CSSProperties = {
     position: "relative",
@@ -21,4 +22,15 @@ const TitleStyling: CSSProperties = {
     fontFamily: 'Morion'
 }
 
-export { TitleContStyling, TitleStyling };
+const RecipeSummary: CSSProperties = {
+    color: "hsl(173, 19%, 27%)",
+
+}
+
+const IngridentsList: CSSProperties = {
+    color: "hsl(173, 19%, 27%)",
+    fontSize: "1.5em",
+    fontWeight:"bold"
+}
+
+export { TitleContStyling, TitleStyling, RecipeSummary, IngridentsList };
