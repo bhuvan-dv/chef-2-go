@@ -6,7 +6,7 @@ import { request, response } from "express";
 export const loginUser = async (request, response) => {
     try {
         const { email, password, username } = request.body;
-        console.log(`email: ${email}, password: ${password}`);
+        console.log(` controller email: ${email}, password: ${password}, username: ${username}`);
         const user = await userService.login(username,email, password);
 
         //creating token 

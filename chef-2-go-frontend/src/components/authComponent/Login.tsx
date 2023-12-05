@@ -1,6 +1,6 @@
 // react imports
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 // material ui imports
 import { Button, TextField, Typography, CardContent, CardActions } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
@@ -11,6 +11,9 @@ import { PersonPinCircleOutlined, EmailOutlined, VpnKeyOutlined } from '@mui/ico
 
 //css import
 import './Login.css';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { loginUserService } from '../../services/UserAPI';
 
 type Props = {
 
@@ -24,6 +27,8 @@ const Login = (props: Props) => {
     const [password, setPassword] = useState<string>("");
     const [btnVarinat, setBtnVariant] = useState<'contained' | 'outlined'>('outlined');
     const [showPassword, setShowPassword] = useState(false);
+
+    const navigate = useNavigate();
 
     // event handlers for mouse events and keyboard events
     const handleMouseEnter = () => {
@@ -55,11 +60,23 @@ const Login = (props: Props) => {
         }
     }
 
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const reqBody = {
+            email: email,
+            username: username,
+            password: password
+        }
+        const response = await loginUserService(reqBody);
+        console.log(response);
+        navigate('/');
+    }
+
 
     return (
         <div className="flex flex-col">
             <CardContent style={{backgroundColor:"yellow"}}>
-                <form className="signin-form flex flex-col justify-center h-screen items-center gap-5">
+                <form onSubmit={handleLogin} className="signin-form flex flex-col justify-center h-screen items-center gap-5">
                     <div className="tagline-container">
                         <Typography variant="h5" gutterBottom style={{ fontFamily: 'Agbalumo, Dancing Script, Neucha, sans-serif' }}>
                             Unlock Culinary Delights with a Click
@@ -126,6 +143,7 @@ const Login = (props: Props) => {
                                 className="signin-button"
                                 onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}
+                                type='submit'
                             >Sign In
                             </Button>
                         </div>
