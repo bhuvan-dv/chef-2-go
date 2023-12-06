@@ -11,6 +11,13 @@ import foodImage from './resources/home-page-main-2-food.png';
 import mainPageImage from './resources/home-page-3.png';
 import meatRight from './resources/meat-right.png';
 import meatLeft from './resources/meat-left.png';
+import bgImg1 from './resources/background-scroll.png';
+import bgImg2 from './resources/background-scroll2.png';
+import bgImg3 from './resources/background-scroll3.png';
+import bgImg4 from './resources/background-scroll4.png';
+import bgImg5 from './resources/background-scroll5.png';
+
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
@@ -79,7 +86,7 @@ const Home = () => {
     });
     const mainPageImageEl = mainPageImageRef.current;
 
-    if(mainPageImageEl) {
+    if (mainPageImageEl) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: mainPageImageEl,
@@ -89,8 +96,50 @@ const Home = () => {
         },
       });
 
-      tl.to(mainPageImageEl, { opacity: 0, scale: 10, duration: 1 });
+      tl.to(mainPageImageEl, { opacity: 0, scale: 0, duration: 1 });
     }
+
+    // gsap.fromTo('.scrolling-text',{
+    //   x: '-100%', // Initial x position (off-screen to the left),
+    //   y:'100%',
+    // }, {
+    //   x: '0%', // Move to the center
+    //   y:'0%',
+    //   ease: 'power4.out',
+    //   duration: 1.5,
+    //   scrollTrigger: {
+    //     trigger: '.scrolling-text', // Trigger the animation when the element with class '.text' is in view
+    //     start: 'top bottom', // Animation starts when the top of the element hits the bottom of the viewport
+    //     scrub: true, // Smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+    //   },
+    // });
+
+    // expirement
+    const texts = document.querySelectorAll('.scrolling-text');
+
+    texts.forEach((text, index) => {
+      gsap.fromTo(
+        text,
+        {
+          x: '-200%', // Initial x position (off-screen to the left),
+          y: '200%',
+        },
+        {
+          x: '0%', // Move to the center
+          y: '0%',
+          ease: 'power4.out',
+          duration: 1.5,
+          scrollTrigger: {
+            trigger: '.scrolling-text-container',
+            start: '0% bottom',
+            toggleActions: 'play none none reverse',
+            scrub: true,
+          },
+        }
+      );
+    });
+
+
   }, []);
 
   // yet to confirm
@@ -207,6 +256,36 @@ const Home = () => {
             </div>
             <div>
               <img ref={meatRightRef} src={meatRight} className="h-1/2" alt="" />
+            </div>
+          </div>
+
+          {/* section with multiple backgroun images */}
+          <div className="py-40 border-y-2 bg-dark-green text-pale-green font-Morion scrolling-text-container bg-scroll-img bg-cover">
+            <div className="flex flex-col items-center justify-center">
+              <p className="scrolling-text test text-9xl font-extrabold leading-relaxed text-center">
+                Every bite we
+              </p>
+              <p className="scrolling-text text-9xl font-extrabold text-center">
+                take from our
+              </p>
+              <p className="scrolling-text text-9xl font-extrabold leading-relaxed text-center">
+                plates forms
+              </p>
+              <p className="scrolling-text text-9xl font-extrabold text-center">
+                the legacy of
+              </p>
+              <p className="scrolling-text text-9xl font-extrabold leading-relaxed text-center">
+                ecology we are
+              </p>
+              <p className="scrolling-text text-9xl font-extrabold text-center">
+                leaving for
+              </p>
+              <p className="scrolling-text text-9xl font-extrabold leading-relaxed text-center">
+                future
+              </p>
+              <p className="scrolling-text text-9xl font-extrabold text-center">
+                generations.
+              </p>
             </div>
           </div>
         </div>
