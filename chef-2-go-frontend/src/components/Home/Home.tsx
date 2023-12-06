@@ -16,9 +16,79 @@ import bgImg2 from './resources/background-scroll2.png';
 import bgImg3 from './resources/background-scroll3.png';
 import bgImg4 from './resources/background-scroll4.png';
 import bgImg5 from './resources/background-scroll5.png';
+import { Box, Container } from '@mui/system';
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import CustomCard, { EntityDetails } from '../Card/CustomCard';
+import RecordSwiper from '../RecordSwiper/RecordSwiper';
+
 
 
 gsap.registerPlugin(ScrollTrigger);
+
+// sampleChefData
+const sampleChefData: EntityDetails[] = [
+  {
+    'type': 'chef',
+    'name': 'Chef 1',
+    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
+    'id': '1',
+  },
+  {
+    'type': 'chef',
+    'name': 'Chef 2',
+    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
+    'id': '2',
+  },
+  {
+    'type': 'chef',
+    'name': 'Chef 3',
+    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
+    'id': '3',
+  },
+  {
+    'type': 'chef',
+    'name': 'Chef 4',
+    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
+    'id': '4',
+  },
+  {
+    'type': 'chef',
+    'name': 'Chef 5',
+    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
+    'id': '5',
+  },
+  {
+    'type': 'chef',
+    'name': 'Chef 6',
+    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
+    'id': '6',
+  },
+  {
+    'type': 'chef',
+    'name': 'Chef 7',
+    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
+    'id': '7',
+  },
+  {
+    'type': 'chef',
+    'name': 'Chef 8',
+    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
+    'id': '8',
+  },
+  {
+    'type': 'chef',
+    'name': 'Chef 9',
+    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
+    'id': '9',
+  },
+  {
+    'type': 'chef',
+    'name': 'Chef 10',
+    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
+    id: '10',
+  }
+];
+
 
 const Home = () => {
   const [isNavBarOpen, setIsNavBarOpen] = useState(false);
@@ -27,6 +97,8 @@ const Home = () => {
   const compassRef = useRef<HTMLImageElement>(null);
   const chefRef = useRef<HTMLImageElement>(null);
   const foodRef = useRef<HTMLImageElement>(null);
+  const ytd1 = useRef<HTMLImageElement>(null);
+  const ytd2 = useRef<HTMLImageElement>(null);
 
   // Animating the texts
   const wildTextRef = useRef<HTMLParagraphElement>(null);
@@ -90,13 +162,13 @@ const Home = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: mainPageImageEl,
-          start: 'center center',
-          end: 'bottom center',
+          start: 'top center',
+          end: 'bottom top',
           scrub: true,
         },
       });
 
-      tl.to(mainPageImageEl, { opacity: 0, scale: 0, duration: 1 });
+      tl.to(mainPageImageEl, { opacity:0, scale: 0, duration: 3 });
     }
 
     // gsap.fromTo('.scrolling-text',{
@@ -140,6 +212,27 @@ const Home = () => {
     });
 
 
+    const ytd1El = ytd1.current;
+    gsap.fromTo(ytd1El, { rotation: 3 }, {
+      rotation: 0,
+      scrollTrigger: {
+        trigger: ytd1El,
+        start: 'top 80%',
+        scrub: true,
+      }
+    });
+
+    const ytd2El = ytd2.current;
+    gsap.fromTo(ytd2El, { rotation: 5 }, {
+      rotation: 0, duration: 2,
+      scrollTrigger: {
+        trigger: ytd2El,
+        start: 'top 80%',
+        scrub: true,
+      }
+    });
+
+
   }, []);
 
   // yet to confirm
@@ -160,7 +253,7 @@ const Home = () => {
           <span
             onClick={() => setIsNavBarOpen(!isNavBarOpen)}
             className="hover:cursor-pointer"
-            style={{ zIndex: 1, position: 'absolute', color: 'pink', top: 10, right: 10 }}
+            style={{ zIndex: 20, position: 'absolute', color: 'pink', top: 10, right: 10 }}
           >
             {isNavBarOpen ? <Clear sx={{ fontSize: '3rem' }} /> : <Menu sx={{ fontSize: '3rem' }} />}
           </span>
@@ -173,6 +266,7 @@ const Home = () => {
       </div>
 
       {/* Main page components */}
+      {!isNavBarOpen &&
       <div>
         {/* main page part - 1 */}
         <div className="bg-img bg-main-background">
@@ -288,14 +382,37 @@ const Home = () => {
               </p>
             </div>
           </div>
+
+          {/* Recipe intro section */}
+
+          <div className="flex py-44 gap-12 bg-dark-green text-pale-green">
+            {/* Image and text holder */}
+            <div className="chef-img-holder">
+              <img ref={ytd1} src={chefImage} alt="" className="w-3/4 h-3/5 float-right" />
+            </div>
+            <div className="right-side-text-food-img-holder flex flex-col gap-44 justify-center">
+              <div className="text-holder flex">
+                <div className=" w-1/6 text-2xl font-bold font-Morion">03</div>
+                <div className="flex flex-col gap-10  w-1/2">
+                  <p className="text-3xl font-Morion font-bold ">Born to be wild.</p>
+                  <p>Wild game never suffer captivity, live transport or abattoirs. Ethically harvested, free range and 100% antibiotic and hormone free, just as nature intended.</p>
+                  <p>Game to try some of our recipes? Discover the ease & versatility of cooking with wild game.</p>
+                  <a href="/">DISCOVER OUR RECIPES</a>
+                </div>
+              </div>
+              <div className="img-holder">
+                <img ref={ytd2} src={foodImage} alt="" className="w-3/4" />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* main page part - 2 */}
         {/* <div className="bg-red-600 h-64">
           {/* <img src={mainPageImage} alt="" /> */}
         {/* </div> */}
-      </div>
-    </div>
+      </div>}
+    </div> 
   );
 };
 
