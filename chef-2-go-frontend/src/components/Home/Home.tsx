@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { NavBar } from '../index';
 import { Menu, Clear } from '@mui/icons-material';
+import Pagination from '@mui/material/Pagination';
 import './Home.css';
 import compassSvg from './resources/compass.svg';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,16 +12,10 @@ import foodImage from './resources/home-page-main-2-food.png';
 import mainPageImage from './resources/home-page-3.png';
 import meatRight from './resources/meat-right.png';
 import meatLeft from './resources/meat-left.png';
-import bgImg1 from './resources/background-scroll.png';
-import bgImg2 from './resources/background-scroll2.png';
-import bgImg3 from './resources/background-scroll3.png';
-import bgImg4 from './resources/background-scroll4.png';
-import bgImg5 from './resources/background-scroll5.png';
 import { Box, Container } from '@mui/system';
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import CustomCard, { EntityDetails } from '../Card/CustomCard';
-import RecordSwiper from '../RecordSwiper/RecordSwiper';
-
+import Carousel from '../Carousel/Carousel';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -168,7 +163,7 @@ const Home = () => {
         },
       });
 
-      tl.to(mainPageImageEl, { opacity:0, scale: 0, duration: 3 });
+      tl.to(mainPageImageEl, { opacity: 0, scale: 0, duration: 3 });
     }
 
     // gsap.fromTo('.scrolling-text',{
@@ -267,152 +262,163 @@ const Home = () => {
 
       {/* Main page components */}
       {!isNavBarOpen &&
-      <div>
-        {/* main page part - 1 */}
-        <div className="bg-img bg-main-background">
-          <div className="text-container text-9xl font-Morion font-bold text-soft-mint-green  absolute left-2/3 top-1/2 transform -translate-x-2/3 -translate-y-1/2">
-            <div className="tagline-container">
-              {!isNavBarOpen && <p ref={wildTextRef} id="wild-text">Wild.</p>}
-            </div>
-            <div>
-              {!isNavBarOpen && <p ref={sustTextRef} id="sust-text">Sustainable.</p>}
-            </div>
-            <div className="flex items-center gap-4">
-              <img ref={compassRef} src={compassSvg} alt="" className="h-44" />
-              {!isNavBarOpen && <p ref={deliciousTextRef} id="delicious-text">
-                Delicious.
-              </p>}
-            </div>
-          </div>
-          <div>
-            {/* img holder */}
-            <img src={mainFirstImage} alt="" />
-          </div>
-          <div className="flex pt-44 gap-12">
-            {/* Image and text holder */}
-            <div className="chef-img-holder">
-              <img ref={chefRef} src={chefImage} alt="" className="w-3/4 h-3/5 float-right" />
-            </div>
-            <div className="right-side-text-food-img-holder flex flex-col gap-44 justify-center">
-              <div className="text-holder flex">
-                <div className="text-soft-mint-green w-1/6 text-2xl font-bold font-Morion">01</div>
-                <div className="flex flex-col gap-10 text-soft-mint-green w-1/2">
-                  <p className="text-3xl font-Morion font-bold text-soft-mint-green">The best meat for you & the planet.</p>
-                  <p>We partner with landowners to preserve native habitats & agricultural land by ethically harvesting Australian wild game.</p>
-                  <p>Learn more about our mission to start a conscious carnivore revolution.</p>
-                  <a href="/">DISCOVER OUR MISSION</a>
-                </div>
-              </div>
-              <div className="img-holder">
-                <img ref={foodRef} src={foodImage} alt="" className="w-3/4" />
-              </div>
-            </div>
-          </div>
-          {/* need to check below section */}
-          {/* main page nature image */}
-          <div className="mt-28 bg-dark-green">
-            <img className="flex items-center justify-center w-full h-full bg-center bg-cover" ref={mainPageImageRef} src={mainPageImage} alt="" />
-          </div>
-
-          {/* 02 text with images */}
-          <div className="flex gap-10 pl-10 pt-40 font-extrabold bg-dark-green text-pale-green font-Morion">
-            <div>02</div>
-            <div>
-              <div>
-                <p className="text-9xl">
-                  Our Secret,
-                </p>
-              </div>
-              <div className="flex  items-center">
-                <img src={compassSvg} alt="" className='h-44' />
-                <p className="text-9xl">Now yours</p>
-              </div>
-            </div>
-          </div>
-
-          {/* 03 flex text and images */}
-          <div className="bg-dark-green text-pale-green font-Morion pt-40 flex gap-20">
-            <div className="flex flex-col gap-40 items-center">
-              <div className="flex flex-col gap-10 text-pale-green w-1/2">
-                <p className="text-3xl font-Morion font-bol">
-                  Discover the taste of wild Sambar venison from Australia's pristine high country.
-                </p>
-                <p>
-                  Always tender with a mild nutty flavour. Distinctly complex and uniquely Australian.
-                </p>
-                <a href="/">
-                  DISCOVER OUR PRODUCTS
-                </a>
+        <div>
+          {/* main page part - 1 */}
+          <div className="bg-img bg-main-background">
+            <div className="text-container text-9xl font-Morion font-bold text-soft-mint-green  absolute left-2/3 top-1/2 transform -translate-x-2/3 -translate-y-1/2">
+              <div className="tagline-container">
+                {!isNavBarOpen && <p ref={wildTextRef} id="wild-text">Wild.</p>}
               </div>
               <div>
-                <img ref={meatLeftRef} src={meatLeft} className="h-2/3 float-right" alt="" />
+                {!isNavBarOpen && <p ref={sustTextRef} id="sust-text">Sustainable.</p>}
+              </div>
+              <div className="flex items-center gap-4">
+                <img ref={compassRef} src={compassSvg} alt="" className="h-44" />
+                {!isNavBarOpen && <p ref={deliciousTextRef} id="delicious-text">
+                  Delicious.
+                </p>}
               </div>
             </div>
             <div>
-              <img ref={meatRightRef} src={meatRight} className="h-1/2" alt="" />
+              {/* img holder */}
+              <img src={mainFirstImage} alt="" />
             </div>
-          </div>
-
-          {/* section with multiple backgroun images */}
-          <div className="py-40 border-y-2 bg-dark-green text-pale-green font-Morion scrolling-text-container bg-scroll-img bg-cover">
-            <div className="flex flex-col items-center justify-center">
-              <p className="scrolling-text test text-9xl font-extrabold leading-relaxed text-center">
-                Every bite we
-              </p>
-              <p className="scrolling-text text-9xl font-extrabold text-center">
-                take from our
-              </p>
-              <p className="scrolling-text text-9xl font-extrabold leading-relaxed text-center">
-                plates forms
-              </p>
-              <p className="scrolling-text text-9xl font-extrabold text-center">
-                the legacy of
-              </p>
-              <p className="scrolling-text text-9xl font-extrabold leading-relaxed text-center">
-                ecology we are
-              </p>
-              <p className="scrolling-text text-9xl font-extrabold text-center">
-                leaving for
-              </p>
-              <p className="scrolling-text text-9xl font-extrabold leading-relaxed text-center">
-                future
-              </p>
-              <p className="scrolling-text text-9xl font-extrabold text-center">
-                generations.
-              </p>
-            </div>
-          </div>
-
-          {/* Recipe intro section */}
-
-          <div className="flex py-44 gap-12 bg-dark-green text-pale-green">
-            {/* Image and text holder */}
-            <div className="chef-img-holder">
-              <img ref={ytd1} src={chefImage} alt="" className="w-3/4 h-3/5 float-right" />
-            </div>
-            <div className="right-side-text-food-img-holder flex flex-col gap-44 justify-center">
-              <div className="text-holder flex">
-                <div className=" w-1/6 text-2xl font-bold font-Morion">03</div>
-                <div className="flex flex-col gap-10  w-1/2">
-                  <p className="text-3xl font-Morion font-bold ">Born to be wild.</p>
-                  <p>Wild game never suffer captivity, live transport or abattoirs. Ethically harvested, free range and 100% antibiotic and hormone free, just as nature intended.</p>
-                  <p>Game to try some of our recipes? Discover the ease & versatility of cooking with wild game.</p>
-                  <a href="/">DISCOVER OUR RECIPES</a>
+            <div className="flex pt-44 gap-12">
+              {/* Image and text holder */}
+              <div className="chef-img-holder">
+                <img ref={chefRef} src={chefImage} alt="" className="w-3/4 h-3/5 float-right" />
+              </div>
+              <div className="right-side-text-food-img-holder flex flex-col gap-44 justify-center">
+                <div className="text-holder flex">
+                  <div className="text-soft-mint-green w-1/6 text-2xl font-bold font-Morion">01</div>
+                  <div className="flex flex-col gap-10 text-soft-mint-green w-1/2">
+                    <p className="text-3xl font-Morion font-bold text-soft-mint-green">The best meat for you & the planet.</p>
+                    <p>We partner with landowners to preserve native habitats & agricultural land by ethically harvesting Australian wild game.</p>
+                    <p>Learn more about our mission to start a conscious carnivore revolution.</p>
+                    <a href="/">DISCOVER OUR MISSION</a>
+                  </div>
+                </div>
+                <div className="img-holder">
+                  <img ref={foodRef} src={foodImage} alt="" className="w-3/4" />
                 </div>
               </div>
-              <div className="img-holder">
-                <img ref={ytd2} src={foodImage} alt="" className="w-3/4" />
+            </div>
+            {/* need to check below section */}
+            {/* main page nature image */}
+            <div className="mt-28 bg-dark-green">
+              <img className="flex items-center justify-center w-full h-full bg-center bg-cover" ref={mainPageImageRef} src={mainPageImage} alt="" />
+            </div>
+
+            {/* 02 text with images */}
+            <div className="flex gap-10 pl-10 pt-40 font-extrabold bg-dark-green text-pale-green font-Morion">
+              <div>02</div>
+              <div>
+                <div>
+                  <p className="text-9xl">
+                    Our Secret,
+                  </p>
+                </div>
+                <div className="flex  items-center">
+                  <img src={compassSvg} alt="" className='h-44' />
+                  <p className="text-9xl">Now yours</p>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* main page part - 2 */}
-        {/* <div className="bg-red-600 h-64">
+            {/* 03 flex text and images */}
+            <div className="bg-dark-green text-pale-green font-Morion pt-40 flex gap-20">
+              <div className="flex flex-col gap-40 items-center">
+                <div className="flex flex-col gap-10 text-pale-green w-1/2">
+                  <p className="text-3xl font-Morion font-bol">
+                    Discover the taste of wild Sambar venison from Australia's pristine high country.
+                  </p>
+                  <p>
+                    Always tender with a mild nutty flavour. Distinctly complex and uniquely Australian.
+                  </p>
+                  <a href="/">
+                    DISCOVER OUR PRODUCTS
+                  </a>
+                </div>
+                <div>
+                  <img ref={meatLeftRef} src={meatLeft} className="h-2/3 float-right" alt="" />
+                </div>
+              </div>
+              <div>
+                <img ref={meatRightRef} src={meatRight} className="h-1/2" alt="" />
+              </div>
+            </div>
+
+            {/* section with multiple backgroun images */}
+            <div className="py-40 border-y-2 bg-dark-green text-pale-green font-Morion scrolling-text-container bg-scroll-img bg-cover">
+              <div className="flex flex-col items-center justify-center">
+                <p className="scrolling-text test text-9xl font-extrabold leading-relaxed text-center">
+                  Every bite we
+                </p>
+                <p className="scrolling-text text-9xl font-extrabold text-center">
+                  take from our
+                </p>
+                <p className="scrolling-text text-9xl font-extrabold leading-relaxed text-center">
+                  plates forms
+                </p>
+                <p className="scrolling-text text-9xl font-extrabold text-center">
+                  the legacy of
+                </p>
+                <p className="scrolling-text text-9xl font-extrabold leading-relaxed text-center">
+                  ecology we are
+                </p>
+                <p className="scrolling-text text-9xl font-extrabold text-center">
+                  leaving for
+                </p>
+                <p className="scrolling-text text-9xl font-extrabold leading-relaxed text-center">
+                  future
+                </p>
+                <p className="scrolling-text text-9xl font-extrabold text-center">
+                  generations.
+                </p>
+              </div>
+            </div>
+
+            {/* Recipe intro section */}
+
+            <div className="flex py-44 gap-12 bg-dark-green text-pale-green">
+              {/* Image and text holder */}
+              <div className="chef-img-holder">
+                <img ref={ytd1} src={chefImage} alt="" className="w-3/4 h-3/5 float-right" />
+              </div>
+              <div className="right-side-text-food-img-holder flex flex-col gap-44 justify-center">
+                <div className="text-holder flex">
+                  <div className=" w-1/6 text-2xl font-bold font-Morion">03</div>
+                  <div className="flex flex-col gap-10  w-1/2">
+                    <p className="text-3xl font-Morion font-bold ">Born to be wild.</p>
+                    <p>Wild game never suffer captivity, live transport or abattoirs. Ethically harvested, free range and 100% antibiotic and hormone free, just as nature intended.</p>
+                    <p>Game to try some of our recipes? Discover the ease & versatility of cooking with wild game.</p>
+                    <a href="/">DISCOVER OUR RECIPES</a>
+                  </div>
+                </div>
+                <div className="img-holder">
+                  <img ref={ytd2} src={foodImage} alt="" className="w-3/4" />
+                </div>
+              </div>
+            </div>
+
+            {/* top chefs */}
+            {/* <div>
+            {sampleChefData.map((chef) => (
+              // 
+              <p></p>
+            ))}
+          </div> */}
+            <div>
+              <Carousel entity={sampleChefData} />
+            </div>
+          </div>
+
+          {/* main page part - 2 */}
+          {/* <div className="bg-red-600 h-64">
           {/* <img src={mainPageImage} alt="" /> */}
-        {/* </div> */}
-      </div>}
-    </div> 
+          {/* </div> */}
+        </div>}
+    </div>
   );
 };
 
