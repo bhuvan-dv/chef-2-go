@@ -15,11 +15,7 @@ import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import { useSpring, animated } from '@react-spring/web';
 import DenseTable from './DenseTable';
-type Ingredient = {
-    name: string;
-    quantity: string;
-    unitType: string;
-};
+import Ingredient from '../../models/ingredient';
 
 type IngredientProps = {
     ingredients: Ingredient[];
@@ -163,7 +159,6 @@ const Ingridents = (props: IngredientProps) => {
                         </Typography>
                         <Typography id="spring-modal-description" sx={{ mt: 2, textAlign:"center"}}>
                                 <DenseTable ></DenseTable>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum magni, repudiandae illo, eaque odio ex nihil fuga doloribus cum nobis voluptates earum aliquam. Reprehenderit vitae, beatae corrupti quos debitis similique voluptatibus id totam necessitatibus suscipit? Totam temporibus delectus ullam rem deleniti doloribus quisquam magnam sed. Est dolores laborum ut blanditiis repellendus quae modi, minima deserunt sint quibusdam eligendi aspernatur repellat hic sed ad, obcaecati laudantium repudiandae deleniti voluptatibus nesciunt ratione sapiente reiciendis maxime cupiditate. Accusamus pariatur praesentium cumque accusantium iusto repellat non eos vitae. Perferendis sunt minima quod sint et quasi eligendi repellendus voluptates, tempora harum nobis consectetur fugit dignissimos.
                         </Typography>
                     </Box>
                 </Fade>
