@@ -14,6 +14,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import { useSpring, animated } from '@react-spring/web';
+import DenseTable from './DenseTable';
 type Ingredient = {
     name: string;
     quantity: string;
@@ -44,6 +45,7 @@ const theme = createTheme({
     palette: {
         secondary: {
             main: "#38524f",
+            light:"hsl(43, 21%, 94%)"
         }
     }
 });
@@ -94,7 +96,7 @@ const boxstyle = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 800,
     bgcolor: 'hsl(43, 21%, 94%)',
     border: '2px solid #38524f',
     p: 4,
@@ -112,6 +114,7 @@ const Ingridents = (props: IngredientProps) => {
     ));
 
     return (
+        <>
         <ThemeProvider theme={theme}>
             <div className='p-20'>
                 <div className='flex justify-between'>
@@ -155,16 +158,18 @@ const Ingridents = (props: IngredientProps) => {
             >
                 <Fade in={open}>
                     <Box sx={boxstyle}>
-                        <Typography id="spring-modal-title" variant="h6" component="h2">
-                            Text in a modal
+                        <Typography id="spring-modal-title" variant="h6" component="h2" sx={{textAlign:"center"}}>
+                            Find Ingridents for this Recipe from local Retailers
                         </Typography>
-                        <Typography id="spring-modal-description" sx={{ mt: 2 }}>
-                            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                        <Typography id="spring-modal-description" sx={{ mt: 2, textAlign:"center"}}>
+                                <DenseTable ></DenseTable>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum magni, repudiandae illo, eaque odio ex nihil fuga doloribus cum nobis voluptates earum aliquam. Reprehenderit vitae, beatae corrupti quos debitis similique voluptatibus id totam necessitatibus suscipit? Totam temporibus delectus ullam rem deleniti doloribus quisquam magnam sed. Est dolores laborum ut blanditiis repellendus quae modi, minima deserunt sint quibusdam eligendi aspernatur repellat hic sed ad, obcaecati laudantium repudiandae deleniti voluptatibus nesciunt ratione sapiente reiciendis maxime cupiditate. Accusamus pariatur praesentium cumque accusantium iusto repellat non eos vitae. Perferendis sunt minima quod sint et quasi eligendi repellendus voluptates, tempora harum nobis consectetur fugit dignissimos.
                         </Typography>
                     </Box>
                 </Fade>
             </Modal>
-        </ThemeProvider>);
+        </ThemeProvider>
+        </>);
 
 }
 
