@@ -37,3 +37,24 @@
     transform: rotate(360deg);
   }
 }
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(186, 182, 177); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(113, 113, 112); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(113, 113, 112); 
+}
+body {
+  overflow-x: hidden; /* Hide scrollbars */
+}
