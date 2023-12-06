@@ -43,7 +43,9 @@ export const signup = async (name, username, email, password, role) => {
 // Function to log in a user
 export const login = async (username, email, password) => {
     // Validation
-    if (!(!email || !username) || !password) {
+    console.log('Entered in login');
+    console.log(` service username: ${username}, email: ${email}, password: ${password}`);
+    if ((!email || !username) || !password) {
         throw Error('All Fields must be filled');
     }
 
@@ -72,7 +74,6 @@ export const login = async (username, email, password) => {
     if (!match) {
         throw Error('Invalid login credentials');
     }
-
     return user;
 }
 
