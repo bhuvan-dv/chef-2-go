@@ -15,7 +15,6 @@ import meatLeft from './resources/meat-left.png';
 import { Box, Container } from '@mui/system';
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import CustomCard, { EntityDetails } from '../Card/CustomCard';
-import Carousel from '../Carousel/Carousel';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -409,7 +408,7 @@ const Home = () => {
             ))}
           </div> */}
             <div>
-              <Carousel entity={sampleChefData} />
+              {/* chefs */}
             </div>
           </div>
 
