@@ -16,6 +16,7 @@ import Typography from '@mui/material/Typography';
 import { useSpring, animated } from '@react-spring/web';
 import DenseTable from './DenseTable';
 import Ingredient from '../../models/ingredient';
+import Loader from '../loader/Loader';
 
 type IngredientProps = {
     ingredients: Ingredient[];
@@ -41,7 +42,7 @@ const theme = createTheme({
     palette: {
         secondary: {
             main: "#38524f",
-            light:"hsl(43, 21%, 94%)"
+            light: "hsl(43, 21%, 94%)"
         }
     }
 });
@@ -99,6 +100,10 @@ const boxstyle = {
 };
 
 const Ingridents = (props: IngredientProps) => {
+    const [loading, setLoading] = React.useState(false);
+    setTimeout(()=>{
+        setLoading(true)
+    },2000)
     const [secondary, setSecondary] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -111,59 +116,62 @@ const Ingridents = (props: IngredientProps) => {
 
     return (
         <>
-        <ThemeProvider theme={theme}>
-            <div className='p-20'>
-                <div className='flex justify-between'>
-                    <h4 className='font-Morion text-3xl font-semibold' style={RecipeSummary}>Ingredients (serves four)</h4>
-                    <Button variant="text" endIcon={<AddShoppingCartIcon />} sx={{ color: `secondary.main`, maxWidth: 'fit' }} onClick={handleOpen}>
-                    </Button>
-                </div>
-                <FormGroup row>
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                checked={secondary}
-                                onChange={(event) => setSecondary(event.target.checked)}
-                                sx={{
-                                    color: "secondary.main",
-                                    '&.Mui-checked': {
+            <ThemeProvider theme={theme}>
+                <div className='p-20'>
+                    <div className='flex justify-between'>
+                        <h4 className='font-Morion text-3xl font-semibold' style={RecipeSummary}>Ingredients (serves four)</h4>
+                        <Button variant="text" endIcon={<AddShoppingCartIcon />} sx={{ color: `secondary.main`, maxWidth: 'fit' }} onClick={handleOpen}>
+                        </Button>
+                    </div>
+                    <FormGroup row>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={secondary}
+                                    onChange={(event) => setSecondary(event.target.checked)}
+                                    sx={{
                                         color: "secondary.main",
-                                    },
-                                }}
-                            />
-                        }
-                        label="See Quanity"
-                    />
-                </FormGroup>
-                <List sx={style} component="nav" aria-label="mailbox folders" >
-                    {ingredientElements}
-                </List>
-            </div>
-            <Modal
-                aria-labelledby="spring-modal-title"
-                aria-describedby="spring-modal-description"
-                open={open}
-                onClose={handleClose}
-                closeAfterTransition
-                slots={{ backdrop: Backdrop }}
-                slotProps={{
-                    backdrop: {
-                        TransitionComponent: Fade,
-                    },
-                }}
-            >
-                <Fade in={open}>
-                    <Box sx={boxstyle}>
-                        <Typography id="spring-modal-title" variant="h6" component="h2" sx={{textAlign:"center"}}>
-                            Find Ingridents for this Recipe from local Retailers
-                        </Typography>
-                        <Typography id="spring-modal-description" sx={{ mt: 2, textAlign:"center"}}>
-                                <DenseTable ></DenseTable>
-                        </Typography>
-                    </Box>
-                </Fade>
-            </Modal>
-        </ThemeProvider>
+                                        '&.Mui-checked': {
+                                            color: "secondary.main",
+                                        },
+                                    }}
+                                />
+                            }
+                            label="See Quanity"
+                        />
+                    </FormGroup>
+                    <List sx={style} component="nav" aria-label="mailbox folders" >
+                        {ingredientElements}
+                    </List>
+                </div>
+                <Modal
+                    aria-labelledby="spring-modal-title"
+                    aria-describedby="spring-modal-description"
+                    open={open}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    slots={{ backdrop: Backdrop }}
+                    slotProps={{
+                        backdrop: {
+                            TransitionComponent: Fade,
+                        },
+                    }}
+                >
+                    <Fade in={open}>
+                        <Box sx={boxstyle}>
+                            {loading ? <Loader loading={loading} /> : <>
+                                <Typography id="spring-modal-title" variant="h6" component="h2" sx={{ textAlign: "center" }}>
+                                    Find Ingridents for this Recipe from local Retailers
+                                </Typography>
+                                <Typography id="spring-modal-description" sx={{ mt: 2, textAlign: "center" }}>
+                                    <DenseTable ></DenseTable>
+                                </Typography>
+                            </>}
+                        </Box>
+                    </Fade>
+                </Modal>
+            </ThemeProvider>
+
         </>);
 
 }
