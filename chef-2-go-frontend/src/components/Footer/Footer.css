@@ -1,0 +1,107 @@
+@media (min-width: 1024px) {
+    .footer-container {
+        padding: calc(11.5385vw - 0.115385 * var(--scrollbar-width));
+        border-color: rgba(47, 66, 64, 0.25);
+        border-top: 1px solid;
+        z-index: 2;
+        position: relative;
+    }
+
+    .footer-content-container {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        color: rgb(3, 31, 28);
+    }
+
+    .left-footer-content-container {
+        padding-right: calc(3.8462vw - 0.038462 * var(--scrollbar-width));
+    }
+
+    .left-content-ul {
+        margin: 0 0 0 calc(7.6923vw - 0.076923 * var(--scrollbar-width));
+    }
+
+    .left-content-ul > li:not(:last-child) {
+        margin-bottom: 3.4722vw;
+    }
+
+    .right-footer-content-container {
+        width: calc(26.9231vw - 0.269231 * var(--scrollbar-width));
+        display: flex;
+        padding-left: calc(3.8462vw - 0.038462 * var(--scrollbar-width));
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .right-footer-content-ul > li {
+        margin-bottom: 6.9444vw;
+    }
+
+    .footer-anchors {
+        font-size: 1.6667vw;
+    }
+    
+}
+
+
+.left-content-ul {
+    margin: 0 0 13.3333vw calc(7.1429vw - 0.071429 * var(--scrollbar-width));
+    padding: 0;
+    list-style: none;
+    line-height: 1;
+}
+
+.left-content-ul > li:not(:last-child) {
+    margin-bottom: 5.3333vw;
+}
+
+.left-content-ul > li {
+    position: relative;
+}
+
+.left-content-ul > li > a {
+    font-family: "Morion", "Arial Narrow", Arial, sans-serif;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: currentColor;
+    text-decoration: underline;
+    background-color: transparent;
+    font-size: 4.2667vw;
+}
+
+.right-footer-content-ul {
+    margin: 0;
+    display: flex;
+    padding: 0;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: space-between;
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
+
+
+.right-footer-content-ul > li {
+    width: 50%;
+    display: block;
+    margin-bottom: 10.6667vw;
+}
+
+.right-footer-content-ul > li > a {
+    font-family: "Morion", "Arial Narrow", Arial, sans-serif;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: currentColor;
+    text-decoration: underline;
+    background-color: transparent;
+}
+
+.footer-anchors {
+    font-family: "Morion", "Arial Narrow", Arial, sans-serif;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: currentColor;
+    text-decoration: underline;
+    background-color: transparent;
+}
