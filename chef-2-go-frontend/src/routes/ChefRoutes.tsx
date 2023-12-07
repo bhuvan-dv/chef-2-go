@@ -47,10 +47,6 @@ let ChefRoutes = () => {
             element: <RecipeHome />
         },
         {
-            path:"Carousel",
-            element: <Carousel />
-        },
-        {
             path:"Footer",
             element: <Footer />
         }

@@ -15,6 +15,7 @@ import meatLeft from './resources/meat-left.png';
 import { Box, Container } from '@mui/system';
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import CustomCard, { EntityDetails } from '../Card/CustomCard';
+import Carousel from '../Carousel/Carousel';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -369,6 +370,16 @@ const Home = () => {
               <img ref={ytd2} src={foodImage} alt="" className="w-3/4" />
             </div>
           </div>
+        </div>
+
+        {/* top chefs */}
+        <div className="py-10 flex flex-col gap-32 border-b-4">
+            <p className="self-center text-5xl font-Morion text-soft-mint-green">Top Chefs</p>
+            <Carousel entities={sampleChefData}/>
+        </div>
+        <div className="py-10 flex flex-col gap-32">
+            <p className="self-center text-5xl font-Morion text-soft-mint-green">Top Recipes</p>
+            <Carousel entities={sampleChefData}/>
         </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react'
 import './Footer.css'
 const Footer = () => {
   return (
-    <div className="footer-container pt-10 px-20">
+    <div className="footer-container px-20 pt-20 h-fullvh">
       <div className="footer-content-container"> 
         <nav className="left-footer-content-container">
             <ul className="left-content-ul">

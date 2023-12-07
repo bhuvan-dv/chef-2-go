@@ -69,8 +69,11 @@ const sampleChefData: EntityDetails[] = [
     }
 ];
 
+type CarouselProps = {
+    entities: EntityDetails[];
+};
 
-const Carousel = () => {
+const Carousel = (props: CarouselProps) => {
     let settings = {
         dots: true,
         speed: 500,
@@ -111,16 +114,10 @@ const Carousel = () => {
         ]
       };
     return (
-        <div className="Carousel-container mt-10">
+        <div className="Carousel-container">
             <Slider {...settings}>
-                {sampleChefData.map((chef) => (
-                    <CustomCard entity={chef} styles={{"backgroundColor":"yellow", "color":"red" }} />
-                    // <div className="card p-10 rounded-lg bg-gray-300 overflow-hidden hover:cursor-pointer">
-                    //     <div className="card-top shadow-md ">
-                    //         <img src={chef.imageUrl} alt="" />
-                    //         <p>{chef.name}</p>
-                    //     </div>
-                    // </div>
+                {props.entities.map((entity) => (
+                    <CustomCard entity={entity} styles={{"backgroundColor":"yellow", "color":"red" }} />
                 ))}
             </Slider>
         </div>
