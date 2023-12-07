@@ -31,9 +31,9 @@ export default function DenseTable() {
             <Table sx={{ minWidth: 650, bgcolor: 'secondary.light', border:'2px solid #38524f'}} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                        <TableCell>Ingridents</TableCell>
+                        <TableCell align="right">Retailers</TableCell>
+                        <TableCell align="right">Logo(g)</TableCell>
                         <TableCell align="right">Carbs&nbsp;(g)</TableCell>
                         <TableCell align="right">Protein&nbsp;(g)</TableCell>
                     </TableRow>
