@@ -9,6 +9,8 @@ import SignupPage from "../pages/Signup/SignupPage";
 import PricingPage from "../pages/Premium/PricingPage";
 import IconDrop from "../components/IconsDrop/IconDrop";
 import RecipeHome from "../pages/Recipe/RecipeHome";
+import Carousel from "../components/Carousel/Carousel";
+import Footer from "../components/Footer/Footer";
 import Videos from "../pages/VideosPage/Videos";
 
 let ChefRoutes = () => {
@@ -44,6 +46,10 @@ let ChefRoutes = () => {
         {
             path:"recipe",
             element: <RecipeHome />
+        },
+        {
+            path:"Footer",
+            element: <Footer />
         },
         {
             path:"videos",

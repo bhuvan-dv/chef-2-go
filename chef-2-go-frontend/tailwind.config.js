@@ -9,6 +9,10 @@ module.exports = {
         'in-expo': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
         'out-expo': 'cubic-bezier(0.19, 1, 0.22, 1)',
       },
+      height: {
+        '160': '160%',
+        'fullvh': '100vh',
+      },
       backgroundColor: {
         'vanilla-cream': '#FFF5E1',
         'soft-mint-green': "#C5E1A5",
@@ -33,6 +37,9 @@ module.exports = {
         'dark-green':"#06211e",
         'pale-green':"#d8e1cc",
       },
+      backgroundImage:{
+        "scroll-img":"url('/src/components/Home/resources/background-scroll.png')",
+      }
     },
   },
   plugins: [],
