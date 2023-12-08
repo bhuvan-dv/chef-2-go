@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, Typography, CardMedia, Grid, Button } from '@mui/material';
-
+import { getAllRecipes } from '../../services/recipe';
 interface Recipe {
   id: number;
   name: string;
@@ -8,11 +8,28 @@ interface Recipe {
   imageUrl: string;
 }
 
-interface TopRecipesProps {
-    Recipes: Recipe[];
-}
+type TopRecipesProps = Recipe[] ;//= 
+    // Recipes: Recipe[]
 
-const RecipeSearch: React.FC<TopRecipesProps> = ({ Recipes }) => {
+const RecipeSearch: React.FC = () => {
+  const[apiData,setApiData]=React.useState<TopRecipesProps | null>(null);
+  async function demo(){
+    console.log("here")
+    let x: any = await getAllRecipes();
+    console.log(`x value: ${JSON.stringify(x)}`);
+    
+    setApiData(x?.data);
+  }
+  React.useEffect(()=>{
+    if(!apiData){
+      demo()
+    }
+  },[apiData]); 
+
+  console.log("updated api data",apiData);
+  // console.log(`incoming data: ${Recipes}`);
+  
+  // console.log("updated api data",apiData?.Recipes);
     return (
         <div className="container mx-auto my-8">
           {/* Rectangular Full-Width Image Section */}
@@ -30,16 +47,16 @@ const RecipeSearch: React.FC<TopRecipesProps> = ({ Recipes }) => {
           {/* All Recipes Section */}
           <h1 className="text-3xl font-bold mb-4 mt-8">All Recipes</h1>
           <Grid container spacing={3}>
-            {Recipes.map((Recipe) => (
+            {apiData?.map((Recipe:Recipe) => (
               <Grid item xs={12} sm={6} md={4} key={Recipe.id}>
                 <Card>
-                  <CardMedia
+                  {/* <CardMedia
                     component="img"
-                    alt={Recipe.name}
+                    alt={name}
                     height="200"
                     image={Recipe.imageUrl}
                     className="object-cover"
-                  />
+                  /> */}
                   <CardContent>
                     <Typography variant="h6">{Recipe.name}</Typography>
                     <Typography variant="h6">{Recipe.chef}</Typography>

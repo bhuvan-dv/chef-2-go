@@ -57,7 +57,7 @@ let ChefRoutes = (topChefs:any,topRecipes:any) => {
         },
         {
             path:"searchrecipe",
-            element:<RecipeSearch Recipes={topRecipes} />
+            element:<RecipeSearch />
         }
 
 
