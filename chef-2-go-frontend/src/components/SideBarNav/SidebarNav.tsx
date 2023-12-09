@@ -69,8 +69,11 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
               <Link className="menu-link" to="/gallery">
                 Recipes
               </Link>
-              <Link className="menu-link" to="/contact">
-                Contact
+              <Link className="menu-link" to="/login">
+                Sign In
+              </Link>
+              <Link className="menu-link" to="/testpath">
+                Sign Up
               </Link>
             </div>
           </div>
@@ -78,12 +81,12 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
             <ul className="extra-links">
               <li className="link-item">
                 <div className="link-title">Email</div>
-                <a href="mailto:example@gmail.com">example@gmail.com</a>
+                <a href="mailto:chef2go@gmail.com">chef2go@gmail.com</a>
               </li>
               <li className="link-item">
                 <div className="link-title">Find Us</div>
-                <span>57, Arch Road</span>
-                <span>Middleton</span>
+                <span>Northeastern University</span>
+                <span>Boston, MA</span>
               </li>
               <li className="link-item">
                 <div className="link-title">Social Media</div>
@@ -98,10 +101,6 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
                     <i className="fab fa-google"></i>
                   </a>
                 </div>
-              </li>
-              <li className="link-item">
-                <div className="link-title">Phone</div>
-                <span>000-000-0000</span>
               </li>
             </ul>
           </div>
