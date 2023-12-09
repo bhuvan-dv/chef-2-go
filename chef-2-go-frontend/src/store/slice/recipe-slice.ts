@@ -3,13 +3,18 @@ import Recipe from '../../models/Recipe';
 import { AppState } from '..';
 
 export type RecipeState = Recipe[];
+
 const initialState: RecipeState = [];
+
 export const recipeSlice = createSlice({
     name: 'recipes',
     initialState: initialState,
     reducers: {
         loadRecipes: (state, action: PayloadAction<RecipeState>) => {
-            return action.payload;
+            return { ...state, recipes:[action.payload]};
+        },
+        newRecipies: (state, action: PayloadAction<RecipeState>)=>{
+            return { ...state, recipes: [action.payload] }
         }
     }
 });
