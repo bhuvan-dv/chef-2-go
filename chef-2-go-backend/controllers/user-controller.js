@@ -3,6 +3,7 @@ import validator from "validator";
 import { setResponse, setErrorResponse, setSignupError } from "./response-handler.js";
 import { createToken } from "../utilities/token.js";
 import { request, response } from "express";
+import * as otpHandler from "../utilities/otpHandler.js";
 export const loginUser = async (request, response) => {
     try {
         const { email, password, username } = request.body;
@@ -37,7 +38,9 @@ export const signupUser = async (request, response) => {
         console.log(`token: ${token}`);
 
         //sending token in response
-        setResponse({ email, token }, response);
+        const otpSecret = otpHandler.createNewOTP(request.body.email);
+        response.status(201).send({ ...user.toObject(), otpSecret: otpSecret });
+        // setResponse({ email, token }, response);
     } catch (err) {
         console.error("Signup Error:", err);
 
@@ -63,5 +66,92 @@ export const deleteUser = async (request, response) =>{
         } else {
             setErrorResponse(500, "Internal Server Error", response);
         }
+    }
+}
+
+export const getAllRegisteredUsers = async (req, res) => {
+    try {
+        const registeredUsers = await userService.getRegisteredUsers();
+        res.status(200).send(registeredUsers);
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400).send({ "message": "Something went wrong." });
+    }
+}
+
+
+//ReSend OTP Function
+export const reSendOTP = async (request, response) => {
+
+    try {
+        if (!request.body.email) {
+            throw ({ msg: 'email field is required', code: 400 })
+        }
+
+        const otpSecret = otpHandler.createNewOTP(request.body.email);
+        response.status(201).send({ otpSecret: otpSecret });
+
+    } catch (err) {
+        response.status(err.code ? err.code : 500).send({ msg: err.msg ? err.msg : 'Something went wrong in the server' });
+    }
+}
+
+//Email Verification Function
+export const validateUserByEmail = async (request, response) => {
+    try {
+        if (!request.body.email) {
+            throw ({ msg: 'email field is required', code: 400 });
+        }
+
+        console.log(request.body);
+        const isValidOtp = otpHandler.verifyOTP(request.body.email, request.body.otpSecret, request.body.otp);
+        console.log(`Is Valid OTP ${isValidOtp}`);
+        if (isValidOtp) {
+            const saveUser = await userService.updateVerifcationStatus(request.body.email, isValidOtp);
+
+            console.log(saveUser);
+            response.status(201).send({ msg: 'Email Sucessfully verified' });
+        } else {
+            response.status(401).send({ msg: 'Invalid OTP' });
+        }
+    } catch (err) {
+        console.log(err)
+        response.status(err.code ? err.code : 500).send({ msg: err.msg ? err.msg : `Something went wrong with the server.` })
+    }
+}
+
+//Function to Update User Details by ID
+export const updateUser = async (request, response) => {
+    const saltRounds = 10;
+    try {
+        if (!request.body.userName) {
+            throw ({ msg: 'userName field is required', code: 400 })
+        }
+
+        if (!request.body.password) {
+            throw ({ msg: 'password field is required', code: 400 })
+        }
+
+        console.log(request.body);
+        const hashedPwd = await bcrypt.hash(request.body.password, saltRounds);
+        const user = {
+            userName: request.body.userName,
+            password: hashedPwd
+        };
+
+        console.log(request.params.userId);
+
+        const saveUser = await userService.updateUserDetails(request.params.userId, user);
+        console.log(saveUser);
+        if (saveUser) {
+            response.status(201).send({ ...saveUser.toObject(), token: token });
+
+        } else {
+            response.status(400).send({ msg: `User with the Id: ${request.params.userId} does not exists.` })
+        }
+    } catch (err) {
+        console.log("error: ", err)
+        response.status(err.code ? err.code : 500).send({ msg: err.msg ? err.msg : 'Something went wrong in the server' });
     }
 }
