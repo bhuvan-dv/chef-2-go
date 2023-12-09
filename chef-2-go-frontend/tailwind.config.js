@@ -11,6 +11,7 @@ module.exports = {
       },
       height: {
         '160': '160%',
+        'fullvh': '100vh',
       },
       backgroundColor: {
         'vanilla-cream': '#FFF5E1',

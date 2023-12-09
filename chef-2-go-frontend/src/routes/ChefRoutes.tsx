@@ -9,6 +9,8 @@ import SignupPage from "../pages/Signup/SignupPage";
 import PricingPage from "../pages/Premium/PricingPage";
 import IconDrop from "../components/IconsDrop/IconDrop";
 import RecipeHome from "../pages/Recipe/RecipeHome";
+import Carousel from "../components/Carousel/Carousel";
+import Footer from "../components/Footer/Footer";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes= useRoutes([
@@ -43,6 +45,10 @@ let ChefRoutes = () => {
         {
             path:"recipe",
             element: <RecipeHome />
+        },
+        {
+            path:"Footer",
+            element: <Footer />
         }
     ]);
 

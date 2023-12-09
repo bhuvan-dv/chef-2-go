@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './NavBar.css';
 import { initializeNavBarAnimation } from './NavBarAnimation';
 import { Link } from 'react-router-dom';
@@ -20,6 +20,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
   useEffect(() => {
     navBarTimeline.current = initializeNavBarAnimation(navBarMenu.current!, leftNavBar.current!, rightNavBar.current!);
   }, []);
+
   useEffect(() => {
     navbarState ? navBarTimeline.current?.play() : navBarTimeline.current?.reverse();
   }, [navbarState]);
@@ -37,13 +38,13 @@ const NavBar: React.FC<NavBarProps> = (props) => {
           <a href="/">{t('left.navbar.instagram')}</a>
           <a href="/">{t('left.navbar.terms')}</a>
         </div>
-        <div className="left-navrbar__items w-1/2 flex pl-5 text-xs font-style self-center">
+        <div className="left-navrbar__items w-full lg:w-1/2 flex flex-col text-xs font-style self-center">
           <p>
             {t('left.navbar.text')}
           </p>
         </div>
       </div>
-      <div ref={rightNavBar} className="right-navbar w-1/2 h-1/2 self-center flex flex-col justify-between gap-4 text-4xl font-Nova-Square ">
+      <div ref={rightNavBar} className="right-navbar w-full lg:w-1/2 h-1/2 self-center flex flex-col justify-between gap-4 text-4xl font-Nova-Square ">
         <div className="right-navbar-items font-style self-center hover:border-b-4">
           <Link to={'/premium'}>{t('right.navbar.mission')}</Link>
         </div>

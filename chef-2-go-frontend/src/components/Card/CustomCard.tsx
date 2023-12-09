@@ -27,27 +27,23 @@ const CustomCard = (props: CardProps) => {
   };
 
   return (
-    <div onClick={handleClick}>
-      <Card sx={{ maxWidth: 345 }}>
+    <div>
+      <Card sx={{ maxWidth: 345 }} style={styles}>
         <CardActionArea>
           <CardMedia
             component="img"
             height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
+            image={entity.imageUrl}
             alt="green iguana"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000
-              species, ranging across all continents except Antarctica
+            <Typography gutterBottom variant="h5" component="div" fontFamily={"Morion"}>
+              {entity.name}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
+          <Button size="medium" color="primary" onClick={handleClick} style={{"color":"green", "fontFamily":"Morion", "fontWeight":"bold", "textAlign":"center"}}>
             Visit Profile
           </Button>
         </CardActions>
