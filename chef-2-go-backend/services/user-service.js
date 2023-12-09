@@ -82,3 +82,23 @@ export const deleteUser = async (id) => {
     console.log("Deleting user with ID:", id);
     return await User.findByIdAndDelete(id).exec();
 }
+
+export const getRegisteredUsers = async () => {
+    const registeredUsers = User.find({}, { id: 1, userName: 1, email: 1, _id: 0 }).exec();
+    return registeredUsers
+}
+
+export const updateUserDetails = async (id, user) => {
+
+    let updateUser = { "userName": user.userName, "password": user.password };
+
+    return await User.findOneAndUpdate({"id": id}, updateUser, {new: true}).exec();
+}
+
+// Function to update User Verification Details
+export const updateVerifcationStatus = async (email, isVerified) => {
+
+    let updateUser = { "isVerified": isVerified };
+
+    return await User.findOneAndUpdate({"email": email}, updateUser, {new: true}).exec();
+}
