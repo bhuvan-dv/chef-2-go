@@ -42,6 +42,9 @@ const RecipeSchema = new Schema(
             type: String,
             // ref: 'Comment',
             default: null
+        },
+        imageUrl: {
+            type: String
         }
     },
     {
