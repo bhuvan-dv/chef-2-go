@@ -2,7 +2,8 @@ import { useRoutes } from "react-router-dom";
 import HomePage from "../pages/Home/HomePage";
 import NotFound from "../pages/PageNotFound/NotFound";
 import Login from "../components/authComponent/Login";
-import Signup from "../components/authComponent/Signup";
+// import Signup from "../components/authComponent/Signup";
+import SignUp from '../components/SignUp/SignUp';
 import About from "../pages/About/About";
 import LoginPage from "../pages/LogIn/LoginPage";
 import SignupPage from "../pages/Signup/SignupPage";
@@ -11,9 +12,15 @@ import IconDrop from "../components/IconsDrop/IconDrop";
 import RecipeHome from "../pages/Recipe/RecipeHome";
 import Carousel from "../components/Carousel/Carousel";
 import Footer from "../components/Footer/Footer";
+
 import ChefPage from "../pages/Chef/ChefPage";
 import RecipeSearch from "../pages/RecipeSearch/RecipeSearch";
 let ChefRoutes = (topChefs:any,topRecipes:any) => {
+// import LoginTwo from "../components/authComponent/LoginTwo";
+import OTPVerificationPage from "../pages/OTPVerificationPage/OTPVerificationPage";
+// import SignUp2 from "../components/SignUp/SignUp";
+
+let ChefRoutes = () => {
     let ChefTwoGoRoutes= useRoutes([
         {
             path: "/",
@@ -58,6 +65,12 @@ let ChefRoutes = (topChefs:any,topRecipes:any) => {
         {
             path:"searchrecipe",
             element:<RecipeSearch />
+            path:"verification",
+            element: <OTPVerificationPage />
+        },
+        {
+            path:"testpath",
+            element: <SignUp />
         }
 
 

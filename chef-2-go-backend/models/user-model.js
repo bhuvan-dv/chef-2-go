@@ -34,8 +34,13 @@ const UserSchema = new Schema({
     isPremiumUser:{
         type: Boolean,
         default: false
+    },
+    isVerified:{
+        type:Boolean,
+        default:false
     }
-});
+
+}, {versionKey: false, timestamps: true});
 
 const UserModel = mongoose.model("user", UserSchema);
 

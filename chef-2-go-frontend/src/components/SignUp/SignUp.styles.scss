@@ -1,0 +1,63 @@
+//Styling for Card holding SignUp form
+.signup-card {
+    height: 550px;
+  }
+  
+  //SignUp form Styling
+  .regForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  
+  }
+  
+  //SignUp Form Fields Styling
+  .formElements {
+    margin-top: 30px;
+    width: 100%;
+  }
+  
+  //SignUp Form Container Styling
+  .signup-form-container {
+    position: absolute;
+    top: 105px;
+    width: 450px;
+    margin-left: 230px;
+  }
+  
+  //SignUp Image Container Styling
+  .sign-up-Image-container {
+    margin-top: -50px;
+    margin-left: 690px;
+  }
+  
+  //SignUp Image Styling
+  .signUp-Image {
+    width: 800px;
+  }
+  
+  //Sign Up Heading styling
+  .signup-heading {
+    margin-left: 155px;
+    color: navy;
+    margin-bottom: 0;
+  }
+  
+  //SignUp to LogIn Link Styling
+  .signupToLogin {
+    text-decoration: none;
+  
+    &:hover {
+      color: red;
+    }
+  
+  }
+  
+  //Confirm Password Field Styling
+  .confirmPasswordField {
+    padding-bottom: 20px;
+    margin-top: 30px;
+    height: 20px;
+    margin-bottom: 30px;
+  }

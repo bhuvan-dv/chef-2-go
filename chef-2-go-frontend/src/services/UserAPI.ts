@@ -48,9 +48,9 @@ export const getAllRegisteredUsers = async () => {
 };
 
 //Axios API Call to Register New User
-export const registerUser = async (form_data : RegisterUser) => {
+export const registerUser = async (form_data : FormData) => {
     return axios({
-        url: `${BASE_URL}/users/register`,
+        url: `${BASE_URL}/users/signup`,
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -60,7 +60,7 @@ export const registerUser = async (form_data : RegisterUser) => {
 }
 
 //Axios API call for OTP Verification
-export const otpVerification = async (form_data : string) => {
+export const otpVerification = async (form_data : FormData) => {
     return axios({
         url: `${BASE_URL}/users/email`,
         method: "PUT",
@@ -72,7 +72,7 @@ export const otpVerification = async (form_data : string) => {
 }
 
 //Axios API call for Sending OTP
-export const sendOTP = async (form_data : string) => {
+export const sendOTP = async (form_data : FormData) => {
     return axios({
         url: `${BASE_URL}/users/email`,
         method: "POST",
