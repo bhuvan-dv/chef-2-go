@@ -4,6 +4,7 @@ import { setResponse, setErrorResponse, setSignupError } from "./response-handle
 import { createToken } from "../utilities/token.js";
 import { request, response } from "express";
 import * as otpHandler from "../utilities/otpHandler.js";
+
 export const loginUser = async (request, response) => {
     try {
         const { email, password, username } = request.body;
@@ -12,9 +13,12 @@ export const loginUser = async (request, response) => {
 
         //creating token 
         const token = createToken(user._id);
-
+        const returnData = {
+            token: token,
+            user: user
+        }
         //sending token in response
-        setResponse({ email, token }, response);
+        setResponse(returnData, response);
     } catch (err) {
         console.error("Login Error:", err);
 
@@ -81,6 +85,7 @@ export const getAllRegisteredUsers = async (req, res) => {
 }
 
 export const getUserById = async (req, res) => {
+    alert("in controller");
     try {
         const user = await userService.getUserById(req.params.id);
         res.status(200).send(user);

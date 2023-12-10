@@ -7,15 +7,18 @@ import axios from 'axios';
 interface SidebarNavProps {
   menuState: boolean;
   setMenuState: (state: boolean) => void;
+  islogedin: boolean;
 }
 
-const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
+const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, islogedin }) => {
   const sidebarMenu = useRef<HTMLDivElement>(null);
   const sidebarMenuOverlay = useRef<HTMLDivElement>(null);
   const menuLayer = useRef<HTMLDivElement>(null);
   const menuTimeline = useRef<gsap.core.Timeline | null>(null);
-  const isLoggedin: boolean = true;
-  const username: string = 'test';
+  // let [username, setUsername] = React.useState<string>('');
+  const [isLoggedin, setIsLoggedin] = React.useState<boolean>(true);
+  const user = localStorage.getItem('user');
+      let username = JSON.parse(user!).username;
 
   const navigate = useNavigate();
 
@@ -57,7 +60,8 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
 
   const handlenavigateProfile = async () => {
     try {
-      const response = await axios.post(`http://localhost:5000/api/users/profile/${localStorage.getItem('email')}`);
+      const user = localStorage.getItem('user');
+      const response = await axios.post(`http://localhost:5000/users/${JSON.parse(user!).id}`);
       // Handle the response data here
       console.log(response.data);
       navigate(`/profile/${response.data.id}`);
@@ -65,6 +69,18 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
       // Handle the error here
       console.error(error);
     }
+  };
+
+  const verifyUserLogin = () => {
+    if (localStorage.getItem('token') === null) {
+      alert('Please log in to access this page');
+      setIsLoggedin(false);
+    }
+    else{
+      setIsLoggedin(true);
+  }
+  console.log(`isLoggedin: ${isLoggedin}`);
+  
   };
 
 
@@ -81,14 +97,14 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
           <div className="sidebar-top">
             <div className="links-wrapper">
               {isLoggedin && 
-              <button onClick={handlenavigateProfile}>
+              <button className="menu-link" onClick={handlenavigateProfile}>
                 {username}
               </button>
               }
               <Link className="menu-link" to="/">
                 Home
               </Link>
-              <Link className="menu-link" to="/about">
+              <Link className="menu-link" onClick={verifyUserLogin} to= {isLoggedin?'/about':'/login'}>
                 About
               </Link>
               <Link className="menu-link" to="/services">

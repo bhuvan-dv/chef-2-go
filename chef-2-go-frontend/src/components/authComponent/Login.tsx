@@ -68,6 +68,8 @@ const Login = (props: Props) => {
             password: password
         }
         const response = await loginUserService(reqBody);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         console.log(response);
         navigate('/');
     }
