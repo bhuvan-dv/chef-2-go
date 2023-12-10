@@ -61,6 +61,19 @@ let ChefRoutes = () => {
         {
             path:"testpath",
             element: <SignUp />
+        },
+        {
+            path: 'search',
+            children: [
+                {
+                    path: 'chefs',
+                    element: <RecipeHome />
+                },
+                {
+                    path: 'recipes',
+                    element: <RecipeHome />
+                }
+            ]
         }
     ]);
 

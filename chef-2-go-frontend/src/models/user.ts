@@ -3,9 +3,11 @@ type user = {
     name: string,
     email: string,
     password: string,
-    role: string,
+    role: "chef" | "customer" | "admin",
     username: string,
     imageUrl: string,
+    isVerified?: boolean,
+    isPremiumUser?: boolean,
 }
 
 export default user;
