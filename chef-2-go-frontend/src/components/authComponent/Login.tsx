@@ -1,6 +1,9 @@
 // react imports
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsLoogedIn } from '../../store/slice/user-slice';
 // material ui imports
 import { Button, TextField, Typography, CardContent, CardActions } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
@@ -27,6 +30,7 @@ const Login = (props: Props) => {
     const [password, setPassword] = useState<string>("");
     const [btnVarinat, setBtnVariant] = useState<'contained' | 'outlined'>('outlined');
     const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
@@ -70,8 +74,9 @@ const Login = (props: Props) => {
         const response = await loginUserService(reqBody);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
+        dispatch(setIsLoogedIn(true));
         console.log(response);
-        navigate('/');
+        navigate(-1);
     }
 
 

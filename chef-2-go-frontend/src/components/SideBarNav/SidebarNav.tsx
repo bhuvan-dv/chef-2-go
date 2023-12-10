@@ -1,8 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
-import { a } from 'react-spring';
 import axios from 'axios';
+import {useSelector, useDispatch} from 'react-redux';
+import { setIsLoogedIn } from '../../store/slice/user-slice';
+import { AppState } from '../../store';
 
 interface SidebarNavProps {
   menuState: boolean;
@@ -15,12 +17,12 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
   const sidebarMenuOverlay = useRef<HTMLDivElement>(null);
   const menuLayer = useRef<HTMLDivElement>(null);
   const menuTimeline = useRef<gsap.core.Timeline | null>(null);
-  // let [username, setUsername] = React.useState<string>('');
-  const [isLoggedin, setIsLoggedin] = React.useState<boolean>(true);
-  const user = localStorage.getItem('user');
-      let username = JSON.parse(user!).username;
+  let [username, setUsername] = React.useState<string>('');
+  const isLoggedin = useSelector((state: AppState) => state.users.isLoggedin);
+  const user = JSON.parse(localStorage.getItem('user')!);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     menuTimeline.current = gsap.timeline({ paused: true });
@@ -56,6 +58,9 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    dispatch(setIsLoogedIn(false));
+    navigate('/');
+    
   };
 
   const handlenavigateProfile = async () => {
@@ -74,11 +79,8 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
   const verifyUserLogin = () => {
     if (localStorage.getItem('token') === null) {
       alert('Please log in to access this page');
-      setIsLoggedin(false);
+      navigate('/login');
     }
-    else{
-      setIsLoggedin(true);
-  }
   console.log(`isLoggedin: ${isLoggedin}`);
   
   };
@@ -98,7 +100,7 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
             <div className="links-wrapper">
               {isLoggedin && 
               <button className="menu-link" onClick={handlenavigateProfile}>
-                {username}
+                {user.username}
               </button>
               }
               <Link className="menu-link" to="/">
