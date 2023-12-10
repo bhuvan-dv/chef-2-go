@@ -9,10 +9,12 @@ const Dashboard = () => {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline/>
-      <div>
-        <main className='content'>
+      <div className=''>
+        <main className='flex justify-end'>
+            <Topbar />
+        </main>
+        <main className='content flex justify-between'>
             <SidebarAdmin />
-          <Topbar/>
         </main>
       </div>
       </ThemeProvider>
