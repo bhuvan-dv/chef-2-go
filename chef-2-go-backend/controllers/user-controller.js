@@ -80,6 +80,28 @@ export const getAllRegisteredUsers = async (req, res) => {
     }
 }
 
+export const getUserById = async (req, res) => {
+    try {
+        const user = await userService.getUserById(req.params.id);
+        res.status(200).send(user);
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400).send({ "message": "Something went wrong." });
+    }
+}
+
+export const getUserByEmail = async (req, res) => {
+    try {
+        const user = await userService.getUserByEmail(req.params.email);
+        res.status(200).send(user);
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400).send({ "message": "Something went wrong." });
+    }
+}
+
 
 //ReSend OTP Function
 export const reSendOTP = async (request, response) => {

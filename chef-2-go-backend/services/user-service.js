@@ -88,6 +88,14 @@ export const getRegisteredUsers = async () => {
     return registeredUsers
 }
 
+export const getUserById = async (id) => {
+    return await User.findById(id).exec();
+}
+
+export const getUserByEmail = async (email) => {
+    return User.findOne({ email: email }).exec();
+}
+
 export const updateUserDetails = async (id, user) => {
 
     let updateUser = { "userName": user.userName, "password": user.password };

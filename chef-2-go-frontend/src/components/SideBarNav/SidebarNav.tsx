@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
+import { a } from 'react-spring';
+import axios from 'axios';
 
 interface SidebarNavProps {
   menuState: boolean;
@@ -12,6 +14,8 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
   const sidebarMenuOverlay = useRef<HTMLDivElement>(null);
   const menuLayer = useRef<HTMLDivElement>(null);
   const menuTimeline = useRef<gsap.core.Timeline | null>(null);
+  const isLoggedin: boolean = true;
+  const username: string = 'test';
 
   const navigate = useNavigate();
 
@@ -45,6 +49,25 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
     return unlisten;
   }, [navigate, setMenuState]);
 
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  };
+
+  const handlenavigateProfile = async () => {
+    try {
+      const response = await axios.post(`http://localhost:5000/api/users/profile/${localStorage.getItem('email')}`);
+      // Handle the response data here
+      console.log(response.data);
+      navigate(`/profile/${response.data.id}`);
+    } catch (error) {
+      // Handle the error here
+      console.error(error);
+    }
+  };
+
+
   return (
     <>
       <div
@@ -57,6 +80,11 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
         <nav className="sidebarNavigation" ref={sidebarMenu}>
           <div className="sidebar-top">
             <div className="links-wrapper">
+              {isLoggedin && 
+              <button onClick={handlenavigateProfile}>
+                {username}
+              </button>
+              }
               <Link className="menu-link" to="/">
                 Home
               </Link>
@@ -69,12 +97,18 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
               <Link className="menu-link" to="/gallery">
                 Recipes
               </Link>
-              <Link className="menu-link" to="/login">
-                Sign In
-              </Link>
+              {isLoggedin ?
+                <Link className="menu-link" to= "/" onClick={handleLogout}>
+                  Log Out
+                </Link> :
+                <Link className="menu-link" to="/login">
+                  Log In
+                </Link>
+              }
+              {!isLoggedin &&
               <Link className="menu-link" to="/testpath">
                 Sign Up
-              </Link>
+              </Link>}
             </div>
           </div>
           <div className="sidebar-bottom">
