@@ -1,6 +1,7 @@
 import React from 'react'
 import { ColorModeContext, useMode } from './theme'
 import { CssBaseline, ThemeProvider } from '@mui/material'
+import Topbar from './menu/Topbar';
 const Dashboard = () => {
   const [theme, colorMode] = useMode();
   return (
@@ -8,7 +9,9 @@ const Dashboard = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline/>
       <div>
-        <main className='content'></main>
+        <main className='content'>
+          <Topbar/>
+        </main>
       </div>
       </ThemeProvider>
     </ColorModeContext.Provider>
