@@ -83,25 +83,25 @@ const ChefPage: React.FC<TopChefsProps> = ({ chefs }) => {
               <form className="fpad form-inline website-search" name="frm1" action="/search_results">
                 <div className="form-group col-xs-12 col-md-3 nolpad sm-norpad">
                   <div className="input-group col-xs-12">
-                    <select placeholder="Select Category" name="sid" id="sid" className="infinite-chained form-control input-lg select2-preload" style={{ color: 'rgb(168, 168, 168)' }}>
+                    {/* <select placeholder="Select Category" name="sid" id="sid" className="infinite-chained form-control input-lg select2-preload" style={{ color: 'rgb(168, 168, 168)' }}>
                       <option value="">Select Category</option>
                       <option value="10">Business Partners</option>
                       <option value="2">Personal Chef</option>
-                    </select>
+                    </select> */}
                   </div>
                 </div>
                 <div className="form-group col-xs-12 col-md-3 nolpad sm-norpad">
                   <div className="input-group col-xs-12">
-                    <select placeholder="Select Sub-Category" name="tid" id="tid" data-next="ttid" className="infinite-chained form-control input-lg select2-preload" style={{ color: 'rgb(168, 168, 168)' }}>
+                    {/* <select placeholder="Select Sub-Category" name="tid" id="tid" data-next="ttid" className="infinite-chained form-control input-lg select2-preload" style={{ color: 'rgb(168, 168, 168)' }}>
                       <option value="">Select Sub-Category</option>
-                    </select>
+                    </select> */}
                   </div>
                 </div>
                 <div className="form-group col-xs-12 col-md-3 nolpad sm-norpad">
                   <div className="input-group col-xs-12">
-                    <select placeholder="More Options" name="ttid" id="ttid" className="infinite-chained form-control input-lg select2-preload" style={{ color: 'rgb(168, 168, 168)' }}>
+                    {/* <select placeholder="More Options" name="ttid" id="ttid" className="infinite-chained form-control input-lg select2-preload" style={{ color: 'rgb(168, 168, 168)' }}>
                       <option value="">More Options</option>
-                    </select>
+                    </select> */}
                   </div>
                 </div>
                 <div className="form-group col-xs-12 col-md-3 nopad">
