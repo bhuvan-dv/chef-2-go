@@ -1,10 +1,17 @@
 import React from 'react'
-
+import { ColorModeContext, useMode } from './theme'
+import { CssBaseline, ThemeProvider } from '@mui/material'
 const Dashboard = () => {
+  const [theme, colorMode] = useMode();
   return (
-    <>
-        <h1>Dashboard</h1>
-    </>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline/>
+      <div>
+        <main className='content'></main>
+      </div>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   )
 }
 
