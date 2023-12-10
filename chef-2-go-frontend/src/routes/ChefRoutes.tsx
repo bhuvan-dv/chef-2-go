@@ -18,6 +18,7 @@ import RecipeSearch from "../pages/RecipeSearch/RecipeSearch";
 import OTPVerificationPage from "../pages/OTPVerificationPage/OTPVerificationPage";
 // import SignUp2 from "../components/SignUp/SignUp";
 import { topChefs } from "../pages/Chef/chefData";
+import Admin from "../pages/Admin/Admin";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes = useRoutes([
@@ -73,6 +74,10 @@ let ChefRoutes = () => {
             path: "testpath",
             element: <SignUp />
         },
+        {
+            path:"admin",
+            element:<Admin/>
+        }
     ]);
 
     return ChefTwoGoRoutes;
