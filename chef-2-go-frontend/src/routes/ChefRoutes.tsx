@@ -12,6 +12,10 @@ import IconDrop from "../components/IconsDrop/IconDrop";
 import RecipeHome from "../pages/Recipe/RecipeHome";
 import Carousel from "../components/Carousel/Carousel";
 import Footer from "../components/Footer/Footer";
+
+import ChefPage from "../pages/Chef/ChefPage";
+import RecipeSearch from "../pages/RecipeSearch/RecipeSearch";
+let ChefRoutes = (topChefs:any,topRecipes:any) => {
 // import LoginTwo from "../components/authComponent/LoginTwo";
 import OTPVerificationPage from "../pages/OTPVerificationPage/OTPVerificationPage";
 // import SignUp2 from "../components/SignUp/SignUp";
@@ -55,6 +59,12 @@ let ChefRoutes = () => {
             element: <Footer />
         },
         {
+            path:"chef",
+            element:<ChefPage chefs={topChefs}/>
+        },
+        {
+            path:"searchrecipe",
+            element:<RecipeSearch />
             path:"verification",
             element: <OTPVerificationPage />
         },
@@ -62,6 +72,8 @@ let ChefRoutes = () => {
             path:"testpath",
             element: <SignUp />
         }
+
+
     ]);
 
     return ChefTwoGoRoutes;
