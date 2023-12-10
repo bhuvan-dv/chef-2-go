@@ -1,5 +1,5 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import user from '../../models/user';
+import user from '../../models/User';
 import { AppState } from '..';
 
 interface UserState{
@@ -26,7 +26,7 @@ export const userSlice = createSlice({
           // Assuming you want to filter chefs based on a search query
           const searchTerm = action.payload.toLowerCase();
           state.chefs = state?.chefs?.filter((chef) =>
-            chef.name.toLowerCase().includes(searchTerm)
+            chef?.name?.toLowerCase().includes(searchTerm)
           );
         },
     }

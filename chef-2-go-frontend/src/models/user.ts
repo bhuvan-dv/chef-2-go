@@ -1,13 +1,11 @@
-type user = {
-    id: number,
-    name: string,
-    email: string,
-    password: string,
-    role: "chef" | "customer" | "admin",
-    username: string,
-    imageUrl: string,
-    isVerified?: boolean,
-    isPremiumUser?: boolean,
+interface User {
+    email: string;
+    password?: string;
+    name?: string;
+    username: string;
+    role: "admin" | "chef" | "customer"; // Define specific role values
+    isPremiumUser?: boolean;
+    token: string
 }
 
-export default user;
+export default User;
