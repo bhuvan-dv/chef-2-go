@@ -61,7 +61,7 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
   const handlenavigateProfile = async () => {
     try {
       const user = localStorage.getItem('user');
-      const response = await axios.post(`http://localhost:5000/users/${JSON.parse(user!).id}`);
+      const response = await axios.post(`http://localhost:5000/users/profile/${JSON.parse(user!).id}`);
       // Handle the response data here
       console.log(response.data);
       navigate(`/profile/${response.data.id}`);
