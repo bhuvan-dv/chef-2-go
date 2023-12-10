@@ -7,12 +7,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import TrafficIcon from "@mui/icons-material/Traffic";
-import LineChart from './menu/LineChart';
 import Topbar from './menu/Topbar';
-import ProgressCircle from './menu/ProgressCircle';
-import GeographyChart from './menu/GeographyChart';
-import SidebarAdmin from './menu/SidebarAdmin';
-import BarChart from './menu/BarChart';
 import HeaderAdmin from './menu/HeaderAdmin';
 import StatBox from './menu/StatBox';
 import { tokens } from './theme';
@@ -119,6 +114,27 @@ const Dashboard = () => {
                 increase="+5%"
                 icon={
                   <PersonAddIcon
+                    sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                  />
+                }
+              />
+            </Box>
+            <Box
+              sx={{
+                gridColumn: "span 3",
+                backgroundColor: colors.primary[400],
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+            >
+              <StatBox
+                title="1,325,134"
+                subtitle="Traffic Received"
+                progress="0.80"
+                increase="+43%"
+                icon={
+                  <TrafficIcon
                     sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
                   />
                 }
