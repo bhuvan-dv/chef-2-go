@@ -1,9 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
-import axios from 'axios';
-import {useSelector, useDispatch} from 'react-redux';
-import { setIsLoogedIn } from '../../store/slice/user-slice';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentUser, setIsLoogedIn } from '../../store/slice/user-slice';
 import { AppState } from '../../store';
 
 interface SidebarNavProps {
@@ -17,9 +16,10 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
   const sidebarMenuOverlay = useRef<HTMLDivElement>(null);
   const menuLayer = useRef<HTMLDivElement>(null);
   const menuTimeline = useRef<gsap.core.Timeline | null>(null);
-  let [username, setUsername] = React.useState<string>('');
+  // let [username, setUsername] = React.useState<string>('');
   const isLoggedin = useSelector((state: AppState) => state.users.isLoggedin);
-  const user = JSON.parse(localStorage.getItem('user')!);
+  const user = useSelector((state: AppState) => state.users.currentUser);
+  // const user = JSON.parse(localStorage.getItem('user')!);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -59,20 +59,21 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     dispatch(setIsLoogedIn(false));
+    dispatch(setCurrentUser(null))
     navigate('/');
-    
+
   };
 
   const handlenavigateProfile = async () => {
     try {
       const user = localStorage.getItem('user');
       console.log(`user: ${user}`);
-      
+
       // const response = await axios.get(`http://localhost:5000/users/profile/${JSON.parse(user!)._id}`);
       // Handle the response data here
       // console.log(response.data);
       // navigate(`/profile/${response.data.username}`);
-      navigate(`/profile/${ JSON.parse(user!).username}`);
+      navigate(`/profile/${JSON.parse(user!).username}`);
     } catch (error) {
       // Handle the error here
       console.error(error);
@@ -80,16 +81,25 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
   };
 
   const verifyUserLogin = () => {
-    if (localStorage.getItem('token') === null) {
+    if(isLoggedin){
+      navigate('/search/chefs');
+    }else{
       alert('Please log in to access this page');
       navigate('/login');
     }
-  console.log(`isLoggedin: ${isLoggedin}`);
-  
+
   };
+  // const verifyUserLogin = () => {
+  //   if (localStorage.getItem('token') === null) {
+  //     alert('Please log in to access this page');
+  //     navigate('/login');
+  //   }
+  //   console.log(`isLoggedin: ${isLoggedin}`);
+
+  // };
 
   console.log(`isLoggedin: ${isLoggedin}`);
-  
+
   return (
     <>
       <div
@@ -102,35 +112,35 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
         <nav className="sidebarNavigation" ref={sidebarMenu}>
           <div className="sidebar-top">
             <div className="links-wrapper">
-              {isLoggedin && 
-              <button className="menu-link" onClick={handlenavigateProfile}>
-                {user.username}
-              </button>
+              {user &&
+                <button className="menu-link" onClick={handlenavigateProfile}>
+                  {user?.username}
+                </button>
               }
               <Link className="menu-link" to="/">
                 Home
               </Link>
-              <Link className="menu-link" to= '/about'>
+              <Link className="menu-link" to='/about'>
                 About
               </Link>
-              <Link className="menu-link" onClick={verifyUserLogin}  to={isLoggedin?'/search/chefs':'/login'}>
+              <Link className="menu-link" onClick={verifyUserLogin} to={isLoggedin ? '/search/chefs' : '/login'}>
                 Chefs
               </Link>
-              <Link className="menu-link" onClick={verifyUserLogin} to={isLoggedin?'/searchrecipe':'/login'}>
+              <Link className="menu-link" onClick={verifyUserLogin} to={isLoggedin ? '/searchrecipe' : '/login'}>
                 Recipes
               </Link>
-              {isLoggedin ?
-                <Link className="menu-link" to= "/" onClick={handleLogout}>
+              {user ?
+                <Link className="menu-link" to="/" onClick={handleLogout}>
                   Log Out
                 </Link> :
                 <Link className="menu-link" to="/login">
                   Log In
                 </Link>
               }
-              {!isLoggedin &&
-              <Link className="menu-link" to="/testpath">
-                Sign Up
-              </Link>}
+              {!user &&
+                <Link className="menu-link" to="/testpath">
+                  Sign Up
+                </Link>}
             </div>
           </div>
           <div className="sidebar-bottom">

@@ -9,12 +9,19 @@ interface UserState {
   currentUser?: User | null
 }
 
-const initialState: UserState = {
-  isLoggedin: false,
-  chefs: [],
-  searchTerm: "",
-  currentUser: null
+const getInitialState = (): UserState => {
+  const storedIsLoggedin = localStorage.getItem('isLoggedin') === 'true';
+  const storedUser = JSON.parse(localStorage.getItem('user') || 'null');
+
+  return {
+    isLoggedin: storedIsLoggedin,
+    chefs: [],
+    searchTerm: '',
+    currentUser: storedUser,
+  };
 };
+
+const initialState: UserState = getInitialState();
 
 export const userSlice = createSlice({
   name: 'users',
@@ -22,6 +29,7 @@ export const userSlice = createSlice({
   reducers: {
     setIsLoogedIn: (state, action: PayloadAction<boolean>) => {
       state.isLoggedin = action.payload;
+      localStorage.setItem('isLoggedin', String(action.payload));
     },
     setChefs: (state, action: PayloadAction<User[]>) => {
       state.chefs = action.payload;
@@ -37,6 +45,7 @@ export const userSlice = createSlice({
     },
     setCurrentUser: (state, action: PayloadAction<User | null>) => {
       state.currentUser = action.payload;
+      localStorage.setItem('user', JSON.stringify(action.payload));
     },
   }
 });
