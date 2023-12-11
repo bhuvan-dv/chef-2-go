@@ -3,7 +3,7 @@ import {IngridentModel} from "../models/ingredient-model.js";
 
 // Find ingredient by ID
 export const find = async (id) => {
-  const ingredient = await IngridentModel.findById(id).exec();
+  const ingredient = await IngridentModel.find().exec();
   return ingredient;
 };
 

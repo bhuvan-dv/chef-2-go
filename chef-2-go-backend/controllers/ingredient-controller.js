@@ -8,8 +8,8 @@ import { setErrorResponse, setResponse } from "./response-handler.js";
 // Get an ingredient by ID
 export const get = async (request, response) => {
   try {
-    const id = request.params.id;
-    const ingrident = await find(id);
+    // const id = request.params.id;
+    const ingrident = await find();
     setResponse(ingrident, response);
   } catch (error) {
     console.log(`req: ${request}`)
