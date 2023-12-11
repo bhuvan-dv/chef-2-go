@@ -3,7 +3,7 @@ interface Recipe {
     name: string;
     chef: string;
     summary:string;
-    instructions: string[];
+    instructions: string[] | undefined;
     ingredients: {
         name: string;
         quantity: string;
