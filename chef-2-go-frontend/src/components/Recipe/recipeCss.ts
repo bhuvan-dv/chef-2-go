@@ -42,6 +42,7 @@ const TitleStyling: CSSProperties = {
 
 const RecipeSummary: CSSProperties = {
     color: "hsl(173, 19%, 27%)",
+    fontFamily:"Morion"
 
 }
 
