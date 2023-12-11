@@ -17,12 +17,12 @@ const PricingPage: React.FC = () => {
 
       {/* Testimonial Section */}
       <div className="mt-16">
-        <Testimonials />
+        {/* <Testimonials /> */}
       </div>
 
       {/* FAQ Section */}
       <div className="mt-16">
-        <FAQ />
+        {/* <FAQ /> */}
       </div>
     </div>
   );
