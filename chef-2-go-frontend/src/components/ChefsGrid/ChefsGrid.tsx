@@ -4,7 +4,7 @@ import { getAllRegisteredUsers } from '../../services/UserAPI'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppState } from '../../store'
-import User from '../../models/User'
+import User from '../../models/user'
 import { setChefs } from '../../store/slice/user-slice'
 
 const ChefsGrid = () => {
@@ -23,7 +23,7 @@ const ChefsGrid = () => {
             console.log('response', response.data);
             
             const chefsList = await response.data;
-            
+
             dispatch(setChefs(chefsList));
         } catch (error) {
             console.error('Error fetching recipes:', error);

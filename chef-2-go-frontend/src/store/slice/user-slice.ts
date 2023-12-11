@@ -1,11 +1,10 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import user from '../../models/User';
 import { AppState } from '..';
-import User from '../../models/User';
+import User from '../../models/user'
 
 interface UserState{
     isLoggedin?: boolean,
-    chefs: user[]
+    chefs: User[]
     searchTerm?: string;
 }
 
