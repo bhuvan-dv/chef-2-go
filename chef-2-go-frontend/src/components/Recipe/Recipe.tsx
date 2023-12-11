@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, CSSProperties } from 'react'
 import { getRecipes } from '../../services/recipe'
 import Recipe from '../../models/Recipe'
 import { recipes } from '../../models/Recipe';
 import "./recipe.module.css";
-import { TitleContStyling, TitleStyling, RecipeSummary } from './recipeCss';
+import { ImgContStyling, TitleContStyling, TitleStyling, RecipeSummary } from './recipeCss';
 import Ingridents from './Ingridents';
 // import Circle from './Circle';
 // let obj: Recipe = {
@@ -77,13 +77,17 @@ type RecipeProps={
 const RecipeHome = (props: RecipeProps) => {
     const [individualRecipe,setIndividualRecipe]=useState<Recipe | undefined>(undefined);
     const Recipeheading: React.FC = () => {
+        let headStyling: CSSProperties = {};
+        if (individualRecipe?.imageUrl) {
+            headStyling = ImgContStyling(individualRecipe.imageUrl);
+        }
         let aarr: string[] | undefined = individualRecipe?.name?.split(" ");
         const charElements: React.ReactNode[] | undefined = aarr?.map((char: string, index: number) => (
             <div key={index} style={TitleStyling} className='text-9xl pl-96'>
                 {char}
             </div>
         ));
-        return (<div className='text-[#ffffff]' style={TitleContStyling}>{charElements}</div>); // Return the array of elements within a fragment
+        return (<div className='text-[#ffffff]' style={headStyling}>{charElements}</div>); // Return the array of elements
     };
 
     async function getIndividualRecipe(): Promise<any> {
