@@ -14,7 +14,7 @@ interface Recipe {
     comment: string | null,
     imageUrl?: string;
 }
-export const courses: Recipe[] = [
+export const recipes: Recipe[] = [
     {
         comment: null,
         _id: "655cf1d2107b4ea257c79c0b",
@@ -32,7 +32,8 @@ export const courses: Recipe[] = [
             }
         ],
         video: "https://store.com/sajfnkdf",
-        gifs: "https://gifs.com/mygif"
+        gifs: "https://gifs.com/mygif",
+        imageUrl: "https://store.com/sajfnkdf"
     }
 ];
 export default Recipe;

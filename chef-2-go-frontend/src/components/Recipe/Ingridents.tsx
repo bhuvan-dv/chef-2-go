@@ -17,9 +17,11 @@ import { useSpring, animated } from '@react-spring/web';
 import DenseTable from './DenseTable';
 import Ingredient from '../../models/ingredient';
 import Loader from '../loader/Loader';
+import { getIngredientShopDetails } from '../../services/ingredients';
+import IngredientsShop from '../../models/ingredientsShop';
 
 type IngredientProps = {
-    ingredients: Ingredient[];
+    ingredients: Ingredient[] | undefined;
 };
 
 const style = {
@@ -101,18 +103,51 @@ const boxstyle = {
 
 const Ingridents = (props: IngredientProps) => {
     const [loading, setLoading] = React.useState(false);
-    setTimeout(()=>{
-        setLoading(true)
-    },2000)
+    const [shopData, setShopData] = React.useState<IngredientsShop[]>();
     const [secondary, setSecondary] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const ingredientElements = props.ingredients.map((ingredient, index) => (
+    const ingredientElements = props?.ingredients?.map((ingredient, index) => (
         <ListItem key={index} style={IngridentsList} sx={{ fontFamily: 'Morion', fontWeight: 'medium' }}>
             <ListItemText primary={`${ingredient.name}`} secondary={secondary ? `${ingredient.quantity}-${ingredient.unitType}` : null} />
         </ListItem>
     ));
+
+    async function getShopDetails(): Promise<void> {
+        try {
+            const shopResponse: any = await getIngredientShopDetails();
+            let shopData = shopResponse?.data;
+            let ingredientsInRecipe: IngredientsShop[] = [];
+            if (ingredientsInRecipe.length <= 0) {
+                props?.ingredients?.forEach((ing) => {
+                    shopData?.forEach((shop: any) => {
+                        console.log(2222, shop?.name?.toLowerCase() === ing?.name?.toLocaleLowerCase());
+                        if (shop?.name?.toLowerCase() === ing?.name?.toLocaleLowerCase()) {
+                            console.log(`entered here`);
+                            console.log(shop, "shop");
+                            ingredientsInRecipe?.push(shop);
+                            console.log(130, ingredientsInRecipe, "ingredientsInRecipe");
+                        }
+                    })
+                })
+                setShopData(ingredientsInRecipe);
+                console.log(111111111111, "shopData->", shopData, "ingredientsInRecipe->", ingredientsInRecipe);
+            }
+        } catch (error) {
+            console.error("Error fetching shop details:", error);
+        }
+        
+    }
+
+    React.useEffect(() => {
+        setLoading(true)
+        getShopDetails();
+        setTimeout(() => { setLoading(false); }, 5000)
+        return () => {
+
+        };
+    }, [props.ingredients])
 
     return (
         <>
@@ -144,6 +179,7 @@ const Ingridents = (props: IngredientProps) => {
                         {ingredientElements}
                     </List>
                 </div>
+                {/* modal overlay to display ingredients details */}
                 <Modal
                     aria-labelledby="spring-modal-title"
                     aria-describedby="spring-modal-description"
@@ -159,14 +195,17 @@ const Ingridents = (props: IngredientProps) => {
                 >
                     <Fade in={open}>
                         <Box sx={boxstyle}>
-                            {loading ? <Loader loading={loading} /> : <>
-                                <Typography id="spring-modal-title" variant="h6" component="h2" sx={{ textAlign: "center" }}>
-                                    Find Ingridents for this Recipe from local Retailers
-                                </Typography>
-                                <Typography id="spring-modal-description" sx={{ mt: 2, textAlign: "center" }}>
-                                    <DenseTable ></DenseTable>
-                                </Typography>
-                            </>}
+                            {loading ?
+                                <Loader /> :
+                                <>
+                                    <Typography id="spring-modal-title" variant="h6" component="h2" sx={{ textAlign: "center" }}>
+                                        Find Ingridents for this Recipe from local Retailers
+                                    </Typography>
+                                    <Typography id="spring-modal-description" sx={{ mt: 2, textAlign: "center" }}>
+                                        <DenseTable ingredients={shopData}></DenseTable>
+                                    </Typography>
+                                </>
+                            }
                         </Box>
                     </Fade>
                 </Modal>

@@ -82,7 +82,7 @@ const Login = (props: Props) => {
 
     return (
         <div className="flex flex-col">
-            <CardContent style={{backgroundColor:"yellow"}}>
+            <CardContent >
                 <form onSubmit={handleLogin} className="signin-form flex flex-col justify-center h-screen items-center gap-5">
                     <div className="tagline-container">
                         <Typography variant="h5" gutterBottom style={{ fontFamily: 'Agbalumo, Dancing Script, Neucha, sans-serif' }}>

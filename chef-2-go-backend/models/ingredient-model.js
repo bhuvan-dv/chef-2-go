@@ -9,7 +9,6 @@ const IngridentSchema = new Schema({
     required: true,
     unique: false,
   },
-
   stores: {
     type: Array,
     required: true,
@@ -18,9 +17,10 @@ const IngridentSchema = new Schema({
       type: String,
       required: true,
     },
-    logo: {
+    location: {
       type: String,
       required: true,
+      unique:true
     },
   },
 });
