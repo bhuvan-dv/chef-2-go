@@ -72,7 +72,7 @@ import Ingridents from './Ingridents';
 // }
 
 type RecipeProps={
-    id:string
+    id:string | undefined
 }
 const RecipeHome = (props: RecipeProps) => {
     const [individualRecipe,setIndividualRecipe]=useState<Recipe | undefined>(undefined);

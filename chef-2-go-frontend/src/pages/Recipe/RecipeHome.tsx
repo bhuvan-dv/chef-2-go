@@ -1,9 +1,11 @@
 import React from 'react'
 import Recipe from '../../components/Recipe/Recipe'
+import { useParams } from 'react-router-dom';
 const RecipeHome = () => {
+  const {recipeId} = useParams();
   return (
     <div>
-      <Recipe id='65751e8ac004dfc227567877'/>
+      <Recipe id={recipeId}/>
     </div>
   )
 }

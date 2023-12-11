@@ -52,7 +52,7 @@ let ChefRoutes = () => {
             element: <PricingPage />
         },
         {
-            path: "recipe",
+            path: "recipe/:recipeId",
             element: <RecipeHome />
         },
         {
@@ -84,11 +84,11 @@ let ChefRoutes = () => {
             children: [
                 {
                     path: 'chefs',
-                    element: <RecipeHome />
+                    element: <ChefSearchPage />
                 },
                 {
                     path: 'recipes',
-                    element: <RecipeHome />
+                    element: <RecipeSearch />
                 }
             ]
         },

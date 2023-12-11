@@ -11,7 +11,7 @@ reciperouter.route('/')
    .post(verifyToken,recipeController.post)
 
    reciperouter.route('/:id')
-   .get(verifyToken,recipeController.get)
+   .get(recipeController.get)
    .put(verifyToken,recipeController.put)
    .delete(verifyToken,recipeController.remove);
 
