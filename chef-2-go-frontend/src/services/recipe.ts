@@ -6,7 +6,7 @@ const getRecipes = async <Recipe>(_id: any): Promise<Recipe[]> => {
     return axiosInstance.get(path+_id);
 }
 
-const getAllRecipes = async <Recipe>(): Promise<Recipe[]> => {
+const getAllRecipes = async () => {
     return axiosInstance.get(path);
 }
 

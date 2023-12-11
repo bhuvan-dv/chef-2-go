@@ -11,7 +11,8 @@ interface Recipe {
     }[];
     video?: string;
     gifs?: string;
-    comment: string | null;
+    comment: string | null,
+    imageUrl?: string;
 }
 export const courses: Recipe[] = [
     {

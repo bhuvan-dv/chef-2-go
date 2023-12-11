@@ -1,31 +1,32 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import Recipe from '../../models/Recipe';
-import { AppState } from '..';
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import Recipe from "../../models/Recipe";
+import { AppState } from "..";
 
-export type RecipeState = Recipe[];
+interface RecipeState {
+    recipes: Recipe[];
+    searchTerm: string;
+}
 
-const initialState: RecipeState = [];
+const initialState: RecipeState = {
+    recipes: [],
+    searchTerm: "",
+};
 
-export const recipeSlice = createSlice({
-    name: 'recipes',
-    initialState: initialState,
+const recipeSlice = createSlice({
+    name: "recipes",
+    initialState,
     reducers: {
-        loadRecipes: (state, action: PayloadAction<RecipeState>) => {
-            return { ...state, recipes:[action.payload]};
+        setRecipes: (state, action: PayloadAction<Recipe[]>) => {
+            state.recipes = action.payload;
         },
-        newRecipies: (state, action: PayloadAction<RecipeState>)=>{
-            return { ...state, recipes: [action.payload] }
-        }
-    }
+        setSearchTerm: (state, action: PayloadAction<string>) => {
+            state.searchTerm = action.payload;
+        },
+        addRecipe: (state, action: PayloadAction<Recipe>) => {
+            state.recipes.push(action.payload);
+        },
+    },
 });
-export const { loadRecipes } = recipeSlice.actions;
 
-// export const searchRecipes = (query: string): ((state: AppState) => RecipeState) => {
-//     return (state: AppState) => state.courses.filter(c => c.name.startsWith(query));
-// }
-// export const findById = (id: string | undefined): ((state: AppState) => Course | undefined) => {
-//     return (state: AppState) => state.courses.find(c => id && c._id === id);
-// }
-export default recipeSlice.reducer;
-
-// export{}
+export const { setRecipes, setSearchTerm } = recipeSlice.actions;
+export default recipeSlice;
