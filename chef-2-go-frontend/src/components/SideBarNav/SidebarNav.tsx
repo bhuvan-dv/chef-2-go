@@ -1,19 +1,28 @@
 import React, { useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
+import axios from 'axios';
+import {useSelector, useDispatch} from 'react-redux';
+import { setIsLoogedIn } from '../../store/slice/user-slice';
+import { AppState } from '../../store';
 
 interface SidebarNavProps {
   menuState: boolean;
   setMenuState: (state: boolean) => void;
+  islogedin: boolean;
 }
 
-const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
+const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, islogedin }) => {
   const sidebarMenu = useRef<HTMLDivElement>(null);
   const sidebarMenuOverlay = useRef<HTMLDivElement>(null);
   const menuLayer = useRef<HTMLDivElement>(null);
   const menuTimeline = useRef<gsap.core.Timeline | null>(null);
+  let [username, setUsername] = React.useState<string>('');
+  const isLoggedin = useSelector((state: AppState) => state.users.isLoggedin);
+  const user = JSON.parse(localStorage.getItem('user')!);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     menuTimeline.current = gsap.timeline({ paused: true });
@@ -45,6 +54,42 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
     return unlisten;
   }, [navigate, setMenuState]);
 
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    dispatch(setIsLoogedIn(false));
+    navigate('/');
+    
+  };
+
+  const handlenavigateProfile = async () => {
+    try {
+      const user = localStorage.getItem('user');
+      console.log(`user: ${user}`);
+      
+      // const response = await axios.get(`http://localhost:5000/users/profile/${JSON.parse(user!)._id}`);
+      // Handle the response data here
+      // console.log(response.data);
+      // navigate(`/profile/${response.data.username}`);
+      navigate(`/profile/${ JSON.parse(user!).username}`);
+    } catch (error) {
+      // Handle the error here
+      console.error(error);
+    }
+  };
+
+  const verifyUserLogin = () => {
+    if (localStorage.getItem('token') === null) {
+      alert('Please log in to access this page');
+      navigate('/login');
+    }
+  console.log(`isLoggedin: ${isLoggedin}`);
+  
+  };
+
+  console.log(`isLoggedin: ${isLoggedin}`);
+  
   return (
     <>
       <div
@@ -57,33 +102,47 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
         <nav className="sidebarNavigation" ref={sidebarMenu}>
           <div className="sidebar-top">
             <div className="links-wrapper">
+              {isLoggedin && 
+              <button className="menu-link" onClick={handlenavigateProfile}>
+                {user.username}
+              </button>
+              }
               <Link className="menu-link" to="/">
                 Home
               </Link>
-              <Link className="menu-link" to="/about">
+              <Link className="menu-link" to= '/about'>
                 About
               </Link>
-              <Link className="menu-link" to="/services">
+              <Link className="menu-link" onClick={verifyUserLogin}  to={isLoggedin?'/search/chefs':'/login'}>
                 Chefs
               </Link>
-              <Link className="menu-link" to="/gallery">
+              <Link className="menu-link" onClick={verifyUserLogin} to={isLoggedin?'/searchrecipe':'/login'}>
                 Recipes
               </Link>
-              <Link className="menu-link" to="/contact">
-                Contact
-              </Link>
+              {isLoggedin ?
+                <Link className="menu-link" to= "/" onClick={handleLogout}>
+                  Log Out
+                </Link> :
+                <Link className="menu-link" to="/login">
+                  Log In
+                </Link>
+              }
+              {!isLoggedin &&
+              <Link className="menu-link" to="/testpath">
+                Sign Up
+              </Link>}
             </div>
           </div>
           <div className="sidebar-bottom">
             <ul className="extra-links">
               <li className="link-item">
                 <div className="link-title">Email</div>
-                <a href="mailto:example@gmail.com">example@gmail.com</a>
+                <a href="mailto:chef2go@gmail.com">chef2go@gmail.com</a>
               </li>
               <li className="link-item">
                 <div className="link-title">Find Us</div>
-                <span>57, Arch Road</span>
-                <span>Middleton</span>
+                <span>Northeastern University</span>
+                <span>Boston, MA</span>
               </li>
               <li className="link-item">
                 <div className="link-title">Social Media</div>
@@ -98,10 +157,6 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
                     <i className="fab fa-google"></i>
                   </a>
                 </div>
-              </li>
-              <li className="link-item">
-                <div className="link-title">Phone</div>
-                <span>000-000-0000</span>
               </li>
             </ul>
           </div>

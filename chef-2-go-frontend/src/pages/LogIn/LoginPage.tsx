@@ -9,7 +9,7 @@ import './Login.css';
 const LoginPage = () => {
   return (
     <div className="flex signin-page-container">
-        <div className="right-container w-1/2 bg-vanilla-cream">
+        <div className="right-container w-1/2 bg-vanilla-cream ">
             <Login/>
         </div>
         <div className="left-container w-1/2">

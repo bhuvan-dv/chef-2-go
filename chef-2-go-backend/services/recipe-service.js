@@ -35,3 +35,7 @@ export const update = async (updatedRecipe, id) => {
 export const remove = async (id) => {
     return await Recipe.findByIdAndDelete(id).exec();
 };
+
+export const findAll = async () => {
+    return await Recipe.find().exec();;
+} //path: final-project-peri-peri/chef-2-go-backend/services/comment-service.js

@@ -84,8 +84,16 @@ export const deleteUser = async (id) => {
 }
 
 export const getRegisteredUsers = async () => {
-    const registeredUsers = User.find({}, { id: 1, userName: 1, email: 1, _id: 0 }).exec();
+    const registeredUsers = User.find().exec();
     return registeredUsers
+}
+
+export const getUserById = async (id) => {
+    return await User.findById(id).exec();
+}
+
+export const getUserByEmail = async (email) => {
+    return User.findOne({ email: email }).exec();
 }
 
 export const updateUserDetails = async (id, user) => {

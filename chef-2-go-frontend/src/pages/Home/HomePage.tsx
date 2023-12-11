@@ -12,7 +12,7 @@ const HomePage: React.FC = (): ReactElement => {
     return (
         <>
       <Header menuState={menuState} setMenuState={setMenuState} />
-      <SidebarNav menuState={menuState} setMenuState={setMenuState} />
+      <SidebarNav menuState={menuState} setMenuState={setMenuState} islogedin={true} />
         <Home/>
         <Footer/>
         </>

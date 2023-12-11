@@ -1,6 +1,9 @@
 // react imports
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentUser, setIsLoogedIn } from '../../store/slice/user-slice';
 // material ui imports
 import { Button, TextField, Typography, CardContent, CardActions } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
@@ -14,6 +17,7 @@ import './Login.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { loginUserService } from '../../services/UserAPI';
+import { current } from '@reduxjs/toolkit';
 
 type Props = {
 
@@ -27,6 +31,7 @@ const Login = (props: Props) => {
     const [password, setPassword] = useState<string>("");
     const [btnVarinat, setBtnVariant] = useState<'contained' | 'outlined'>('outlined');
     const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
@@ -68,14 +73,18 @@ const Login = (props: Props) => {
             password: password
         }
         const response = await loginUserService(reqBody);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        dispatch(setIsLoogedIn(true));
+        dispatch(setCurrentUser(response.data.user));
         console.log(response);
-        navigate('/');
+        navigate(-1);
     }
 
 
     return (
         <div className="flex flex-col">
-            <CardContent style={{backgroundColor:"yellow"}}>
+            <CardContent >
                 <form onSubmit={handleLogin} className="signin-form flex flex-col justify-center h-screen items-center gap-5">
                     <div className="tagline-container">
                         <Typography variant="h5" gutterBottom style={{ fontFamily: 'Agbalumo, Dancing Script, Neucha, sans-serif' }}>
@@ -155,3 +164,4 @@ const Login = (props: Props) => {
 }
 
 export default Login;
+

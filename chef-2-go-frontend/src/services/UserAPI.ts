@@ -1,11 +1,13 @@
 import axios from "axios";
-
+import axiosInstance from "./axios";
 const BASE_URL = "http://localhost:5000";
+const path = "users/";
 
 type User = {
     email?: string,
     password: string,
     username?: string,
+    role?: "chef" | "customer",
 }
 
 type RegisterUser = User &  {
@@ -33,19 +35,9 @@ export const loginUserService = async (form_data: User) => {
 
 //AXIOS API Call for retrieving all Users
 export const getAllRegisteredUsers = async () => {
-    try {
-        return axios({
-            url: `${BASE_URL}/users`,
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-    } catch (err) {
-        console.error("axios catch error: ", err);
-        return [];
-    }
+        return axiosInstance.get(path);
 };
+
 
 //Axios API Call to Register New User
 export const registerUser = async (form_data : FormData) => {
@@ -93,5 +85,17 @@ export const updateUserDetails = async (userId : string, token: string, form_dat
             "Authorization": `Bearer ${token}`
         },
         data: form_data
+    })
+}
+
+//Axios API Call to Delete User
+export const deleteUser = async (userId : string, token: string) => {
+    return axios({
+        url: `${BASE_URL}/users/${userId}`,
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
     })
 }

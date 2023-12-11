@@ -19,6 +19,8 @@ import OTPVerificationPage from "../pages/OTPVerificationPage/OTPVerificationPag
 // import SignUp2 from "../components/SignUp/SignUp";
 import { topChefs } from "../pages/Chef/chefData";
 import Admin from "../pages/Admin/Admin";
+import ChefSearchPage from "../pages/ChefsSearchPage/ChefSearchPage";
+import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import Videos from "../pages/VideosPage/Videos";
 
 let ChefRoutes = () => {
@@ -52,7 +54,7 @@ let ChefRoutes = () => {
             element: <PricingPage />
         },
         {
-            path: "recipe",
+            path: "recipe/:recipeId",
             element: <RecipeHome />
         },
         {
@@ -68,6 +70,10 @@ let ChefRoutes = () => {
             element: <RecipeSearch />
         },
         {
+            path:"searchchef",
+            element:<ChefSearchPage/>
+        },
+        {
             path: "verification",
             element: <OTPVerificationPage />
         },
@@ -76,8 +82,25 @@ let ChefRoutes = () => {
             element: <SignUp />
         },
         {
+            path: 'search',
+            children: [
+                {
+                    path: 'chefs',
+                    element: <ChefSearchPage />
+                },
+                {
+                    path: 'recipes',
+                    element: <RecipeSearch />
+                }
+            ]
+        },
+        {
             path:"admin",
             element:<Admin/>
+        },
+        {
+            path: "profile/:username",
+            element: <ProfilePage />
         },
         {
             path:"videos",

@@ -25,6 +25,21 @@ export const find = async (request, response) => {
     }
 }
 
+export const findAll = async (request, response) => {
+    try {
+        const recipe = await recipeService.findAll();
+        response.status(200)
+            .json(recipe);
+    }
+    catch (err) {
+        response.status(404)
+            .json({
+                code: "Error",
+                message: err.message
+            })
+    }
+}
+
 //Retrieve a single recipe by its ID
 export const get = async (request, response) => {
     try {

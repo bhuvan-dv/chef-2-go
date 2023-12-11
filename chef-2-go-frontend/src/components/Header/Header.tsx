@@ -14,7 +14,7 @@ const Header: FC<HeaderProps> = ({ menuState, setMenuState }) => {
           <div className="icon">
             <i className="fab fa-react"></i>
           </div>
-          <span className="text-3xl">CHEF 2 GO</span>
+          <span className="text-3xl">CHEF2GO</span>
         </Link>
       </div>
       <div>
