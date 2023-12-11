@@ -84,7 +84,7 @@ export const deleteUser = async (id) => {
 }
 
 export const getRegisteredUsers = async () => {
-    const registeredUsers = User.find({}, { id: 1, userName: 1, email: 1, _id: 0 }).exec();
+    const registeredUsers = User.find().exec();
     return registeredUsers
 }
 

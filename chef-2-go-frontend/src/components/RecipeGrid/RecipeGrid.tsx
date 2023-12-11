@@ -1,7 +1,7 @@
 import { Grid, Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
 import React, { useEffect } from 'react';
 import Recipe from '../../models/Recipe';
-import {useSelector } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 import { getAllRecipes } from '../../services/recipe';
 import { AppState } from '../../store';
 import { setRecipes } from '../../store/slice/recipe-slice';
@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const RecipeGrid = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const recipes = useSelector((state: AppState) => state.recipes);
     const searchTerm = useSelector((state: AppState) => state.recipes.searchTerm);
     const filteredRecipes = recipes.recipes.filter((recipe) =>
@@ -64,8 +65,5 @@ const RecipeGrid = () => {
 };
 
 export default RecipeGrid;
-function dispatch(arg0: any) {
-    throw new Error('Function not implemented.');
-}
 
 

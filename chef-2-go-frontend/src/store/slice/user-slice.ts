@@ -1,15 +1,18 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 import user from '../../models/User';
 import { AppState } from '..';
+import User from '../../models/User';
 
 interface UserState{
     isLoggedin?: boolean,
-    chefs?: user[]
+    chefs: user[]
+    searchTerm?: string;
 }
 
 const initialState: UserState = {
     isLoggedin : false,
-    chefs: []
+    chefs: [],
+    searchTerm: ""
 };
 
 export const userSlice = createSlice({
@@ -19,11 +22,13 @@ export const userSlice = createSlice({
         setIsLoogedIn: (state, action: PayloadAction<boolean>) => {
             state.isLoggedin =  action.payload;
         },
-        loadChefs: (state, action: PayloadAction<UserState>) => {
-          return action.payload;
+        setChefs: (state, action: PayloadAction<User[]>) => {
+          state.chefs =  action.payload;
         },
+        setSearchTerm: (state, action: PayloadAction<string>) => {
+          state.searchTerm = action.payload;
+      },
         searchChefs: (state, action: PayloadAction<string>) => {
-          // Assuming you want to filter chefs based on a search query
           const searchTerm = action.payload.toLowerCase();
           state.chefs = state?.chefs?.filter((chef) =>
             chef?.name?.toLowerCase().includes(searchTerm)
@@ -33,7 +38,7 @@ export const userSlice = createSlice({
 });
 
 
-export const { setIsLoogedIn } = userSlice.actions;
+export const { setIsLoogedIn, searchChefs, setChefs, setSearchTerm } = userSlice.actions;
 export default userSlice.reducer;
 
 

@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import Recipe from "../../models/Recipe";
-import { AppState } from "..";
+import Recipe from "../../models/Recipe";   
 
 interface RecipeState {
     recipes: Recipe[];

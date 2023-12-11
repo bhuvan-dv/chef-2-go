@@ -7,7 +7,7 @@ import verifyToken from '../middleware/auth.js';
 
 const router = express.Router();
 router.route('/')
-.get(ChefController.get)
+.get(UserController.getAllRegisteredUsers)
 router.route('/:id')
       .delete(UserController.deleteUser)
 router.route('/login')

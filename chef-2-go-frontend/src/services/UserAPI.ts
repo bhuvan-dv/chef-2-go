@@ -1,6 +1,7 @@
 import axios from "axios";
-
+import axiosInstance from "./axios";
 const BASE_URL = "http://localhost:5000";
+const path = "users/";
 
 type User = {
     email?: string,
@@ -34,18 +35,7 @@ export const loginUserService = async (form_data: User) => {
 
 //AXIOS API Call for retrieving all Users
 export const getAllRegisteredUsers = async () => {
-    try {
-        return axios({
-            url: `${BASE_URL}/users`,
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-    } catch (err) {
-        console.error("axios catch error: ", err);
-        return [];
-    }
+        return axiosInstance.get(path);
 };
 
 

@@ -19,6 +19,7 @@ import OTPVerificationPage from "../pages/OTPVerificationPage/OTPVerificationPag
 // import SignUp2 from "../components/SignUp/SignUp";
 import { topChefs } from "../pages/Chef/chefData";
 import Admin from "../pages/Admin/Admin";
+import ChefSearchPage from "../pages/ChefsSearchPage/ChefSearchPage";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes = useRoutes([
@@ -65,6 +66,10 @@ let ChefRoutes = () => {
         {
             path: "searchrecipe",
             element: <RecipeSearch />
+        },
+        {
+            path:"searchchef",
+            element:<ChefSearchPage/>
         },
         {
             path: "verification",
