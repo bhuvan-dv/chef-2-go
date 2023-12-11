@@ -5,7 +5,9 @@ interface User {
     username: string;
     role: "admin" | "chef" | "customer"; // Define specific role values
     isPremiumUser?: boolean;
-    token: string
+    token: string,
+    _id: string;
+    imageUrl?: string;
 }
 
 export default User;

@@ -1,6 +1,6 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 import { AppState } from '..';
-import User from '../../models/user'
+import User from '../../models/User';
 
 interface UserState{
     isLoggedin?: boolean,
