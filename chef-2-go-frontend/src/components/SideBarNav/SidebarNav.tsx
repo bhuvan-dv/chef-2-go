@@ -126,7 +126,7 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
               <Link className="menu-link" onClick={verifyUserLogin} to={isLoggedin ? '/search/chefs' : '/login'}>
                 Chefs
               </Link>
-              <Link className="menu-link" onClick={verifyUserLogin} to={isLoggedin ? '/searchrecipe' : '/login'}>
+              <Link className="menu-link" onClick={verifyUserLogin} to={isLoggedin ? '/search/recipes' : '/login'}>
                 Recipes
               </Link>
               {user ?
