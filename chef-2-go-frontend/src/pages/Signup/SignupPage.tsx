@@ -7,7 +7,7 @@ const SignupPage = () => {
   return (
     <div className="flex">
         <div className="left-container w-1/2">
-            <img src={signupPageImg} alt="chef-2-go Signup page" className="h-screen w-full" />
+            <img src="https://biancazapatka.com/wp-content/uploads/2020/07/tiramisu-dessert-easy-vegan.jpg" alt="chef-2-go Signup page" className="h-screen w-full" />
         </div>
         <div className="right-container w-1/2 bg-vanilla-cream">
             <Signup/>
