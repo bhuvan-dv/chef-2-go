@@ -7,22 +7,12 @@ import FAQ from '../../components/Premium/PricingPage/FAQs';
 
 const PricingPage: React.FC = () => {
   return (
-    <div className="background-container h-screen flex flex-col items-center justify-center text-white">
+    <div className="background-container h-screen flex flex-col items-center justify-center text-white ">
       <div className="overlay"></div>
 
-      <div className="flex flex-col items-center space-y-8">
-        <h1 className="text-4xl font-bold h1">Become a Foodie</h1>
+      <div className="flex flex-col items-center space-y-8 z-10">
+        <h1 className="text-4xl text-morion font-bold h1">Become a Foodie</h1>
         <Pricing />
-      </div>
-
-      {/* Testimonial Section */}
-      <div className="mt-16">
-        {/* <Testimonials /> */}
-      </div>
-
-      {/* FAQ Section */}
-      <div className="mt-16">
-        {/* <FAQ /> */}
       </div>
     </div>
   );

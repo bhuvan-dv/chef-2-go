@@ -13,6 +13,7 @@
   "type": "module",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "crypt": "^0.0.2",
     "crypto": "^1.0.1",
@@ -25,6 +26,7 @@
     "mongoose": "^8.0.1",
     "nodemailer": "^6.9.7",
     "otp-generator": "^4.0.1",
+    "stripe": "^14.8.0",
     "validator": "^13.11.0"
   },
   "devDependencies": {
