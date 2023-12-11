@@ -20,6 +20,7 @@ import OTPVerificationPage from "../pages/OTPVerificationPage/OTPVerificationPag
 import { topChefs } from "../pages/Chef/chefData";
 import Admin from "../pages/Admin/Admin";
 import ChefSearchPage from "../pages/ChefsSearchPage/ChefSearchPage";
+import ProfilePage from "../pages/ProfilePage/ProfilePage";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes = useRoutes([
@@ -95,6 +96,10 @@ let ChefRoutes = () => {
         {
             path:"admin",
             element:<Admin/>
+        },
+        {
+            path: "profile/:username",
+            element: <ProfilePage />
         }
     ]);
 

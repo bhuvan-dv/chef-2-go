@@ -85,7 +85,6 @@ export const getAllRegisteredUsers = async (req, res) => {
 }
 
 export const getUserById = async (req, res) => {
-    alert("in controller");
     try {
         const user = await userService.getUserById(req.params.id);
         res.status(200).send(user);

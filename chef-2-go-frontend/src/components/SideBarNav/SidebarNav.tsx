@@ -66,10 +66,13 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
   const handlenavigateProfile = async () => {
     try {
       const user = localStorage.getItem('user');
-      const response = await axios.post(`http://localhost:5000/users/profile/${JSON.parse(user!).id}`);
+      console.log(`user: ${user}`);
+      
+      // const response = await axios.get(`http://localhost:5000/users/profile/${JSON.parse(user!)._id}`);
       // Handle the response data here
-      console.log(response.data);
-      navigate(`/profile/${response.data.id}`);
+      // console.log(response.data);
+      // navigate(`/profile/${response.data.username}`);
+      navigate(`/profile/${ JSON.parse(user!).username}`);
     } catch (error) {
       // Handle the error here
       console.error(error);
@@ -85,7 +88,8 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
   
   };
 
-
+  console.log(`isLoggedin: ${isLoggedin}`);
+  
   return (
     <>
       <div

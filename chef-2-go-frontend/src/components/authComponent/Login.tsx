@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsLoogedIn } from '../../store/slice/user-slice';
+import { setCurrentUser, setIsLoogedIn } from '../../store/slice/user-slice';
 // material ui imports
 import { Button, TextField, Typography, CardContent, CardActions } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
@@ -17,6 +17,7 @@ import './Login.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { loginUserService } from '../../services/UserAPI';
+import { current } from '@reduxjs/toolkit';
 
 type Props = {
 
@@ -75,6 +76,7 @@ const Login = (props: Props) => {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
         dispatch(setIsLoogedIn(true));
+        dispatch(setCurrentUser(response.data.user));
         console.log(response);
         navigate(-1);
     }
@@ -162,3 +164,4 @@ const Login = (props: Props) => {
 }
 
 export default Login;
+
