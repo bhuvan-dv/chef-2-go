@@ -4,7 +4,7 @@ import { getAllRegisteredUsers } from '../../services/UserAPI'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppState } from '../../store'
-import User from '../../models/User'
+import User from '../../models/user'
 import { setChefs } from '../../store/slice/user-slice'
 
 const ChefsGrid = () => {
