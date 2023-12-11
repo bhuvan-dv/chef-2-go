@@ -19,6 +19,7 @@ const About: React.FC = () => {
     return (
         <div className="about-us">
             <div className="welcome-box">
+            {/* <div className="welcome-box" style={{ backgroundImage: 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBUHjGuyvwODZNZ3jZsFVrOgCRRYb-RUqUsQ&usqp=CAU")', backgroundSize: 'cover', height: '400px' }}> */}
                 <h2>Welcome to Chef2go!</h2>
             </div>
             <div className="content-container">
@@ -110,23 +111,19 @@ const About: React.FC = () => {
                 <button className="get-started-button">Get Started</button>
             </div>
             <div className="meet-the-team">
-                <h2>Meet the Team</h2>
+                <h2>Meet the Top Chefs</h2>
                 <div className="team-members-container">
                     <TeamMember
-                        name="Bhuvan"
-                        image="https://c.ndtvimg.com/2022-05/uhjvddb_chef-generic_625x300_10_May_22.jpg?im=FaceCrop,algorithm=dnn,width=620,height=350"
+                        name="Chef Alex Johnson"
+                        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrKdOonAalpyVwdTHhu1WMgx1GKPIzXm1tfQ&usqp=CAU"
                     />
                     <TeamMember
-                        name="Basavaraj"
-                        image="https://c.ndtvimg.com/2022-05/uhjvddb_chef-generic_625x300_10_May_22.jpg?im=FaceCrop,algorithm=dnn,width=620,height=350"
+                        name="Chef John Doe"
+                        image="https://media.istockphoto.com/id/135722009/photo/successful-chef.jpg?s=612x612&w=0&k=20&c=3aMZoOdQdCMmC7Zk5z3p31PXPlImoqXekk8aOIGuvUU="
                     />
                     <TeamMember
-                        name="Shreyas"
-                        image="https://c.ndtvimg.com/2022-05/uhjvddb_chef-generic_625x300_10_May_22.jpg?im=FaceCrop,algorithm=dnn,width=620,height=350"
-                    />
-                    <TeamMember
-                        name="Keerthana"
-                        image="https://c.ndtvimg.com/2022-05/uhjvddb_chef-generic_625x300_10_May_22.jpg?im=FaceCrop,algorithm=dnn,width=620,height=350"
+                        name="Chef Sam"
+                        image="https://c8.alamy.com/comp/BT0M92/young-beautiful-female-chef-portrait-in-kitchen-BT0M92.jpg"
                     />
                 </div>
             </div>
