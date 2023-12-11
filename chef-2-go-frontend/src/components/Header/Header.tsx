@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-
+import Loader from '../loader/Loader';
 interface HeaderProps {
   menuState: boolean;
   setMenuState: (state: boolean) => void;
@@ -12,7 +12,8 @@ const Header: FC<HeaderProps> = ({ menuState, setMenuState }) => {
       <div className="brand-icon">
         <Link to="/">
           <div className="icon">
-            <i className="fab fa-react"></i>
+            {/* <i className="fab fa-react"></i> */}
+            <Loader/>
           </div>
           <span className="text-3xl">CHEF2GO</span>
         </Link>
