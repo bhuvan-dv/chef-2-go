@@ -23,6 +23,7 @@ import ChefSearchPage from "../pages/ChefsSearchPage/ChefSearchPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import Videos from "../pages/VideosPage/Videos";
 import PaymentPage from "../pages/PaymentPage";
+import Addrecipe from "../components/AddRecipe/Addrecipe";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes = useRoutes([
@@ -60,15 +61,15 @@ let ChefRoutes = () => {
         },
         {
             path: "chef",
-            element: <ChefPage chefs={topChefs}/>
+            element: <ChefPage chefs={topChefs} />
         },
         {
             path: "searchrecipe",
             element: <RecipeSearch />
         },
         {
-            path:"searchchef",
-            element:<ChefSearchPage/>
+            path: "searchchef",
+            element: <ChefSearchPage />
         },
         {
             path: "verification",
@@ -92,20 +93,24 @@ let ChefRoutes = () => {
             ]
         },
         {
-            path:"admin",
-            element:<Admin/>
+            path: "admin",
+            element: <Admin />
         },
         {
             path: "profile/:username",
             element: <ProfilePage />
         },
         {
-            path:"videos",
-            element:<Videos />
+            path: "videos",
+            element: <Videos />
         },
         {
-            path:"payment",
+            path: "payment",
             element: <PaymentPage price={0} />
+        },
+        {
+            path: "addrecipe",
+            element: <Addrecipe />
         }
     ]);
 
