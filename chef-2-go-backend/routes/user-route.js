@@ -9,6 +9,7 @@ const router = express.Router();
 router.route('/')
 .get(UserController.getAllRegisteredUsers)
 router.route('/:id')
+    .patch(UserController.updateUserDetails)
       .delete(UserController.deleteUser)
 router.route('/login')
     .post(UserController.loginUser);
@@ -23,5 +24,5 @@ router.route('/email')
 router.route('/email')
     .post(UserController.reSendOTP);
 router.route('/:userId')
-    .put(verifyToken,UserController.updateUser);
+    .put(UserController.updateUser);
 export default router;

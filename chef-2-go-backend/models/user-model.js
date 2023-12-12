@@ -38,7 +38,10 @@ const UserSchema = new Schema({
     isVerified:{
         type:Boolean,
         default:false
-    }
+    },
+    imageUrl:{
+        type: String
+    },
 
 }, {versionKey: false, timestamps: true});
 

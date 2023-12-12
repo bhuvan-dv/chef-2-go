@@ -4,6 +4,7 @@ import { setResponse, setErrorResponse, setSignupError } from "./response-handle
 import { createToken } from "../utilities/token.js";
 import { request, response } from "express";
 import * as otpHandler from "../utilities/otpHandler.js";
+import bcrypt from "bcrypt";
 
 export const loginUser = async (request, response) => {
     try {
@@ -151,7 +152,7 @@ export const validateUserByEmail = async (request, response) => {
 export const updateUser = async (request, response) => {
     const saltRounds = 10;
     try {
-        if (!request.body.userName) {
+        if (!request.body.username) {
             throw ({ msg: 'userName field is required', code: 400 })
         }
 
@@ -168,16 +169,52 @@ export const updateUser = async (request, response) => {
 
         console.log(request.params.userId);
 
-        const saveUser = await userService.updateUserDetails(request.params.userId, user);
+        const saveUser = await userService.updateUserDetails(request.params.userId, request.body );
         console.log(saveUser);
         if (saveUser) {
-            response.status(201).send({ ...saveUser.toObject(), token: token });
+            response.status(201).send({ ...saveUser.toObject() });
 
         } else {
-            response.status(400).send({ msg: `User with the Id: ${request.params.userId} does not exists.` })
+            response.status(400).send({ msg: `User with the Id: ${request.params.userId} does not exists` })
         }
     } catch (err) {
         console.log("error: ", err)
-        response.status(err.code ? err.code : 500).send({ msg: err.msg ? err.msg : 'Something went wrong in the server' });
+        response.status(err.code ? err.code : 500).send({ msg: err.message ? err.message : 'Something went wrong in the server' });
     }
+}
+
+export const updateUserDetails = async (request, response) => {
+    try {
+        const { name, username, email, password, role } = request.body;
+        if (validCredentials(request.user, password)) {
+            // Retrieve the existing user data
+            const existingUser = await userService.getUserById(request.params.id);
+
+            // Update only the changed fields
+            const updatedUser = {
+                name: name || existingUser.name,
+                username: username || existingUser.username,
+                email: email || existingUser.email,
+                // Add other fields as needed
+            };
+
+            const user = await userService.updateUserDetails(request.params.id, updatedUser);
+            setResponse(user, response);
+        } else {
+            setErrorResponse(401, "Unauthorized", response);
+        }
+    } catch (err) {
+        if (err.name === "CastError" && err.kind === "ObjectId") {
+            setErrorResponse(404, "User Not Found", response);
+        } else {
+            setErrorResponse(500, "Internal Server Error", response);
+        }
+    }
+}
+
+
+
+//function to take user details and verify his password
+const validCredentials = async (user, password) => {
+    return await bcrypt.compare(password, user.password);
 }

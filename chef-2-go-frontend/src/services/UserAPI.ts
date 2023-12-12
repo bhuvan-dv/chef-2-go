@@ -7,12 +7,15 @@ type User = {
     email?: string,
     password: string,
     username?: string,
-    role?: "chef" | "customer",
+    role?: "chef" | "customer" | "admin",
+    name?: string,
+    _id?: string,
+    imageUrl?: string,
 }
 
-type RegisterUser = User &  {
-    role: string,
+export type RegisterUser = User &  {
     isVerified: boolean,
+    token: string,
 };
 
 const headers = { 'content-type': 'application/json' };
@@ -76,7 +79,7 @@ export const sendOTP = async (form_data : FormData) => {
 }
 
 //Axios API Call to Update User details
-export const updateUserDetails = async (userId : string, token: string, form_data :RegisterUser) => {
+export const updateUserDetails = async (userId : string | undefined, token: string, form_data :RegisterUser) => {
     return axios({
         url: `${BASE_URL}/users/${userId}`,
         method: "PUT",

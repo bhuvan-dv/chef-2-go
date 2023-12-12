@@ -1,5 +1,6 @@
 import User from "../models/user-model.js";
 import bcrypt from "bcrypt";
+import mongoose, { mongo } from "mongoose";
 import validator from 'validator';
 
 // Function to sign up a new user
@@ -84,7 +85,7 @@ export const deleteUser = async (id) => {
 }
 
 export const getRegisteredUsers = async () => {
-    const registeredUsers = User.find().exec();
+    const registeredUsers = User.find({role:'chef'}).exec();
     return registeredUsers
 }
 
@@ -97,10 +98,12 @@ export const getUserByEmail = async (email) => {
 }
 
 export const updateUserDetails = async (id, user) => {
-
-    let updateUser = { "userName": user.userName, "password": user.password };
-
-    return await User.findOneAndUpdate({"id": id}, updateUser, {new: true}).exec();
+    console.log(`id in service: ${id}`);
+    console.log(`user in service: ${user}`);
+    const response = await getUserById(id);
+    console.log(`response: ${response}`);
+    const objectId = new mongoose.Types.ObjectId(id);
+    return await User.findOneAndUpdate({_id : id}, user, {new: true}).exec();
 }
 
 // Function to update User Verification Details

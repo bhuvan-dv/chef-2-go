@@ -37,10 +37,6 @@ let ChefRoutes = () => {
             element: <LoginPage />,
         },
         {
-            path: "signup",
-            element: <SignupPage />,
-        },
-        {
             path: "about",
             element: <About />
         },
@@ -77,7 +73,7 @@ let ChefRoutes = () => {
             element: <OTPVerificationPage />
         },
         {
-            path: "testpath",
+            path: "/signup",
             element: <SignUp />
         },
         {

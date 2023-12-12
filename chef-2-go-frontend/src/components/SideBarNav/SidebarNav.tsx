@@ -81,11 +81,8 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
   };
 
   const verifyUserLogin = () => {
-    if(isLoggedin){
-      navigate('/search/chefs');
-    }else{
+    if(!isLoggedin){
       alert('Please log in to access this page');
-      navigate('/login');
     }
 
   };
