@@ -3,7 +3,7 @@ interface Recipe {
     name: string;
     chef: string;
     summary:string;
-    instructions: string[];
+    instructions: string[] | undefined;
     ingredients: {
         name: string;
         quantity: string;
@@ -12,7 +12,7 @@ interface Recipe {
     video?: string;
     gifs?: string;
     comment: string | null,
-    imageUrl?: string;
+    imageUrl: string;
 }
 export const recipes: Recipe[] = [
     {

@@ -12,6 +12,7 @@ const port = 5000;//  process.env.PORT;
 app.use(cors());
 
 app.use(express.json()); 
+const port = process.env.PORT;
 
 initialize(app);
 

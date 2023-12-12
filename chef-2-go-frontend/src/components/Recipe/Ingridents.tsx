@@ -19,6 +19,7 @@ import Ingredient from '../../models/ingredient';
 import Loader from '../loader/Loader';
 import { getIngredientShopDetails } from '../../services/ingredients';
 import IngredientsShop from '../../models/ingredientsShop';
+import { Paper }from "@mui/material";
 
 type IngredientProps = {
     ingredients: Ingredient[] | undefined;
@@ -152,6 +153,7 @@ const Ingridents = (props: IngredientProps) => {
     return (
         <>
             <ThemeProvider theme={theme}>
+                <Paper elevation={3} style={{ padding: '20px', backgroundColor: "hsl(43, 21%, 94%)" }}>
                 <div className='p-20'>
                     <div className='flex justify-between'>
                         <h4 className='font-Morion text-3xl font-semibold' style={RecipeSummary}>Ingredients (serves four)</h4>
@@ -179,6 +181,7 @@ const Ingridents = (props: IngredientProps) => {
                         {ingredientElements}
                     </List>
                 </div>
+                </Paper>
                 {/* modal overlay to display ingredients details */}
                 <Modal
                     aria-labelledby="spring-modal-title"
