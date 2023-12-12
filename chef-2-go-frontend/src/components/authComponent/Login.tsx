@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentUser, setIsLoogedIn } from '../../store/slice/user-slice';
 // material ui imports
 import { Button, TextField, Typography, CardContent, CardActions } from '@mui/material';
@@ -14,10 +14,8 @@ import { PersonPinCircleOutlined, EmailOutlined, VpnKeyOutlined } from '@mui/ico
 
 //css import
 import './Login.css';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { loginUserService } from '../../services/UserAPI';
-import { current } from '@reduxjs/toolkit';
 
 type Props = {
 
@@ -144,9 +142,18 @@ const Login = (props: Props) => {
                         </Typography>
                     </div>
 
+                    <div className="flex items-center justify-center">
+                            <Typography variant="body2" gutterBottom >
+                                Don't have an account? &nbsp;
+                            <Link to="/signup" className="signup-link hover:border-b-2 border-black">
+                                Sign Up
+                            </Link>
+                            </Typography>
+                        </div>
+
                     <CardActions>
 
-                        <div className="button-container">
+                        <div className="button-container block">
                             <Button
                                 variant={btnVarinat}
                                 className="signin-button"
@@ -156,6 +163,8 @@ const Login = (props: Props) => {
                             >Sign In
                             </Button>
                         </div>
+                        <br />
+                        
                     </CardActions>
                 </form>
             </CardContent>

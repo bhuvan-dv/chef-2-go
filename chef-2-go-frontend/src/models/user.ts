@@ -7,7 +7,8 @@ interface User {
     isPremiumUser?: boolean;
     token: string,
     _id: string;
-    imageUrl?: string;
+    imageUrl?: string,
+    isVerified?: boolean,
 }
 
 export default User;

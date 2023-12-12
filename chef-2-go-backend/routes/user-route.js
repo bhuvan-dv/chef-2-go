@@ -9,13 +9,15 @@ const router = express.Router();
 router.route('/')
 .get(UserController.getAllRegisteredUsers)
 router.route('/:id')
+    .patch(UserController.updateUserDetails)
       .delete(UserController.deleteUser)
 router.route('/login')
     .post(UserController.loginUser);
 router.route("/signup")
     .post(UserController.signupUser);
 router.route('/profile/:id')
-    .get(UserController.getUserById);
+    .get(UserController.getUserById)
+    .delete(UserController.deleteUser);
 router.route('/users/profile/:email')
     .get(UserController.getUserByEmail);
 router.route('/email')
