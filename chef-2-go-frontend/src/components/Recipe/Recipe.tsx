@@ -7,8 +7,12 @@ import { ImgContStyling, TitleContStyling, TitleStyling, RecipeSummary } from '.
 import Ingridents from './Ingridents';
 import RecipeInstructions from './RecipeInstructions';
 // import Circle from './Circle';
-import { Paper, Typography } from '@mui/material';
+import { Card, Paper, Typography } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CommentComponent from './CommTrial/CommentComponent';
+import CommentParent from './CommTrial/CommentParent';
+import CommentApp from "../Comment/CommentApp"
+import WomenCook from '../loader/WomenCook';
 // let obj: Recipe = {
 //     comment: null,
 //     _id: "655cf1d2107b4ea257c79c0b",
@@ -125,6 +129,29 @@ const RecipeHome = (props: RecipeProps) => {
         getIndividualRecipe();
     }, [])
 
+    const comments = [
+        {
+            id: "1",
+            text: 'This is a great article!',
+            user: 'JohnDoe',
+            timestamp: '2023-12-01 09:30',
+        },
+        {
+            id: "2",
+            text: 'Nice work!',
+            user: 'JaneSmith',
+            timestamp: '2023-12-02 10:15',
+        },
+        {
+            id: "3",
+            text: 'I have a question...',
+            user: 'BobJohnson',
+            timestamp: '2023-12-03 12:00',
+        },
+        // Add more comments as needed
+    ];
+
+
     return (
         <>
 
@@ -151,11 +178,34 @@ const RecipeHome = (props: RecipeProps) => {
                         <section className='bg-[#f2f0eb] mx-8 flex flex-row py-8 px-4'>
                             <RecipeInstructions instructions={individualRecipe?.instructions} />
                         </section>
+                        {/* using material Ui basic comments  */}
+                        {/* <section className='bg-[#f2f0eb] mx-8 flex flex-row py-8 px-4'>
+                            <CommentComponent comments={comments} />
+                        </section> */}
+                        {/* using without DS comments functionality */}
+                        {/* <section className='bg-[#f2f0eb] mx-8 flex flex-row py-8 px-4'>
+                            <CommentParent />
+                        </section> */}
+                        {/* Comments functionality with Datastructure Tree and nodes */}
+                        <section className='bg-[#f2f0eb] mx-8 flex flex-row py-8 px-4'>
+
+                            <div className="flex justify-center align-middle" style={{ width: "100%" }}>
+                                <div></div>
+                                <div>
+                                    <WomenCook />
+                                </div>
+                                <div style={{}}>
+                                    <Paper elevation={3} style={{ padding: '20px', backgroundColor: "hsl(43, 21%, 94%)", height: "100%" }}>
+                                        <CommentApp />
+                                    </Paper>
+                                </div>
+                                <div></div>
+                            </div>
+                        </section>
                     </div>
                     {/* </Circle> */}
                 </ThemeProvider >
-            </div>
-
+            </div >
         </>
     )
 }
