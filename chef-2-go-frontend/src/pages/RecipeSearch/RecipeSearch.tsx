@@ -15,7 +15,7 @@ const RecipeSearch: React.FC = () => {
 
   return (
     
-    <div className="container mx-auto my-8 flex justify-center flex-col">
+    <div className="container mx-auto my-8 flex justify-center flex-col gap-5">
      <div className="relative">
         <img
           src="https://bigtreefarms.com/wp-content/uploads/2022/07/BTF_RecipeHeader-1-scaled.jpg"
