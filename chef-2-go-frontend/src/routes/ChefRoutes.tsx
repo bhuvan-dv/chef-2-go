@@ -21,6 +21,8 @@ import { topChefs } from "../pages/Chef/chefData";
 import Admin from "../pages/Admin/Admin";
 import ChefSearchPage from "../pages/ChefsSearchPage/ChefSearchPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import Videos from "../pages/VideosPage/Videos";
+import PaymentPage from "../pages/PaymentPage";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes = useRoutes([
@@ -96,6 +98,14 @@ let ChefRoutes = () => {
         {
             path: "profile/:username",
             element: <ProfilePage />
+        },
+        {
+            path:"videos",
+            element:<Videos />
+        },
+        {
+            path:"payment",
+            element: <PaymentPage price={0} />
         }
     ]);
 

@@ -5,6 +5,7 @@ import userRouter from "./user-route.js";
 import searchRouter from "./search-route.js";
 import ingredientRouter from "./ingredient-route.js";
 import chefrouter from "./chef-route.js";
+import Paymentrouter from "./payment-route.js";
 
 export default (app) => {
   app.use("/users",userRouter);
@@ -12,4 +13,5 @@ export default (app) => {
   app.use("/search",searchRouter);
   app.use("/ingredient", ingredientRouter);
   app.use("/chef", chefrouter)
+  app.use("/charge",Paymentrouter)
 };

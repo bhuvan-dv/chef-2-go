@@ -5,6 +5,7 @@ import { createToken } from "../utilities/token.js";
 import { request, response } from "express";
 import * as otpHandler from "../utilities/otpHandler.js";
 import bcrypt from "bcrypt";
+import bcrypt from "bcrypt";
 
 export const loginUser = async (request, response) => {
     try {

@@ -1,9 +1,10 @@
 import React from 'react';
+import NavBar from '../../components/Premium/VideosPage/NavBar';
 
 const Videos =() =>{
     return(
         <div>
-            Videos
+            < NavBar />
         </div>
     )
 }

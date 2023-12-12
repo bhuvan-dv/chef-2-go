@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "types": ["react-slick","react", "react-dom",],
+    "types": [
+      "react-slick",
+      "react",
+      "react-dom",
+    ],
     "target": "es5",
     "lib": [
       "dom",

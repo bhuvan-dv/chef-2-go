@@ -1,0 +1,22 @@
+.text-white {
+    color: white;
+  }
+  
+  .faq-item {
+    position: relative;
+  }
+  
+  .faq-question {
+    background-color: #4a5568; 
+  }
+  
+  .faq-toggle {
+    background-color: #4299e1; 
+  }
+  
+  .faq-answer {
+    background-color: #ffffff; 
+    border: 1px solid #e2e8f0; 
+  }
+  
+  
