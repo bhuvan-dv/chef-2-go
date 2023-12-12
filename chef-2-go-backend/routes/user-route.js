@@ -23,5 +23,5 @@ router.route('/email')
 router.route('/email')
     .post(UserController.reSendOTP);
 router.route('/:userId')
-    .put(verifyToken,UserController.updateUser);
+    .put(UserController.updateUser);
 export default router;
