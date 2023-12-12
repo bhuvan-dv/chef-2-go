@@ -16,7 +16,8 @@ router.route('/login')
 router.route("/signup")
     .post(UserController.signupUser);
 router.route('/profile/:id')
-    .get(UserController.getUserById);
+    .get(UserController.getUserById)
+    .delete(UserController.deleteUser);
 router.route('/users/profile/:email')
     .get(UserController.getUserByEmail);
 router.route('/email')

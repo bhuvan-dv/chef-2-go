@@ -135,7 +135,7 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
                 </Link>
               }
               {!user &&
-                <Link className="menu-link" to="/testpath">
+                <Link className="menu-link" to="/signup">
                   Sign Up
                 </Link>}
             </div>

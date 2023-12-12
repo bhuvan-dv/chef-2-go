@@ -102,3 +102,8 @@ export const deleteUser = async (userId : string, token: string) => {
         }
     })
 }
+
+export const deleteProfile = async (userId : string) => {
+    return axiosInstance.delete(path+"/profile/"+userId);
+    
+}

@@ -4,15 +4,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../store/slice/user-slice';
 import { AppState } from '../../store/index';
 import { Modal, Button, Box, TextField, Alert, Snackbar } from '@mui/material';
-import { RegisterUser, updateUserDetails } from '../../services/UserAPI';
+import { RegisterUser, deleteProfile, loginUserService, updateUserDetails } from '../../services/UserAPI';
 import User from '../../models/user';
-import storage from '../../Firebase/firebase';
+import storage from '../../Firebase/firebase'
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { useNavigate } from 'react-router-dom';
 // import { v4} from 'uuid';
 
-const ProfilePage: React.FC = () => {
+const ProfilePage = () => {
   const currentUser = useSelector((state: AppState) => state.users.currentUser);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedUser, setEditedUser] = useState(currentUser);
@@ -23,6 +25,8 @@ const ProfilePage: React.FC = () => {
   const [newName, setNewName] = useState<string>(currentUser?.name || '');
   const [password, setPassword] = useState<string>('');
   const [open, setOpen] = React.useState(false);
+  const [showPasswordRequired, setShowPasswordRequired] = useState(false);
+
 
   useEffect(() => {
     setEditedUser(currentUser);
@@ -57,21 +61,29 @@ const ProfilePage: React.FC = () => {
   };
   const handleSaveClick = async () => {
     try {
-        const newUserData : RegisterUser = {
-            email: newEmail,
-            username: newUsername,
-            name: newName,
-            password: password,
-            role: "customer",
-            _id: currentUser?._id || '',
-            token: localStorage.getItem('token') || '',
-            isVerified: true,
+      if (password === '') {
+        setShowPasswordRequired(true);
+        return;
+      }
+      else {
+        setShowPasswordRequired(false);
+      }
+      const newUserData: RegisterUser = {
+        email: newEmail,
+        username: newUsername,
+        name: newName,
+        password: password,
+        role: "customer",
+        _id: currentUser?._id || '',
+        token: localStorage.getItem('token') || '',
+        isVerified: true,
 
-        }
-        const updatedUser = await updateUserDetails(currentUser?._id,newUserData.token,newUserData);
-        dispatch(setCurrentUser(updatedUser.data));
-        setOpen(true);
-        
+      }
+
+      const updatedUser = await updateUserDetails(currentUser?._id, newUserData.token, newUserData);
+      dispatch(setCurrentUser(updatedUser.data));
+      setOpen(true);
+
       setIsEditing(false);
     } catch (error) {
       console.error('Error updating user data:', error);
@@ -94,7 +106,7 @@ const ProfilePage: React.FC = () => {
       const response = await uploadBytesResumable(storageRef, selectedFile as Blob);
       const url = await getDownloadURL(ref(storage, `profile/${selectedFile?.name}`));
       console.log(url);
-      const newUserData : RegisterUser = {
+      const newUserData: RegisterUser = {
         email: currentUser?.email || '',
         username: currentUser?.username || '',
         name: currentUser?.name || '',
@@ -105,12 +117,12 @@ const ProfilePage: React.FC = () => {
         isVerified: true,
         imageUrl: url
       }
-      const updatedUser = await updateUserDetails(currentUser?._id,newUserData.token,newUserData);
+      const updatedUser = await updateUserDetails(currentUser?._id, newUserData.token, newUserData);
       dispatch(setCurrentUser(updatedUser.data));
-      
+
       setOpen(true);
 
-      
+
 
       setIsUploadModalOpen(false);
     } catch (error) {
@@ -118,9 +130,23 @@ const ProfilePage: React.FC = () => {
     }
   }
 
+  const handleAccountDelete = async () => {
+    try {
+      alert('Are you sure you want to delete your account?');
+      const id = currentUser?._id || '';
+      const response = await deleteProfile(id);
+      console.log(response);
+      localStorage.removeItem('token');
+      dispatch(setCurrentUser(null));
+      navigate('/');
+    } catch (error) {
+      console.error('Error deleting account:', error);
+    }
+  }
+
   return (
     <div className="border p-4 my-4 rounded-md bg-gray-100">
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
           This is a success message!
         </Alert>
@@ -147,6 +173,12 @@ const ProfilePage: React.FC = () => {
           >
             Upload Photo
           </Button>
+          <Button
+            variant='contained'
+            color='error'
+            onClick={handleAccountDelete}>
+            Delete Account
+          </Button>
         </div>
         <div>
           <strong>Email:</strong> {currentUser?.email}
@@ -166,31 +198,34 @@ const ProfilePage: React.FC = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{backgroundColor:"yellow"}}>
+        <Box sx={{ backgroundColor: "yellow" }}>
           <TextField
             label="New Email"
             variant="outlined"
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
           />
-            <TextField
-                label="New Username"
-                variant="outlined"
-                value={newUsername}
-                onChange={(e) => setNewUsername(e.target.value)}
-            />
-            <TextField
-                label="New Name"
-                variant="outlined"
-                value={newName}
-                onChange={ (e) => setNewName(e.target.value)}
-            />
-            <TextField
-                label="Password"
-                variant="outlined"
-                value={password}
-                onChange={ (e) => setPassword(e.target.value)}
-            />
+          <TextField
+            label="New Username"
+            variant="outlined"
+            value={newUsername}
+            onChange={(e) => setNewUsername(e.target.value)}
+          />
+          <TextField
+            label="New Name"
+            variant="outlined"
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+          />
+          <TextField
+            label="Password"
+            variant="outlined"
+            type='password'
+            value={password}
+            required={true}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {showPasswordRequired && <Alert severity="error">Password is required</Alert>}
           <div className="mt-4">
             <Button
               variant="contained"
@@ -218,7 +253,7 @@ const ProfilePage: React.FC = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{backgroundColor:"yellow"}}>
+        <Box sx={{ backgroundColor: "yellow" }}>
           <label className="block">
             Upload Photo:
             <input
