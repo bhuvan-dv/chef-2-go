@@ -23,4 +23,7 @@ reciperouter.route('/')
    .delete(verifyToken,commentController.remove)
    .put(verifyToken,commentController.put);
 
+   reciperouter.route('/byChef/:id')
+   .get(recipeController.findByChefId);
+
 export default reciperouter;

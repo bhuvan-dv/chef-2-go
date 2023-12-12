@@ -106,3 +106,18 @@ export const remove = async (request, response) => {
             })
     }
 }
+
+export const findByChefId = async (request, response) => {
+    try {
+        const id = request.params.id;
+        const recipes = await recipeService.findByChefId(id);
+        response.status(200)
+            .json(recipes);
+    } catch (err) {
+        response.status(404)
+            .json({
+                code: "Error",
+                message: "Recipe not Found"
+            })
+    }
+}
