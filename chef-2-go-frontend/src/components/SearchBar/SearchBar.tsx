@@ -26,9 +26,9 @@ const SearchBar = (props: SearchBarProps) => {
         // You can also perform additional actions here, like fetching data based on the search term.
     };
     return (
-        <Container sx={{ mb: 2 }}>
-            <TextField variant="outlined" size="small" sx={{ mr: 1 }} onChange={handleInputChange} value={searchInput}></TextField>
-            <Button variant="contained" onClick={handleSearch}>
+        <Container >
+            <TextField variant="outlined" size="small" sx={{ mr: 1, flex: 1, width: '400px', fontSize: '16px', border: '1px solid #ddd', borderRadius: '8px', my: 'auto' }} onChange={handleInputChange} value={searchInput} placeholder={searchCategory=="chef"?"Enter Chefs Name":"Enter Recipe Name"}></TextField>
+            <Button variant="contained" sx={{ fontSize: '16px', height: '40px',backgroundColor: '#4CAF50', color: '#ffffff', '&:hover': { backgroundColor: '#45a049' }}} onClick={handleSearch}>
                 Search
             </Button>
         </Container>

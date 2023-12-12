@@ -38,27 +38,28 @@ const RecipeGrid = () => {
   return (
   <div>
     <Grid container spacing={3}>
-      {Array.isArray(filteredRecipes) && filteredRecipes.map((recipe: Recipe) => (
-        <Grid item xs={12} sm={6} md={4} key={recipe._id}>
-          <Card>
-            <CardMedia
-              component="img"
-              height="200"
-              image={recipe?.imageUrl}
-              className="object-cover"
-            />
-            <CardContent>
-              <Typography variant="h6">{recipe.name}</Typography>
-              <Typography variant="h6">{recipe.chef}</Typography>
-              {/* View Recipe Button */}
-              <Button variant="contained" color="primary" className="mt-4" onClick={() => handleRecipeView(recipe._id)}>
-                View Recipe
-              </Button>
-            </CardContent>
-          </Card>
-        </Grid>
-      ))}
+  {Array.isArray(filteredRecipes) && filteredRecipes.map((recipe: Recipe) => (
+    <Grid item xs={12} sm={6} md={4} key={recipe._id}>
+      <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+        <CardMedia
+          component="img"
+          height="200"
+          image={recipe?.imageUrl}
+          alt={recipe.name}
+          sx={{ objectFit: 'cover' }}
+        />
+        <CardContent sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" mb={1}>{recipe.name}</Typography>
+          <Typography variant="subtitle1" color="textSecondary">{recipe.chef}</Typography>
+        </CardContent>
+        {/* View Recipe Button */}
+        <Button variant="contained" color="primary" onClick={() => handleRecipeView(recipe._id)}>
+          View Recipe
+        </Button>
+      </Card>
     </Grid>
+  ))}
+</Grid>
   </div>
 );
 
