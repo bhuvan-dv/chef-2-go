@@ -3,14 +3,14 @@ import React from 'react';
 import VideoCard from './VideoCard';
 
 interface VideoListProps {
-  videoUrls: string[];
+  videos: { videoUrl: string; title: string }[];
 }
 
-const VideoList: React.FC<VideoListProps> = ({ videoUrls }) => {
+const VideoList: React.FC<VideoListProps> = ({ videos }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {videoUrls.map((videoUrl, index) => (
-        <VideoCard key={index} videoUrl={videoUrl} />
+      {videos.map((video, index) => (
+        <VideoCard key={index} videoUrl={video.videoUrl} title={video.title} />
       ))}
     </div>
   );
