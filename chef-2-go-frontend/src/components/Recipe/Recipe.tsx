@@ -13,6 +13,7 @@ import CommentComponent from './CommTrial/CommentComponent';
 import CommentParent from './CommTrial/CommentParent';
 import CommentApp from "../Comment/CommentApp"
 import WomenCook from '../loader/WomenCook';
+import Footer from '../Footer/Footer';
 // let obj: Recipe = {
 //     comment: null,
 //     _id: "655cf1d2107b4ea257c79c0b",
@@ -201,6 +202,9 @@ const RecipeHome = (props: RecipeProps) => {
                                 </div>
                                 <div></div>
                             </div>
+                        </section>
+                        <section>
+                            <Footer/>
                         </section>
                     </div>
                     {/* </Circle> */}
