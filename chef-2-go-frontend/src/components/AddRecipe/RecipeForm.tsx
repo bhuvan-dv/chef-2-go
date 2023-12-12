@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Button, TextField, Typography, Box, Textarea } from '@mui/material';
+import { Button, TextField, Typography, Box } from '@mui/material';
 import Recipe from '../../models/Recipe';
 
 import { styled } from '@mui/system';
-
+import CustomTextArea from './CustomTextArea';
 
 interface RecipeFormProps {
     onSubmit: (recipe: Recipe) => void;
@@ -75,13 +75,20 @@ const RecipeForm: React.FC<RecipeFormProps> = ({ onSubmit }) => {
                     size="small"
 
                 />
-                <Textarea
+                <CustomTextArea 
+                // label="Summary"
+                //     value={recipeData.summary}
+                //     onChange={(e) => handleInputChange(e, 'summary')}
+                //     margin="normal"
+                //     size="small"
+                     />
+                {/* <Textarea
                     maxRows={4}
                     aria-label="maximum height"
                     placeholder="Maximum 4 rows"
                     defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
     ut labore et dolore magna aliqua."
-                />
+                /> */}
             </Box>
             {/* Ingredients */}
             <Typography variant="body1" gutterBottom>
