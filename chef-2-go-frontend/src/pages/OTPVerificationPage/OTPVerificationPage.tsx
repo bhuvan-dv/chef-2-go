@@ -108,7 +108,7 @@ const OTPVerificationPage: React.FC = () => {
             navigate("/login");
           }, 1000);
         } else {
-          console.log("Invalid OTP");
+          toast.error('Please enter correct OTP!');
         }
       })
       .catch((err) => {
