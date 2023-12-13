@@ -16,73 +16,13 @@ import { Box, Container } from '@mui/system';
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import CustomCard, { EntityDetails } from '../Card/CustomCard';
 import Carousel from '../Carousel/Carousel';
+import RecipeLoader from '../AddRecipe/RecipeLoader';
 
 
 gsap.registerPlugin(ScrollTrigger);
 
 // sampleChefData
-const sampleChefData: EntityDetails[] = [
-  {
-    'type': 'chef',
-    'name': 'Chef 1',
-    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
-    'id': '1',
-  },
-  {
-    'type': 'chef',
-    'name': 'Chef 2',
-    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
-    'id': '2',
-  },
-  {
-    'type': 'chef',
-    'name': 'Chef 3',
-    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
-    'id': '3',
-  },
-  {
-    'type': 'chef',
-    'name': 'Chef 4',
-    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
-    'id': '4',
-  },
-  {
-    'type': 'chef',
-    'name': 'Chef 5',
-    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
-    'id': '5',
-  },
-  {
-    'type': 'chef',
-    'name': 'Chef 6',
-    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
-    'id': '6',
-  },
-  {
-    'type': 'chef',
-    'name': 'Chef 7',
-    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
-    'id': '7',
-  },
-  {
-    'type': 'chef',
-    'name': 'Chef 8',
-    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
-    'id': '8',
-  },
-  {
-    'type': 'chef',
-    'name': 'Chef 9',
-    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
-    'id': '9',
-  },
-  {
-    'type': 'chef',
-    'name': 'Chef 10',
-    'imageUrl': 'https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg',
-    id: '10',
-  }
-];
+
 
 
 const Home = () => {
@@ -220,6 +160,8 @@ const Home = () => {
         <div className="bg-img bg-main-background">
           {/* first page */}
           <div className="h-fullvh">
+          <Box sx={{ display: "flex", }}>
+            <RecipeLoader />
             <div className="text-container text-9xl font-Morion font-bold text-soft-mint-green  float float-right pr-32 pt-40">
               <div className="tagline-container">
                 <p ref={wildTextRef} id="wild-text">Desi.</p>
@@ -230,10 +172,11 @@ const Home = () => {
               <div className="flex items-center gap-4">
                 <img ref={compassRef} src={compassSvg} alt="" className="h-44" />
                 <p ref={deliciousTextRef} id="delicious-text">
-                Delicious.
+                  Delicious.
                 </p>
               </div>
             </div>
+          </Box>
           </div>
           {/* end of first page */}
 
@@ -372,15 +315,6 @@ const Home = () => {
           </div>
         </div>
 
-        {/* top chefs */}
-        <div className="py-10 flex flex-col gap-32 border-b-4">
-            <p className="self-center text-5xl font-Morion text-soft-mint-green">Top Chefs</p>
-            <Carousel entities={sampleChefData}/>
-        </div>
-        <div className="py-10 flex flex-col gap-32">
-            <p className="self-center text-5xl font-Morion text-soft-mint-green">Top Recipes</p>
-            <Carousel entities={sampleChefData}/>
-        </div>
     </div>
   );
 };

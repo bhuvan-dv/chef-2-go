@@ -134,6 +134,9 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
                 <Link className="menu-link" to="/signup">
                   Sign Up
                 </Link>}
+                <Link className="menu-link" to='/contact'>
+                Contact US
+              </Link>
             </div>
           </div>
           <div className="sidebar-bottom">

@@ -25,7 +25,7 @@ const Header: FC<HeaderProps> = ({ menuState, setMenuState }) => {
             />
             }
           </div>
-          <span className="text-3xl">CHEF2GO</span>
+          <span className="text-3xl" style={{fontFamily:"Morion"}}>CHEF2GO</span>
         </Link>
       </div>
       <div>

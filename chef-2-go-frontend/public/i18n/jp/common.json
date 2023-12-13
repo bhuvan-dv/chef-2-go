@@ -15,5 +15,8 @@
     "searchchef.searchbar.chef":"シェフの名前を入力してください",
     "searchrecipe.searchbar.recipe": "レシピ名を入力してください",
     "searchbar.searchbutton": "検索",
-    "searchrecipe.viewrecipebutton":"レシピを見る"
+    "searchrecipe.viewrecipebutton":"レシピを見る",
+    "searchchef.header": "トップシェフのページをご覧ください",
+    "searchchef.text": "才能あるシェフとその特製レシピを発見",
+    "searchchef.viewchefbutton":"シェフを見る"
 }
