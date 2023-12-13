@@ -6,14 +6,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppState } from '../../store'
 import User from '../../models/user'
 import { setChefs } from '../../store/slice/user-slice'
+import chef from '../../models/chef'
 
-const ChefsGrid = () => {
+interface ChefGridProps {
+  chefs : chef[]
+}
+const ChefsGrid = ( props: ChefGridProps ) => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const chefs = useSelector((state: AppState) => state.users);
+    const chefs =props.chefs;//  useSelector((state: AppState) => state.users.chefs);
     const searchTerm = useSelector((state: AppState) => state.users.searchTerm);
-    let filteredChefs = chefs.chefs.filter((chef) =>
+    let filteredChefs = chefs.filter((chef) =>
         chef?.name?.toLowerCase().includes(searchTerm!.toLowerCase())
     );
 
@@ -42,19 +46,20 @@ const ChefsGrid = () => {
   return (
     <div>
       <Grid container spacing={3}>
-      {Array.isArray(filteredChefs) && filteredChefs.map((chef: User) => (
+      {Array.isArray(filteredChefs) && filteredChefs.map((chef: chef) => (
         <Grid item xs={12} sm={6} md={4} key={chef._id}>
-          <Card>
+          <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
             <CardMedia
               component="img"
               height="200"
               image={chef?.imageUrl}
-              className="object-cover"
+              alt={chef.name}
+              sx={{ objectFit: 'cover' }}
             />
-            <CardContent>
-              <Typography variant="h6">{chef.name}</Typography>
+            <CardContent sx={{ flexGrow: 1 }}>
+              <Typography variant="h6" mb={1}>{chef.name}</Typography>
               {/* View Recipe Button */}
-              <Button variant="contained" color="primary" className="mt-4" onClick={() => handleChefView(chef._id)}>
+              <Button variant="contained" color="primary" onClick={() => handleChefView(chef._id)} sx={{ width: '100%', marginTop: 'auto' }}>
                 View Chef
               </Button>
             </CardContent>
