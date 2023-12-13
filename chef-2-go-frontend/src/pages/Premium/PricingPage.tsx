@@ -11,7 +11,7 @@ const PricingPage: React.FC = () => {
       <div className="overlay"></div>
 
       <div className="flex flex-col items-center space-y-8 z-10">
-        <h1 className="text-4xl text-morion font-bold h1">Become a Foodie</h1>
+        <h1 className="text-4xl text-morion font-bold h1">Become a Foodie!</h1>
         <Pricing />
       </div>
     </div>
