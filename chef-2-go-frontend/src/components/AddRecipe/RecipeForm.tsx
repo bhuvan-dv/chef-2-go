@@ -1,18 +1,23 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Button, TextField, Typography, Box } from '@mui/material';
 import Recipe from '../../models/Recipe';
 
 import { styled } from '@mui/system';
 import CustomTextArea from './CustomTextArea';
+import { createNewRecipes } from '../../services/recipe';
+import { AppState } from '../../store';
+import { useSelector } from 'react-redux';
 
 interface RecipeFormProps {
-    onSubmit: (recipe: Recipe) => void;
+    chefId: string;
 }
 
-const RecipeForm: React.FC<RecipeFormProps> = ({ onSubmit }) => {
+const RecipeForm: React.FC<RecipeFormProps> = () => {
+    const currentUser = useSelector((state: AppState) => state.users.currentUser);
     const [recipeData, setRecipeData] = useState<Recipe>({
         name: '',
-        chef: '',
+        chef: currentUser?.name || '',
+        chefId: currentUser?._id || '6578ecfd21114b586c590275',
         summary: '',
         instructions: [],
         ingredients: [{ name: '', quantity: '', unitType: '' }],
@@ -20,8 +25,27 @@ const RecipeForm: React.FC<RecipeFormProps> = ({ onSubmit }) => {
         imageUrl: '',
     });
 
-    const handleSubmit = () => {
-        onSubmit(recipeData);
+    const handleSubmit = (e : FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const response : any= createNewRecipes<Recipe>(recipeData);
+        if(response.status === 200) {
+            alert('Recipe has been created successfully');
+        }
+        else {
+            alert('Error in adding Recipe, please try again');
+            setRecipeData({
+                name: '',
+                chef: currentUser?.name || '',
+                chefId: currentUser?._id || '6578ecfd21114b586c590275',
+                summary: '',
+                instructions: [],
+                ingredients: [{ name: '', quantity: '', unitType: '' }],
+                comment: null,
+                imageUrl: '',
+            });
+        }
+
+        // onSubmit(recipeData);
         // Add logic to send the data to your API or perform necessary actions
     };
     const handleInputChange = (
@@ -57,7 +81,7 @@ const RecipeForm: React.FC<RecipeFormProps> = ({ onSubmit }) => {
         <form onSubmit={handleSubmit}>
             <TextField
                 label="Name"
-                value={recipeData.name}
+                value={recipeData?.name}
                 onChange={(e) => handleInputChange(e, 'name')}
                 fullWidth
                 margin="normal"
@@ -69,7 +93,7 @@ const RecipeForm: React.FC<RecipeFormProps> = ({ onSubmit }) => {
             <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
                 <TextField
                     label="Summary"
-                    value={recipeData.summary}
+                    value={recipeData?.summary}
                     onChange={(e) => handleInputChange(e, 'summary')}
                     margin="normal"
                     size="small"
@@ -94,7 +118,7 @@ const RecipeForm: React.FC<RecipeFormProps> = ({ onSubmit }) => {
             <Typography variant="body1" gutterBottom>
                 Ingredients
             </Typography>
-            {recipeData.ingredients.map((ingredient, index) => (
+            {recipeData && recipeData.ingredients.map((ingredient, index) => (
                 <Box key={index} sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
                     <TextField
                         label="Name"

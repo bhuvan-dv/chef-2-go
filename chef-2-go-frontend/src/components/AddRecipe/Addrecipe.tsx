@@ -9,6 +9,8 @@ import { BorderAllOutlined } from '@mui/icons-material';
 import { useSpring, animated } from '@react-spring/web';
 import Backdrop from '@mui/material/Backdrop';
 import RecipeForm from './RecipeForm';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../store';
 
 interface FadeProps {
   children: React.ReactElement;
@@ -91,7 +93,7 @@ const Addrecipe = () => {
   const [apiData, setApiData] = React.useState<Recipe | undefined>(undefined);
   const [chef, setChef] = React.useState();
   const navigate = useNavigate();
-
+  
   //states for modals
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -186,9 +188,7 @@ const Addrecipe = () => {
                 <Typography id="spring-modal-title" variant="h5" component="h2" sx={{ textAlign: "center" }} gutterBottom>
                   Create Recipe
                 </Typography>
-                <RecipeForm onSubmit={function (recipe: Recipe): void {
-                  throw new Error('Function not implemented.');
-                }} />
+                <RecipeForm chefId={"1234"} />
               </Box>
             </Fade>
           </Modal>

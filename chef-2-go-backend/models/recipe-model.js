@@ -11,6 +11,10 @@ const RecipeSchema = new Schema(
             type: String,
             required: true,
         },
+        chefId: {
+            type: String,
+            required: true,
+        },
         summary:{
             type: String,
             required: true
