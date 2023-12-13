@@ -15,5 +15,8 @@
     "searchchef.searchbar.chef": "Enter Chefs Name",
     "searchrecipe.searchbar.recipe": "Enter Recipe Name",
     "searchbar.searchbutton": "Search",
-    "searchrecipe.viewrecipebutton": "View Recipe"
+    "searchrecipe.viewrecipebutton": "View Recipe",
+    "searchchef.header": "Explore our Top Chef pages",
+    "searchchef.text": "Discover talented chefs and their signature recipes",
+    "searchchef.viewchefbutton":"View Chef"
 }
