@@ -4,7 +4,7 @@ import animationData from './Animation - 1701908507310.json';
 
 const Loader = () => {
 
-    return (<div className='lottieContainer flex justify-center align-middle' style={{ height: "200px" }} >
+    return (<div className='lottieContainer flex justify-center align-middle'  >
         <Lottie animationData={animationData} />
     </div>);
 };

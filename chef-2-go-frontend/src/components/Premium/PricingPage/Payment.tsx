@@ -3,17 +3,18 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 interface PaymentProps {
-    price : number
+  price: number;
 }
 
-const Payment = (props : PaymentProps) => {
+const Payment: React.FC<PaymentProps> = (props) => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
-//   const [amount, setAmount] = useState<number>(parseFloat(match.params.price) || 0);
-    const amount = props.price;
+  const navigate = useNavigate();
+  const amount = props.price;
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -45,6 +46,11 @@ const Payment = (props : PaymentProps) => {
           if (response.ok) {
             console.log('Payment successful!');
             toast.success('Payment successful!');
+
+            // Wait for a few seconds before routing to /videos
+            setTimeout(() => {
+              navigate('/videos');
+            }, 3000);
           } else {
             console.error('Payment failed.');
             toast.error('Payment failed. Please try again.');
@@ -61,7 +67,7 @@ const Payment = (props : PaymentProps) => {
 
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
-      <h2 className="text-3xl font-extrabold mb-6 text-indigo-600">Secure Payment</h2>
+      <h2 className="text-3xl font-Morion font-extrabold mb-6 text-soft-mint-green-600">One Last Step...</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2" htmlFor="card-element">
@@ -86,13 +92,13 @@ const Payment = (props : PaymentProps) => {
         </div>
         <Button
           type="submit"
-          className={`bg-indigo-600 text-white py-3 px-6 rounded-md ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`bg-indigo-600 text-white py-3 px-6 rounded-md hover:bg-soft-mint-green ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={!stripe || loading}
         >
           {loading ? 'Processing...' : 'Pay Now'}
         </Button>
       </form>
-      <ToastContainer position="top-center" />
+      <ToastContainer position="top-right" />
     </div>
   );
 };

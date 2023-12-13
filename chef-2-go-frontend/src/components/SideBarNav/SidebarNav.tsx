@@ -8,10 +8,9 @@ import { AppState } from '../../store';
 interface SidebarNavProps {
   menuState: boolean;
   setMenuState: (state: boolean) => void;
-  islogedin: boolean;
 }
 
-const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, islogedin }) => {
+const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState }) => {
   const sidebarMenu = useRef<HTMLDivElement>(null);
   const sidebarMenuOverlay = useRef<HTMLDivElement>(null);
   const menuLayer = useRef<HTMLDivElement>(null);
@@ -49,10 +48,6 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
     }
   }, [menuState]);
 
-  useEffect(() => {
-    const unlisten = navigate('/');
-    return unlisten;
-  }, [navigate, setMenuState]);
 
 
   const handleLogout = () => {

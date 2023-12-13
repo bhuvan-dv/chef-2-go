@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './About.css';
+import { Link } from 'react-router-dom';
 
 interface TeamMemberProps {
     name: string;
@@ -18,9 +19,10 @@ const TeamMember: React.FC<TeamMemberProps> = ({ name, image }) => {
 const About: React.FC = () => {
     return (
         <div className="about-us">
-            <div className="welcome-box">
-            {/* <div className="welcome-box" style={{ backgroundImage: 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBUHjGuyvwODZNZ3jZsFVrOgCRRYb-RUqUsQ&usqp=CAU")', backgroundSize: 'cover', height: '400px' }}> */}
-                <h2>Welcome to Chef2go!</h2>
+            {/* <div className="welcome-box"> */}
+            <div className="welcome-box" style={{ backgroundImage: 'url("https://media-cdn.grubhub.com/grubhub-marketing/image/upload/f_auto,fl_lossy/v1692270106/grubhubHomePage/sushi_homepage1.png")', backgroundSize: 'cover', height: '300px' }}>
+                <h2 className="text-6xl mb-24 ml-0 mr-2">Welcome to Chef2go!</h2>
+                {/* </div> */}
             </div>
             <div className="content-container">
                 <div className="image-container">
@@ -108,7 +110,11 @@ const About: React.FC = () => {
                     Explore our website, discover new recipes, and embark on a delightful culinary
                     journey with us!
                 </p>
-                <button className="get-started-button">Get Started</button>
+                <br></br>
+                <div>
+                <Link className="get-started-button" to="/login">Get Started</Link>
+                </div>
+                {/* <button className="get-started-button">Get Started</button> */}
             </div>
             <div className="meet-the-team">
                 <h2>Meet the Top Chefs</h2>

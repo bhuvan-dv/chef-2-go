@@ -11,7 +11,7 @@ const Header: FC<HeaderProps> = ({ menuState, setMenuState }) => {
     <header className="site-header">
       <div className="brand-icon">
         <Link to="/">
-          <div className="icon bg-yellow-300">
+          <div className="icon">
             {/* <i className="fab fa-react"></i> */}
             <Loader/>
           </div>
