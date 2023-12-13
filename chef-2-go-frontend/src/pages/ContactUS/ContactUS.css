@@ -1,0 +1,12 @@
+.ContactFormComponent {
+    text-align: center;
+    max-width: 500px;
+    margin: 20px auto;
+    padding-top: 100px;
+  }
+  
+  Form {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 20px;
+  }

@@ -8,10 +8,12 @@ import RecipeGrid from '../../components/RecipeGrid/RecipeGrid';
 import { setRecipes } from '../../store/slice/recipe-slice'; 
 import Recipe from '../../models/Recipe';
 import { AppState } from '../../store';
+import { useTranslation } from 'react-i18next';
 
 type TopRecipesProps = Recipe[];
 
 const RecipeSearch: React.FC = () => {
+  const { t } = useTranslation('common');
 
   return (
     
@@ -23,7 +25,7 @@ const RecipeSearch: React.FC = () => {
           className="w-full h-64 object-cover"
         />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-black">
-          <h2 className="text-6xl font-bold mb-46 mr-56">Explore Our Recipes</h2>
+          <h2 className="text-6xl font-bold mb-46 mr-56">{t("searchrecipe.search")}</h2>
         </div>
         </div>
         <div className='self-center'>

@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import { setSearchTerm } from '../../store/slice/recipe-slice';
 import { setSearchTerm as setChefSeachTerm } from '../../store/slice/user-slice';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 interface SearchBarProps {
     searchCategory: 'chef' | 'recipe';
 }
 
 const SearchBar = (props: SearchBarProps) => {
+    const { t } = useTranslation('common');
     const [searchInput, setSearchInput] = useState('');
     const dispatch = useDispatch();
     const searchCategory = props.searchCategory;
@@ -27,9 +29,13 @@ const SearchBar = (props: SearchBarProps) => {
     };
     return (
         <Container >
-            <TextField variant="outlined" size="small" sx={{ mr: 1, flex: 1, width: '400px', fontSize: '16px', border: '1px solid #ddd', borderRadius: '8px', my: 'auto' }} onChange={handleInputChange} value={searchInput} placeholder={searchCategory=="chef"?"Enter Chefs Name":"Enter Recipe Name"}></TextField>
+            <TextField variant="outlined" size="small" sx={{ mr: 1, flex: 1, width: '400px', fontSize: '16px', border: '1px solid #ddd', borderRadius: '8px', my: 'auto' }} 
+            onChange={handleInputChange} 
+            value={searchInput} 
+            placeholder={searchCategory==`chef`?`${t("searchchef.searchbar.chef")}`:`${t("searchrecipe.searchbar.recipe")}`}>
+            </TextField>
             <Button variant="contained" sx={{ fontSize: '16px', height: '40px',backgroundColor: '#4CAF50', color: '#ffffff', '&:hover': { backgroundColor: '#45a049' }}} onClick={handleSearch}>
-                Search
+            {t("searchbar.searchbutton")}
             </Button>
         </Container>
     );

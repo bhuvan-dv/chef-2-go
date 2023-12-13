@@ -10,5 +10,10 @@
     "right.navbar.mission":"ミッション",
     "right.navbar.chefs":"シェフ",
     "right.navbar.recipes":"レシピ",
-    "right.navbar.shop":"店"
+    "right.navbar.shop":"店",
+    "searchrecipe.search":"レシピを調べる",
+    "searchchef.searchbar.chef":"シェフの名前を入力してください",
+    "searchrecipe.searchbar.recipe": "レシピ名を入力してください",
+    "searchbar.searchbutton": "検索",
+    "searchrecipe.viewrecipebutton":"レシピを見る"
 }

@@ -24,6 +24,7 @@ import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import Videos from "../pages/VideosPage/Videos";
 import PaymentPage from "../pages/PaymentPage";
 import Addrecipe from "../components/AddRecipe/Addrecipe";
+import ContactUS from "../pages/ContactUS/ContactUS";
 import IndividualChefPage from "../pages/IndividualChefPage/IndividualChefPage";
 import { createBrowserRouter, redirectDocument } from 'react-router-dom';
 let ChefRoutes = () => {
@@ -117,6 +118,10 @@ let ChefRoutes = () => {
         {
             path: "addrecipe",
             element: <Addrecipe />
+        },
+        {
+            path:"contact",
+            element:<ContactUS/>
         },
         {
             path: "chefs/:chefId",

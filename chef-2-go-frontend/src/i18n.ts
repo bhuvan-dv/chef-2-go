@@ -5,7 +5,7 @@ import HttpApi from 'i18next-http-backend';
 i18n.use(HttpApi)
     .use(initReactI18next)
     .init({
-        lng: 'jp',
+        lng: 'en',
         debug: true,
         fallbackLng: 'en',
         ns: ['common'],
