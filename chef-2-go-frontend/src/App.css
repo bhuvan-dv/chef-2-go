@@ -58,3 +58,10 @@
 body {
   overflow-x: hidden; /* Hide scrollbars */
 }
+/* For smaller screens */
+@media (max-width: 768px) {
+  .container {
+    width: 100%; /* Adjust width for smaller screens */
+    padding: 1rem; /* Reduce padding */
+  }
+}
