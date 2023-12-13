@@ -3,6 +3,8 @@ import React, { useState , useEffect} from 'react';
 import VideoList from '../../components/Premium/VideosPage/VideoList';
 import VideoCard from '../../components/Premium/VideosPage/VideoCard';
 import SearchIcon from '@mui/icons-material/Search';
+import Header from '../../components/Header/Header';
+import SidebarNav from '../../components/SideBarNav/SidebarNav';
 
 const VideosPage: React.FC = () => {
   const initialVideos = [
@@ -22,6 +24,7 @@ const VideosPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSearchSticky, setIsSearchSticky] = useState(false);
+  let [menuState, setMenuState] = React.useState(false);
 
   const handleSearch = () => {
     const filteredVideos = initialVideos.filter((video) =>
@@ -53,6 +56,10 @@ const VideosPage: React.FC = () => {
 
   return (
     <div className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-200 via-gray-300 to-gray-100">
+
+<Header menuState={menuState} setMenuState={setMenuState}/>
+        <SidebarNav menuState={menuState} setMenuState={setMenuState}/>
+
       <div
         className={`text-center pt-2 relative transition ${
           isSearchSticky ? 'fixed top-0 left-0 right-0 z-20' : ''
