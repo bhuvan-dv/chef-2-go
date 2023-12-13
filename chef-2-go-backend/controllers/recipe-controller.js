@@ -59,17 +59,17 @@ export const get = async (request, response) => {
 //Create a new recipe
 export const post = async (request, response) => {
     try {
-        console.log(`body: ${request}`);
+        console.log(`body: ${JSON.stringify(request.body)}`);
         const newRecipe = { ...request.body };
-        console.log(`recipe: ${newRecipe}`);
         const recipe = await recipeService.save(newRecipe);
+        console.log(`recipe: ${JSON.stringify(recipe)}`);
         response.status(200)
             .json(recipe);
     } catch (err) {
         response.status(401)
             .json({
                 code: "Error",
-                message: "Unauthorized request"
+                message: err.message
             })
     }
 }

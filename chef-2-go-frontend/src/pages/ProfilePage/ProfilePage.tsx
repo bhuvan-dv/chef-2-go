@@ -9,6 +9,9 @@ import User from '../../models/user';
 import storage from '../../Firebase/firebase'
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from 'react-router-dom';
+import Recipe from '../../models/Recipe';
+import { get } from 'http';
+import { getRecipesByChefId } from '../../services/recipe';
 // import { v4} from 'uuid';
 
 const ProfilePage = () => {
@@ -26,12 +29,26 @@ const ProfilePage = () => {
   const [password, setPassword] = useState<string>('');
   const [open, setOpen] = React.useState(false);
   const [showPasswordRequired, setShowPasswordRequired] = useState(false);
-
+  const [ChefRecipes, setChefRecipes] = useState<Recipe[]>([]);
 
   useEffect(() => {
     setEditedUser(currentUser);
   }, [currentUser]);
 
+  useEffect(() => {
+    if (currentUser?.role === 'chef') {
+      console.log(`currentUser: ${currentUser?._id}`);
+      
+      getRecipesByChefId(currentUser?._id).then((response: any) => {
+        console.log(`response: ${response.data}`);
+        
+        if (response) {
+          setChefRecipes(response.data);
+        }
+      }
+      );
+    }
+  }, []);
   const openEditModal = () => {
     setIsEditing(true);
   };
@@ -142,6 +159,10 @@ const ProfilePage = () => {
     } catch (error) {
       console.error('Error deleting account:', error);
     }
+  }
+
+  const handleAddRecipe = () => {
+    navigate('/addrecipe');
   }
 
   return (
@@ -281,6 +302,28 @@ const ProfilePage = () => {
           </div>
         </Box>
       </Modal>
+
+
+      {/* Recipes specifically for chef */}
+      <div>
+        <div>
+          <button onClick={handleAddRecipe}>Add Recipe</button>
+        </div>
+        <div>
+          {currentUser?.role === 'chef' &&
+            <div>
+              <p>Recipes:</p>
+              {ChefRecipes && ChefRecipes.map((recipe: Recipe) => (
+                <div key={recipe._id}>
+                  <img src={recipe.imageUrl} alt="" />
+                  <p>Name: {recipe.name}</p>
+                  <p>Summary: {recipe.summary}</p>
+                </div>
+              ))}
+            </div>
+          }
+        </div>
+      </div>
     </div>
   );
 };

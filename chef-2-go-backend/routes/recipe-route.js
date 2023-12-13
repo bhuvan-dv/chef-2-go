@@ -8,20 +8,20 @@ import verifyToken from '../middleware/auth.js';
 const reciperouter = express.Router();
 reciperouter.route('/')
    .get(recipeController.findAll)
-   .post(verifyToken,recipeController.post)
+   .post(recipeController.post)
 
    reciperouter.route('/:id')
    .get(recipeController.get)
-   .put(verifyToken,recipeController.put)
-   .delete(verifyToken,recipeController.remove);
+   .put(recipeController.put)
+   .delete(recipeController.remove);
 
    reciperouter.route('/:id/comments')
-   .post(verifyToken,commentController.post);
+   .post(commentController.post);
 
    reciperouter.route('/:id/comments/:id')
-   .get(verifyToken,commentController.find)
-   .delete(verifyToken,commentController.remove)
-   .put(verifyToken,commentController.put);
+   .get(commentController.find)
+   .delete(commentController.remove)
+   .put(commentController.put);
 
    reciperouter.route('/byChef/:id')
    .get(recipeController.findByChefId);
