@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Link, TextField, Card, Button } from "@mui/material";
+import { Link, TextField, Card, Button, Typography, ThemeProvider, createTheme, Paper, Box, } from "@mui/material";
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 import { otpVerification, sendOTP } from "../../services/UserAPI";
 import logo from "./Wavy_Tech-17_Single-03.jpg";
@@ -12,20 +12,23 @@ import {
   resendOTPStyle,
 } from "./OTPVerificatoinPage.styles";
 import { stat } from "fs";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import VerificationLoader from "../../components/OTPVerification/VerificationLoader";
 
 type OTPVerificationPageProps = {
-    email: string;
-    otpSecret: string;
-    };
+  email: string;
+  otpSecret: string;
+};
 
 // OTP Verification Component
 const OTPVerificationPage: React.FC = () => {
   const state = useLocation().state as OTPVerificationPageProps;
 
   console.log(state);
-  const [email] = useState<string>( state?state.email:"patil.basavaraj@gmail.com");
+  const [email] = useState<string>(state ? state.email : "patil.basavaraj@gmail.com");
   const [OTP, setOTP] = useState<string>("");
-  const [otpSecret, setOtpSecret] = useState<string>(state?state.otpSecret:"123456");
+  const [otpSecret, setOtpSecret] = useState<string>(state ? state.otpSecret : "123456");
   const [otpMisMatchError, setOtpMisMatchError] = useState<string | null>(null);
   const [isValidOTP, setIsValidOTP] = useState<boolean>(true);
   const [isOTPVerified, setIsOTPVerified] = useState<boolean>(false);
@@ -100,6 +103,7 @@ const OTPVerificationPage: React.FC = () => {
       .then((res) => {
         if (res.status === 201) {
           setIsOTPVerified(true);
+          toast.success('OTP Verified Successfully!');
           setTimeout(() => {
             navigate("/");
           }, 1000);
@@ -123,78 +127,111 @@ const OTPVerificationPage: React.FC = () => {
     setOTP(event.target.value);
     setOtpMisMatchError(null);
   };
-
+  const theme = createTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            fontSize: '1rem',
+            textTransform: 'none',
+          },
+        },
+      },
+    },
+    typography: {
+      fontSize: 18,
+      fontFamily: 'Morion',
+    },
+    palette: {
+      secondary: {
+        main: '#38524f',
+        dark: 'hsl(43, 21%, 94%)',
+        light: 'hsl(43, 21%, 94%)',
+      },
+    },
+  });
   return (
-    <div className="flex justify-between">
-      <div className="sign-up-Image-container w-1/2">
-        <img className="signUp-Image" src={logo} alt="OTP verification" />
-      </div>
-      <div className="signup-form-container w-1/2 self-center h-fullvh">
-        <Card
-          sx={{ boxShadow: 7, borderRadius: 3 }}
-          className="otpVerification-card"
-        >
-          {isOTPVerified ? (
-            <>
-              <CheckCircleOutlineRoundedIcon
-                sx={otpVerifiedIconStyle}
-              ></CheckCircleOutlineRoundedIcon>
-              <h2 className="otpVerifiedText">OTP Verified </h2>
-            </>
-          ) : (
-            <>
-              <h1 className="otpVerification-heading">OTP Verification</h1>
-              <div className="otpField">
-                <TextField
-                  style={otpFieldStyle}
-                  color="secondary"
-                  id="outlined-password-input"
-                  type="text"
-                  placeholder="Enter OTP"
-                  value={OTP}
-                  onChange={handleOTPOnChange}
-                  required
-                  error={!isValidOTP}
-                />
-                {<h5 style={otpErrorStyle}>{otpMisMatchError}</h5>}
-              </div>
-              <div className="countdown-text">
-                {seconds > 0 || minutes > 0 ? (
-                  <p className="counter">
-                    Time Remaining:{" "}
-                    <span className="time">
-                      {minutes < 10 ? `0${minutes}` : minutes}:
-                      {seconds < 10 ? `0${seconds}` : seconds}
-                    </span>
-                  </p>
-                ) : (
-                  <p className="otp-NotRecieved-text">
-                    Didn't recieve code?{" "}
-                    <Link
-                      className="resend-otp"
-                      style={resendOTPStyle}
-                      onClick={handleResendOTP}
-                    >
-                      Resend OTP
-                    </Link>
-                  </p>
-                )}
-              </div>
-              <div className="otpSubmitButton">
-                <Button
-                  style={otpButtonStyle}
-                  type="submit"
-                  variant="contained"
-                  onClick={handleVerification}
-                >
-                  submit
-                </Button>
-              </div>
-            </>
-          )}
-        </Card>
-      </div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Paper className="border p-4 my-4 rounded-md bg-gray-100" sx={{ marginTop: "10vh", marginLeft: "10vw", marginRight: "10vw", }}>
+        <Typography className="block" variant="h4" sx={{ textAlign: "center", paddingTop: 2 }} gutterBottom>
+          Please Verify Your OTP
+        </Typography>
+
+        <Box sx={{ display: "flex", justifyContent: "space-around", width: "80vw", margin: "auto auto", height: "70vh" }}>
+          <VerificationLoader />
+          <Paper elevation={3} sx={{
+            display: 'flex',
+            flexDirection: "column",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            margin: "2em",
+            border: "2px solid hsl(43, 21%, 94%)",
+            transition: "border-color 0.2s ease-in-out",
+            '&:hover': {
+              borderColor: "hsl(43, 21%, 74%)",
+            },
+            width: "24em",
+          }} className="otpVerification-card">
+            {isOTPVerified ? (
+              <Box>
+                <CheckCircleOutlineRoundedIcon sx={otpVerifiedIconStyle} />
+                <Typography variant="h6" className="otpVerifiedText">
+                  OTP Verified
+                </Typography>
+              </Box>
+            ) : (
+              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <Typography variant="h6" className="otpVerification-heading">
+                  OTP Verification
+                </Typography>
+                <Box className="otpField" sx={{ padding: 4 }}>
+                  <TextField
+                    color="secondary"
+                    id="outlined-password-input"
+                    type="text"
+                    label="Enter OTP"
+                    value={OTP}
+                    onChange={handleOTPOnChange}
+                    required
+                    error={!isValidOTP}
+                    variant="outlined"
+                  />
+                  {otpMisMatchError && <Typography style={otpErrorStyle}>{otpMisMatchError}</Typography>}
+                </Box>
+                <Box className="countdown-text" sx={{ padding: 2 }}>
+                  {seconds > 0 || minutes > 0 ? (
+                    <Typography className="counter">
+                      Time Remaining:{" "}
+                      <span className="time">
+                        {minutes < 10 ? `0${minutes}` : minutes}:
+                        {seconds < 10 ? `0${seconds}` : seconds}
+                      </span>
+                    </Typography>
+                  ) : (
+                    <Typography className="otp-NotRecieved-text">
+                      Didn't receive code?{" "}
+                      <Link className="resend-otp" style={resendOTPStyle} onClick={handleResendOTP}>
+                        Resend OTP
+                      </Link>
+                    </Typography>
+                  )}
+                </Box>
+                <Box className="otpSubmitButton" sx={{ padding: 2 }}>
+                  <Button
+                    style={otpButtonStyle}
+                    type="submit"
+                    variant="contained"
+                    onClick={handleVerification}
+                  >
+                    Submit
+                  </Button>
+                </Box>
+              </Box>
+            )}
+          </Paper>
+        </Box>
+      </Paper>
+    </ThemeProvider>
   );
 };
 
