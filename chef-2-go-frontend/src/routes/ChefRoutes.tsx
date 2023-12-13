@@ -24,6 +24,7 @@ import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import Videos from "../pages/VideosPage/Videos";
 import PaymentPage from "../pages/PaymentPage";
 import Addrecipe from "../components/AddRecipe/Addrecipe";
+import ContactUS from "../pages/ContactUS/ContactUS";
 
 let ChefRoutes = () => {
     let ChefTwoGoRoutes = useRoutes([
@@ -111,6 +112,10 @@ let ChefRoutes = () => {
         {
             path: "addrecipe",
             element: <Addrecipe />
+        },
+        {
+            path:"contact",
+            element:<ContactUS/>
         }
     ]);
 
