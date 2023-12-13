@@ -21,6 +21,8 @@ import Backdrop from '@mui/material/Backdrop';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Loader from '../../components/loader/Loader';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import { v4} from 'uuid';
 
 interface FadeProps {
@@ -212,7 +214,17 @@ const ProfilePage = () => {
 
   const handleAccountDelete = async () => {
     try {
-      alert('Are you sure you want to delete your account?');
+      // alert('Are you sure you want to delete your account?');
+      toast.warn('Are you sure you want to delete your account?', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       const id = currentUser?._id || '';
       const response = await deleteProfile(id);
       console.log(response);
