@@ -10,5 +10,10 @@
     "right.navbar.mission":"Mission",
     "right.navbar.chefs":"Chefs",
     "right.navbar.recipes":"Recipes",
-    "right.navbar.shop":"Shop"
+    "right.navbar.shop":"Shop",
+    "searchrecipe.search":"Explore Our Recipes",
+    "searchchef.searchbar.chef": "Enter Chefs Name",
+    "searchrecipe.searchbar.recipe": "Enter Recipe Name",
+    "searchbar.searchbutton": "Search",
+    "searchrecipe.viewrecipebutton": "View Recipe"
 }
