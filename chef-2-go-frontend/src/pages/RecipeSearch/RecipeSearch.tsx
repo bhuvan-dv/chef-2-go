@@ -9,6 +9,8 @@ import { setRecipes } from '../../store/slice/recipe-slice';
 import Recipe from '../../models/Recipe';
 import { AppState } from '../../store';
 import { useTranslation } from 'react-i18next';
+import Header from '../../components/Header/Header';
+import SidebarNav from '../../components/SideBarNav/SidebarNav';
 
 type TopRecipesProps = Recipe[];
 
@@ -17,6 +19,9 @@ const RecipeSearch: React.FC = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const recipesPerPage = 9; 
+
+  let [menuState, setMenuState] = React.useState(false);
+
 
   const recipes: TopRecipesProps = useSelector((state: AppState) => state.recipes.recipes);
 
@@ -44,6 +49,8 @@ const RecipeSearch: React.FC = () => {
 
   return (
     <div className="container mx-auto my-8 flex justify-center flex-col gap-5">
+            <Header menuState={menuState} setMenuState={setMenuState}/>
+        <SidebarNav menuState={menuState} setMenuState={setMenuState}/>
       <div className="relative">
         <img
           src="https://bigtreefarms.com/wp-content/uploads/2022/07/BTF_RecipeHeader-1-scaled.jpg"

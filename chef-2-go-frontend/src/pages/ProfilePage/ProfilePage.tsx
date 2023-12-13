@@ -23,6 +23,8 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Loader from '../../components/loader/Loader';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Header from '../../components/Header/Header';
+import SidebarNav from '../../components/SideBarNav/SidebarNav';
 // import { v4} from 'uuid';
 
 interface FadeProps {
@@ -79,7 +81,7 @@ const style = {
 };
 
 const ProfilePage = () => {
-  const currentUser = useSelector((state: AppState) => state.users.currentUser);
+  const currentUser:any = useSelector((state: AppState) => state.users.currentUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -274,8 +276,12 @@ const ProfilePage = () => {
     whiteSpace: 'nowrap',
     width: 1,
   });
+  let [menuState, setMenuState] = React.useState(false);
+
   return (
     <ThemeProvider theme={theme}>
+            <Header menuState={menuState} setMenuState={setMenuState}/>
+        <SidebarNav menuState={menuState} setMenuState={setMenuState}/>
       <Paper className="border p-4 my-4 rounded-md bg-gray-100" sx={{ marginTop: "10vh", marginLeft: "10vw", marginRight: "10vw", }}>
         <Typography className="block" variant="h4" sx={{ textAlign: "center", paddingTop: 2 }} gutterBottom>
           Profile Management Hub

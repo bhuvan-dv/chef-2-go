@@ -5,6 +5,8 @@ import './ContactUS.css';
 import Swal from 'sweetalert2';
 import emailjs from 'emailjs-com';
 import 'semantic-ui-css/semantic.min.css';
+import Header from "../../components/Header/Header";
+import SidebarNav from "../../components/SideBarNav/SidebarNav";
 
 
 const SERVICE_ID = "service_sgt942r";
@@ -31,9 +33,12 @@ const ContactFormComponent = () => {
       });
     e.target.reset()
   };
+  let [menuState, setMenuState] = React.useState(false);
 
 return (
     <div className="ContactFormComponent">
+            <Header menuState={menuState} setMenuState={setMenuState}/>
+        <SidebarNav menuState={menuState} setMenuState={setMenuState}/>
       <Form onSubmit={handleOnSubmit}>
         <Form.Field
           id='form-input-control-email'

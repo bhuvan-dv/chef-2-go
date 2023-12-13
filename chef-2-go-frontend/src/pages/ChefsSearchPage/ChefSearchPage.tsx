@@ -8,6 +8,8 @@ import { AppState } from '../../store'
 import { getAllRegisteredUsers } from '../../services/UserAPI'
 import { setChefs } from '../../store/slice/user-slice'
 import { Button } from '@mui/material'
+import Header from '../../components/Header/Header'
+import SidebarNav from '../../components/SideBarNav/SidebarNav'
 
 type ChefPageProps = {
   chefs : chef[]
@@ -26,6 +28,8 @@ const ChefSearchPage = () => {
   const indexOfFirstChef = indexOfLastChef - chefsPerPage;
   const currentChefs = chefs.slice(indexOfFirstChef, indexOfLastChef);
   
+  let [menuState, setMenuState] = React.useState(false);
+
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -47,6 +51,8 @@ const ChefSearchPage = () => {
   return (
     <div className="container mx-auto my-8 flex justify-center flex-col gap-5">
       {/* Rectangular Full-Width Image Section */}
+      <Header menuState={menuState} setMenuState={setMenuState}/>
+        <SidebarNav menuState={menuState} setMenuState={setMenuState}/>
       <div className="relative">
         <img 
           src="https://i.guim.co.uk/img/media/711a2a1f3c565840eae28bb27cf087c221b05bd9/0_322_5760_3456/master/5760.jpg?width=465&dpr=1&s=none" // Replace with your actual image URL
