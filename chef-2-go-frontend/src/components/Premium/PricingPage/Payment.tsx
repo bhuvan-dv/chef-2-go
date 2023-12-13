@@ -3,17 +3,18 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 interface PaymentProps {
-    price : number
+  price: number;
 }
 
-const Payment = (props : PaymentProps) => {
+const Payment: React.FC<PaymentProps> = (props) => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
-//   const [amount, setAmount] = useState<number>(parseFloat(match.params.price) || 0);
-    const amount = props.price;
+  const navigate = useNavigate();
+  const amount = props.price;
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -45,6 +46,11 @@ const Payment = (props : PaymentProps) => {
           if (response.ok) {
             console.log('Payment successful!');
             toast.success('Payment successful!');
+
+            // Wait for a few seconds before routing to /videos
+            setTimeout(() => {
+              navigate('/videos');
+            }, 3000);
           } else {
             console.error('Payment failed.');
             toast.error('Payment failed. Please try again.');
