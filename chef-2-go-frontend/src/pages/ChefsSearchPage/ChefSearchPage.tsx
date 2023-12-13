@@ -9,6 +9,7 @@ import { getAllRegisteredUsers } from '../../services/UserAPI'
 import { setChefs } from '../../store/slice/user-slice'
 import { Button } from '@mui/material'
 
+
 type ChefPageProps = {
   chefs : chef[]
 }
@@ -54,8 +55,8 @@ const ChefSearchPage = () => {
           className="w-full h-64 object-cover"
         />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-black">
-          <h2 className="text-4xl font-bold mb-4">Explore our Top Chef pages</h2>
-          <p className="text-xl">Discover talented chefs and their signature recipes.</p>
+          <h2 className="text-4xl font-bold mb-4">{t("searchchef.header")}</h2>
+          <p className="text-xl">{t("searchchef.text")}</p>
         </div>
       </div>
       <div className="self-center">
