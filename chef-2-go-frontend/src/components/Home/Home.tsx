@@ -222,15 +222,15 @@ const Home = () => {
           <div className="h-fullvh">
             <div className="text-container text-9xl font-Morion font-bold text-soft-mint-green  float float-right pr-32 pt-40">
               <div className="tagline-container">
-                <p ref={wildTextRef} id="wild-text">Wild.</p>
+                <p ref={wildTextRef} id="wild-text">Desi.</p>
               </div>
               <div>
-                <p ref={sustTextRef} id="sust-text">Sustainable.</p>
+                <p ref={sustTextRef} id="sust-text">Expeditious.</p>
               </div>
               <div className="flex items-center gap-4">
                 <img ref={compassRef} src={compassSvg} alt="" className="h-44" />
                 <p ref={deliciousTextRef} id="delicious-text">
-                  Delicious.
+                Delicious.
                 </p>
               </div>
             </div>
@@ -242,7 +242,7 @@ const Home = () => {
           {/* second page */}
           <div>
             {/* img holder */}
-            <img src={mainFirstImage} alt="" />
+            <img src={mainFirstImage} alt="" className= "bg-cover" />
           </div>
           {/* end of second page */}
 
@@ -254,7 +254,7 @@ const Home = () => {
             <div className="flex pt-44 gap-12">
               {/* Image and text holder */}
               <div className="chef-img-holder">
-                <img ref={chefRef} src={chefImage} alt="" className="w-3/4 h-3/5 float-right" />
+                <img ref={chefRef} src={chefImage} alt="" className="w-3/4 h-3/5 float-right bg-cover" />
               </div>
               <div className="right-side-text-food-img-holder flex flex-col gap-44 justify-center">
                 <div className="text-holder flex">
