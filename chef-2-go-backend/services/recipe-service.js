@@ -39,3 +39,7 @@ export const remove = async (id) => {
 export const findAll = async () => {
     return await Recipe.find().exec();;
 } //path: final-project-peri-peri/chef-2-go-backend/services/comment-service.js
+
+export const findByChefId = async (id) => {
+    return await Recipe.find({ chefId: id }).exec();
+};
