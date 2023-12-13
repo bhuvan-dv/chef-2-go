@@ -44,3 +44,12 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Run with PWA
+
+For PWA to work follow below instructions.
+
+1. Run `npm i`.
+2. Run `npm run build`.
+3. Run `npm server -s build`.
+4. The Course App should be accessible at `http://localhost:3000`.

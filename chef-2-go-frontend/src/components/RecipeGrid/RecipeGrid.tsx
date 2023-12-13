@@ -6,14 +6,18 @@ import { getAllRecipes } from '../../services/recipe';
 import { AppState } from '../../store';
 import { setRecipes } from '../../store/slice/recipe-slice';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const RecipeGrid = () => {
-
+interface RecipeGridProps {
+  recipes : Recipe[]
+}
+const RecipeGrid = ( props: RecipeGridProps ) => {
+    const { t } = useTranslation('common');
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const recipes = useSelector((state: AppState) => state.recipes);
+    const recipes = props.recipes;// useSelector((state: AppState) => state.recipes);
     const searchTerm = useSelector((state: AppState) => state.recipes.searchTerm);
-    const filteredRecipes = recipes.recipes.filter((recipe) =>
+    const filteredRecipes = recipes.filter((recipe) =>
       recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -54,7 +58,7 @@ const RecipeGrid = () => {
         </CardContent>
         {/* View Recipe Button */}
         <Button variant="contained" color="primary" onClick={() => handleRecipeView(recipe._id)}>
-          View Recipe
+        {t("searchrecipe.viewrecipebutton")}
         </Button>
       </Card>
     </Grid>
