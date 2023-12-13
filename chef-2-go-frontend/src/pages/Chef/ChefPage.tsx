@@ -1,6 +1,8 @@
 import React from 'react';
 import './ChefPage.css'
 import { Card, CardContent, Typography, CardMedia, Grid, Button } from '@mui/material';
+import Header from '../../components/Header/Header';
+import SidebarNav from '../../components/SideBarNav/SidebarNav';
 
 interface Chef {
   id: number;
@@ -16,9 +18,13 @@ interface TopChefsProps {
 
 const ChefPage: React.FC<TopChefsProps> = ({ chefs }) => {
   document.title = "Top Chefs";
+  let [menuState, setMenuState] = React.useState(false);
+
   return (
     <div className="container mx-auto my-8">
       {/* Rectangular Full-Width Image Section */}
+      <Header menuState={menuState} setMenuState={setMenuState}/>
+        <SidebarNav menuState={menuState} setMenuState={setMenuState}/>
       <div className="relative">
         <img
           src="https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg" // Replace with your actual image URL
