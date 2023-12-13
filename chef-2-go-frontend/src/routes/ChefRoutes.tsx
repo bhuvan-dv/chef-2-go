@@ -25,9 +25,14 @@ import Videos from "../pages/VideosPage/Videos";
 import PaymentPage from "../pages/PaymentPage";
 import Addrecipe from "../components/AddRecipe/Addrecipe";
 import IndividualChefPage from "../pages/IndividualChefPage/IndividualChefPage";
-
+import { createBrowserRouter, redirectDocument } from 'react-router-dom';
 let ChefRoutes = () => {
     let ChefTwoGoRoutes = useRoutes([
+        {
+            path: '/service-worker.js',
+            loader: () => redirectDocument("/service-worker.js")
+
+        },
         {
             path: "/",
             element: <HomePage />,
