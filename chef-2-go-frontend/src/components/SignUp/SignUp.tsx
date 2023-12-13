@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Button, TextField, Tooltip, Zoom, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { Card, Button, TextField, Tooltip, Zoom, InputLabel, MenuItem, Select, SelectChangeEvent, Typography, ThemeProvider, createTheme, Paper, Box, FormControl, RadioGroup, FormControlLabel, Radio, } from '@mui/material';
 // import logo from '../../assets/images/Project Management-2.jpg';
 import { registerUser } from '../../services/UserAPI';
 import { signUpField } from './SignUp.styles';
 import { confirmPasswordStyle } from './SignUp.styles';
 import { emailValidateStyle, sigUpButtonStyle } from './SignUp.styles';
 import './/SignUp.styles'
+import SignUpLoader from './SignUpLoader';
 
 // SignUp Component
 const SignUp = () => {
@@ -28,7 +29,7 @@ const SignUp = () => {
     'Password requires at least one number, Uppercase, Lowercase, special Character with a min of 8 characters';
   const navigate = useNavigate();
 
-  const handleRoleChange = (event:SelectChangeEvent) => {
+  const handleRoleChange = (event: SelectChangeEvent) => {
     setRole(event.target.value as string);
   };
 
@@ -51,6 +52,7 @@ const SignUp = () => {
     form_data.append('username', username);
 
     // API Call for Registering User and Generating OTP
+    try{
     registerUser(form_data)
       .then((res) => {
         console.log('email here: ', email);
@@ -66,6 +68,10 @@ const SignUp = () => {
         }
         console.log(err.response.data);
       });
+    }
+    catch(e : any){
+      alert(`${e.message}`)
+    }
   };
 
   // Validating Email using Regex
@@ -139,114 +145,165 @@ const SignUp = () => {
     }
     setConfirmPassword(event.target.value);
   };
-
+  const theme = createTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            fontSize: '1rem',
+            textTransform: 'none',
+          },
+        },
+      },
+    },
+    typography: {
+      fontSize: 18,
+      fontFamily: 'Morion',
+    },
+    palette: {
+      secondary: {
+        main: '#38524f',
+        dark: 'hsl(43, 21%, 94%)',
+        light: 'hsl(43, 21%, 94%)',
+      },
+    },
+  });
   return (
-    <div>
-      <div className="sign-up-Image-container">
-        {/* <img className="signUp-Image" src={logo} alt="Sign UP" /> */}
-      </div>
-      <div className="signup-form-container">
-        <Card sx={{ boxShadow: 7, borderRadius: 3 }} className="signup-card">
-          <h1 className="signup-heading">Sign Up</h1>
-          <form className="regForm" onSubmit={handleSignUp}>
-            <div className="formElements">
-              <TextField
-                style={signUpField}
-                id="outlined-password-input"
-                label="Name"
-                type="text"
-                placeholder="Enter Your Name"
-                value={name}
-                onChange={handleNameOnChange}
-                required
-                error={!isValidUsername}
-              />
-            </div>
-            <div className="formElements">
-              <TextField
-                style={signUpField}
-                id="outlined-password-input"
-                label="Username"
-                type="text"
-                placeholder="Enter Your username"
-                value={username}
-                onChange={handleUserNameOnChange}
-                required
-                error={!isValidUsername}
-              />
-            </div>
-            <div className="formElements">
-              <TextField
-                style={signUpField}
-                id="outlined-password-input"
-                label="Email"
-                type="email"
-                placeholder="Enter Your Email"
-                value={email}
-                onChange={handleEmailOnChange}
-                required
-                error={!isValidEmail}
-              />
-              {<h5 style={emailValidateStyle}>{emailError}</h5>}
-            </div>
-            <div className="formElements">
-              <Tooltip TransitionComponent={Zoom} open={isToolTipOpen} title={passwordRequirementText} TransitionProps={{ timeout: 500 }} arrow>
-                <TextField
-                  style={signUpField}
-                  onMouseEnter={() => setIsToolTipOpen(true)}
-                  onMouseLeave={() => setIsToolTipOpen(false)}
-                  id="outlined-password-input"
-                  label="Password"
-                  type="password"
-                  placeholder="Enter Your Password"
-                  value={password}
-                  onChange={handlePasswordOnChange}
-                  required
-                  error={!isValidPassword}
-                />
-              </Tooltip>
-            </div>
-            <div className="confirmPasswordField">
-              <TextField
-                style={signUpField}
-                id="outlined-password-input"
-                label="Confirm Password"
-                type="password"
-                placeholder="Retype Your Password"
-                value={confirmPassword}
-                onChange={handleConfirmPasswordOnChange}
-                required
-                error={!isMatchConfirmPassword}
-              />
-              {<h5 style={confirmPasswordStyle}>{passwordMatchError}</h5>}
-            </div>
-            {/* user Roles */}
-            <InputLabel id="demo-simple-select-label">Role</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={role}
-          label="Role"
-          onChange={handleRoleChange}
-          className="formElements"
-        >
-          <MenuItem value={"customer"}>customer</MenuItem>
-          <MenuItem value={"chef"}>chef</MenuItem>
-        </Select>
-            <div className="signup-button">
-              <Button style={sigUpButtonStyle} type="submit" variant="contained">
-                Sign Up
-              </Button>
-            </div>
-            <div>
-              <p>
-                Existing User? <a className="signupToLogin" href="/login">Login</a>
-              </p>
-            </div>
-          </form>
-        </Card>
-      </div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Box>
+        <Paper className="sign-up-Image-container border p-4 my-4 rounded-md bg-gray-100" sx={{ marginTop: "10vh", marginLeft: "10vw", marginRight: "10vw", }}>
+          <Typography className="block" variant="h4" sx={{ textAlign: "center", paddingTop: 2 }} gutterBottom>
+            Sign Up
+          </Typography>
+          <Box className="signup-form-container" sx={{ display: "flex", justifyContent: "space-around", width: "80vw", margin: "auto auto", height: "70vh" }}>
+            <SignUpLoader />
+            <Box >
+              <Paper elevation={3} sx={{
+                display: 'flex',
+                flexDirection: "column",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+                margin: "2em",
+                border: "2px solid hsl(43, 21%, 94%)",
+                transition: "border-color 0.2s ease-in-out",
+                '&:hover': {
+                  borderColor: "hsl(43, 21%, 74%)",
+                },
+                width: "26em",
+                height: "42em",
+              }} className="signup-card">
+                <form className="regForm" onSubmit={handleSignUp}
+                  style={{border:"none`", height: "40em", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center",}}>
+                  <Box className="formElements">
+                    <TextField
+                      style={signUpField}
+                      sx={{ width: 300, }}
+                      id="outlined-password-input"
+                      label="Name"
+                      type="text"
+                      placeholder="Enter Your Name"
+                      value={name}
+                      onChange={handleNameOnChange}
+                      required
+                      error={!isValidUsername}
+                    />
+                  </Box>
+                  <Box className="formElements">
+                    <TextField
+                      style={signUpField}
+                      id="outlined-password-input"
+                      label="Username"
+                      type="text"
+                      placeholder="Enter Your username"
+                      value={username}
+                      onChange={handleUserNameOnChange}
+                      required
+                      error={!isValidUsername}
+                    />
+                  </Box>
+                  <Box className="formElements">
+                    <TextField
+                      style={signUpField}
+                      id="outlined-password-input"
+                      label="Email"
+                      type="email"
+                      placeholder="Enter Your Email"
+                      value={email}
+                      onChange={handleEmailOnChange}
+                      required
+                      error={!isValidEmail}
+                    />
+                    {<h5 style={emailValidateStyle}>{emailError}</h5>}
+                  </Box>
+                  <div className="formElements">
+                    <Tooltip TransitionComponent={Zoom} open={isToolTipOpen} title={passwordRequirementText} TransitionProps={{ timeout: 500 }} arrow>
+                      <TextField
+                        style={signUpField}
+                        onMouseEnter={() => setIsToolTipOpen(true)}
+                        onMouseLeave={() => setIsToolTipOpen(false)}
+                        id="outlined-password-input"
+                        label="Password"
+                        type="password"
+                        placeholder="Enter Your Password"
+                        value={password}
+                        onChange={handlePasswordOnChange}
+                        required
+                        error={!isValidPassword}
+                      />
+                    </Tooltip>
+                  </div>
+                  <div className="confirmPasswordField">
+                    <TextField
+                      style={signUpField}
+                      id="outlined-password-input"
+                      label="Confirm Password"
+                      type="password"
+                      placeholder="Retype Your Password"
+                      value={confirmPassword}
+                      onChange={handleConfirmPasswordOnChange}
+                      required
+                      error={!isMatchConfirmPassword}
+                    />
+                    {<h5 style={confirmPasswordStyle}>{passwordMatchError}</h5>}
+                  </div>
+                  {/* user Roles */}
+                  {/* <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={role}
+                    label="Role"
+                    onChange={handleRoleChange}
+                    className="formElements"
+                  >
+                    <MenuItem value={"customer"}>customer</MenuItem>
+                    <MenuItem value={"chef"}>chef</MenuItem>
+                  </Select> */}
+                  <FormControl component="fieldset" >
+                    <RadioGroup aria-label="role" name="role" value={role} onChange={handleRoleChange}
+                    // sx={{display:"flex",flexDirection:"row",justifyContent:"space-evenly"}}
+                    >
+                      <FormControlLabel value="customer" control={<Radio />} label="Customer" />
+                      <FormControlLabel value="chef" control={<Radio />} label="Chef" />
+                    </RadioGroup>
+                  </FormControl>
+                  <div className="signup-button">
+                    <Button style={sigUpButtonStyle} type="submit" variant="contained">
+                      Sign Up
+                    </Button>
+                  </div>
+                  <div>
+                    <p>
+                      Existing User? <a className="signupToLogin" href="/login">Login</a>
+                    </p>
+                  </div>
+                </form>
+              </Paper>
+            </Box>
+          </Box>
+        </Paper>
+      </Box>
+    </ThemeProvider>
   );
 };
 
