@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './About.css';
+import { Link } from 'react-router-dom';
 
 interface TeamMemberProps {
     name: string;
@@ -109,7 +110,11 @@ const About: React.FC = () => {
                     Explore our website, discover new recipes, and embark on a delightful culinary
                     journey with us!
                 </p>
-                <button className="get-started-button">Get Started</button>
+                <br></br>
+                <div>
+                <Link className="get-started-button" to="/login">Get Started</Link>
+                </div>
+                {/* <button className="get-started-button">Get Started</button> */}
             </div>
             <div className="meet-the-team">
                 <h2>Meet the Top Chefs</h2>
