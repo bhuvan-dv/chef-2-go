@@ -39,9 +39,9 @@ const UserSchema = new Schema({
         type:Boolean,
         default:false
     },
-    imageUrl: {
+    imageUrl:{
         type: String
-    }
+    },
 
 }, {versionKey: false, timestamps: true});
 

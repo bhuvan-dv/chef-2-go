@@ -17,7 +17,7 @@ const verifyToken = asyncHandler(async (request, response, next) => {
             next();
         } catch (err) {
             console.log(err);
-            response.status(401).send({ msg: `Not Authorized` });
+            response.status(401).send({ msg: `Not Authorized ${err.message}` });
         }
     }
     if (!token) {

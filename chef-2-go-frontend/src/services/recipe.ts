@@ -14,4 +14,8 @@ const createNewRecipes = async <T>(reqBody: Recipe): Promise<T[]> =>{
     return axiosInstance.post(path, reqBody);
 }
 
-export { getRecipes, getAllRecipes, createNewRecipes };
+const getRecipesByChefId = async <Recipe>(chefId: string): Promise<Recipe[]> => {
+    return axiosInstance.get(path+"/byChef/"+chefId);
+}
+
+export { getRecipes, getAllRecipes, createNewRecipes, getRecipesByChefId };

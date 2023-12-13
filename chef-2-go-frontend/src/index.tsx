@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import {store} from './store';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 const stripePromise = loadStripe('pk_test_51OLqYNIwNW49OitZDNQBwCphYDCStIMrIGNE91Z7Js4Uasu1AOxR6sngOmTLETyZbVA7lP019lt40mSlVsKgR2zS007CIDZkBK');
 
 const root = ReactDOM.createRoot(
@@ -26,6 +26,7 @@ root.render(
   </React.StrictMode>
 );
 
+serviceWorkerRegistration.register();
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

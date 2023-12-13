@@ -98,10 +98,10 @@ export const getUserByEmail = async (email) => {
 }
 
 export const updateUserDetails = async (id, user) => {
-    // console.log(id in service: ${id});
-    // console.log(user in service: ${user});
+    console.log(`id in service: ${id}`);
+    console.log(`user in service: ${user}`);
     const response = await getUserById(id);
-    // console.log(response: ${response});
+    console.log(`response: ${response}`);
     const objectId = new mongoose.Types.ObjectId(id);
     return await User.findOneAndUpdate({_id : id}, user, {new: true}).exec();
 }

@@ -1,15 +1,55 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import ChefsGrid from '../../components/ChefsGrid/ChefsGrid'
+import chef from '../../models/chef'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppState } from '../../store'
+import { getAllRegisteredUsers } from '../../services/UserAPI'
+import { setChefs } from '../../store/slice/user-slice'
+import { Button } from '@mui/material'
+
+type ChefPageProps = {
+  chefs : chef[]
+}
 
 const ChefSearchPage = () => {
+
+  const { t } = useTranslation('common');
+  const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
+  const chefsPerPage = 6;
+
+  const chefs : chef[] = useSelector((state: AppState) => state.users.chefs)
+  
+  const indexOfLastChef = currentPage * chefsPerPage;
+  const indexOfFirstChef = indexOfLastChef - chefsPerPage;
+  const currentChefs = chefs.slice(indexOfFirstChef, indexOfLastChef);
+  
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+  useEffect(() => {
+    // Fetch recipes when the component mounts
+    const fetchRecipes = async () => {
+      try {
+        const data = await getAllRegisteredUsers();
+        dispatch(setChefs(data.data));
+      } catch (error) {
+        console.error('Error fetching recipes', error);
+      }
+    };
+
+    fetchRecipes();
+  }, [dispatch]);
   return (
-    <div className="flex flex-col gap-5">
-     <div className="container mx-auto mt-8">
+    <div className="container mx-auto my-8 flex justify-center flex-col gap-5">
       {/* Rectangular Full-Width Image Section */}
       <div className="relative">
-        <img
-          src="https://cdn5.vectorstock.com/i/1000x1000/29/84/group-professionals-chef-cooking-vector-26812984.jpg" // Replace with your actual image URL
+        <img 
+          src="https://i.guim.co.uk/img/media/711a2a1f3c565840eae28bb27cf087c221b05bd9/0_322_5760_3456/master/5760.jpg?width=465&dpr=1&s=none" // Replace with your actual image URL
           alt="Full Width Image"
           className="w-full h-64 object-cover"
         />
@@ -18,13 +58,19 @@ const ChefSearchPage = () => {
           <p className="text-xl">Discover talented chefs and their signature recipes.</p>
         </div>
       </div>
-      </div>
       <div className="self-center">
         <SearchBar searchCategory="chef"/>
         </div>
          {/* Top Chefs Section */}
       {/* <h1 className="text-3xl font-bold mb-4 mt-8">Top Chefs and Their Recipes</h1> */}
-        <ChefsGrid />
+        <ChefsGrid chefs={currentChefs}/>
+        <div className="flex justify-center mt-4">
+        {Array.from({ length: Math.ceil(chefs.length / chefsPerPage) }).map((_, index) => (
+          <Button key={index} onClick={() => paginate(index + 1)}>
+            {index + 1}
+          </Button>
+        ))}
+      </div>
     </div>
   )
 }

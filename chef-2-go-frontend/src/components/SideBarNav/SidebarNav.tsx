@@ -81,11 +81,8 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
   };
 
   const verifyUserLogin = () => {
-    if(isLoggedin){
-      navigate('/search/chefs');
-    }else{
+    if(!isLoggedin){
       alert('Please log in to access this page');
-      navigate('/login');
     }
 
   };
@@ -112,14 +109,15 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
         <nav className="sidebarNavigation" ref={sidebarMenu}>
           <div className="sidebar-top">
             <div className="links-wrapper">
+              
+              <Link className="menu-link" to="/">
+                Home
+              </Link>
               {user &&
                 <button className="menu-link" onClick={handlenavigateProfile}>
                   {user?.username}
                 </button>
               }
-              <Link className="menu-link" to="/">
-                Home
-              </Link>
               <Link className="menu-link" to='/about'>
                 About
               </Link>
@@ -138,7 +136,7 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ menuState, setMenuState, isloge
                 </Link>
               }
               {!user &&
-                <Link className="menu-link" to="/testpath">
+                <Link className="menu-link" to="/signup">
                   Sign Up
                 </Link>}
             </div>

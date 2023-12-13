@@ -12,6 +12,7 @@ interface Recipe {
     video?: string;
     gifs?: string;
     comment: string | null,
+    chefId?: string;
     imageUrl: string;
 }
 export const recipes: Recipe[] = [

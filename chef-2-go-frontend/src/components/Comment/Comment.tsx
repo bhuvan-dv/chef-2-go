@@ -95,7 +95,7 @@ const Comment: React.FC<CommentProps> = ({
                             <TextField
                                 type="text"
                                 className="inputContainer__input first_input"
-                                autoFocus
+                                // autoFocus
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 placeholder="type..."
@@ -206,7 +206,7 @@ const Comment: React.FC<CommentProps> = ({
                             <TextField
                                 type="text"
                                 className="inputContainer__input"
-                                autoFocus
+                                // autoFocus
                                 onChange={(e) => setInput(e.target.value)}
                                 sx={{
                                     color: theme.palette.secondary.main,

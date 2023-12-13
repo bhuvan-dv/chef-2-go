@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Button, TextField, Tooltip, Zoom } from '@mui/material';
+import { Card, Button, TextField, Tooltip, Zoom, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 // import logo from '../../assets/images/Project Management-2.jpg';
 import { registerUser } from '../../services/UserAPI';
 import { signUpField } from './SignUp.styles';
@@ -10,20 +10,27 @@ import './/SignUp.styles'
 
 // SignUp Component
 const SignUp: React.FC = () => {
-  const [userName, setUserName] = useState<string>('');
+  const [username, setUserName] = useState<string>('');
+  const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [passwordMatchError, setPasswordMatchError] = useState<string | null>(null);
   const [isValidEmail, setIsValidEmail] = useState<boolean>(true);
   const [isValidUsername, setIsValidUsername] = useState<boolean>(true);
+  const [isValidname, setIsValidname] = useState<boolean>(true);
   const [isValidPassword, setIsValidPassword] = useState<boolean>(true);
   const [isMatchConfirmPassword, setIsMatchConfirmPassword] = useState<boolean>(true);
   const [emailError, setEmailError] = useState<string | null>(null);
   const [isToolTipOpen, setIsToolTipOpen] = useState<boolean>(false);
+  const [role, setRole] = useState<string>("customer");
   const passwordRequirementText =
     'Password requires at least one number, Uppercase, Lowercase, special Character with a min of 8 characters';
   const navigate = useNavigate();
+
+  const handleRoleChange = (event:SelectChangeEvent) => {
+    setRole(event.target.value as string);
+  };
 
   // Function to Handle SignUp onSubmit
   const handleSignUp = (e: React.FormEvent) => {
@@ -36,12 +43,12 @@ const SignUp: React.FC = () => {
 
     const form_data = new FormData();
 
-    form_data.append('userName', userName);
+    form_data.append('name', name);
     form_data.append('email', email);
     form_data.append('password', password);
     form_data.append('confirmPassword', confirmPassword);
-    form_data.append('role', 'chef');
-    form_data.append('username', `${userName}_zzz`);
+    form_data.append('role', role);
+    form_data.append('username', username);
 
     // API Call for Registering User and Generating OTP
     registerUser(form_data)
@@ -90,6 +97,15 @@ const SignUp: React.FC = () => {
     setEmail(event.target.value);
   };
 
+  // Function to handle UserName value onChange
+  const handleNameOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!validateUserName(event.target.value)) {
+      setIsValidname(false);
+    } else {
+      setIsValidname(true);
+    }
+    setName(event.target.value);
+  };
   // Function to handle UserName value onChange
   const handleUserNameOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!validateUserName(event.target.value)) {
@@ -140,7 +156,20 @@ const SignUp: React.FC = () => {
                 label="Name"
                 type="text"
                 placeholder="Enter Your Name"
-                value={userName}
+                value={name}
+                onChange={handleNameOnChange}
+                required
+                error={!isValidUsername}
+              />
+            </div>
+            <div className="formElements">
+              <TextField
+                style={signUpField}
+                id="outlined-password-input"
+                label="Username"
+                type="text"
+                placeholder="Enter Your username"
+                value={username}
                 onChange={handleUserNameOnChange}
                 required
                 error={!isValidUsername}
@@ -160,21 +189,6 @@ const SignUp: React.FC = () => {
               />
               {<h5 style={emailValidateStyle}>{emailError}</h5>}
             </div>
-            {/* users username */}
-            {/* <div className="formElements">
-              <TextField
-                style={signUpField}
-                id="outlined-password-input"
-                label="username"
-                type="text"
-                placeholder="Enter Your Username"
-                value={userName}
-                onChange={handleUserNameOnChange}
-                required
-                error={!isValidUsername}
-              />
-              {<h5 style={emailValidateStyle}>{emailError}</h5>}
-            </div> */}
             <div className="formElements">
               <Tooltip TransitionComponent={Zoom} open={isToolTipOpen} title={passwordRequirementText} TransitionProps={{ timeout: 500 }} arrow>
                 <TextField
@@ -206,6 +220,19 @@ const SignUp: React.FC = () => {
               />
               {<h5 style={confirmPasswordStyle}>{passwordMatchError}</h5>}
             </div>
+            {/* user Roles */}
+            <InputLabel id="demo-simple-select-label">Role</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={role}
+          label="Role"
+          onChange={handleRoleChange}
+          className="formElements"
+        >
+          <MenuItem value={"customer"}>customer</MenuItem>
+          <MenuItem value={"chef"}>chef</MenuItem>
+        </Select>
             <div className="signup-button">
               <Button style={sigUpButtonStyle} type="submit" variant="contained">
                 Sign Up

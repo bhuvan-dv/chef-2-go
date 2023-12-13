@@ -1,14 +1,9 @@
-interface User {
-    email: string;
-    password?: string;
+interface chef {
     name?: string;
     username: string;
     role: "admin" | "chef" | "customer"; // Define specific role values
-    isPremiumUser?: boolean;
-    token: string,
     _id: string;
     imageUrl?: string,
-    isVerified?: boolean,
 }
 
-export default User;
+export default chef;
