@@ -7,7 +7,6 @@ import { AppDispatch } from './store';
 import ChefRoutes from './routes/ChefRoutes';
 
 function App() {
-
   const dispatch = useDispatch<AppDispatch>();
   return (
     <Router>

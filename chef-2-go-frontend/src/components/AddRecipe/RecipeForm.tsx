@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { Button, TextField, Typography, Box } from '@mui/material';
+import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
+import { Button, TextField, Typography, Box, Input } from '@mui/material';
 import Recipe from '../../models/Recipe';
 
 import { styled } from '@mui/system';
@@ -7,12 +7,16 @@ import CustomTextArea from './CustomTextArea';
 import { createNewRecipes } from '../../services/recipe';
 import { AppState } from '../../store';
 import { useSelector } from 'react-redux';
+import storage from '../../Firebase/firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 interface RecipeFormProps {
     chefId: string;
 }
 
 const RecipeForm: React.FC<RecipeFormProps> = () => {
+
+    const [selectedFile, setSelectedFile] = useState<File | null | undefined>(null);
     const currentUser = useSelector((state: AppState) => state.users.currentUser);
     const [recipeData, setRecipeData] = useState<Recipe>({
         name: '',
@@ -25,14 +29,25 @@ const RecipeForm: React.FC<RecipeFormProps> = () => {
         imageUrl: '',
     });
 
-    const handleSubmit = (e : FormEvent<HTMLFormElement>) => {
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        setSelectedFile(file);
+      };
+
+    const handleSubmit =  async (e : FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (selectedFile != null || selectedFile != undefined) {
+            const storageRef = ref(storage, `recipes/${selectedFile?.name}`);
+          const response = await uploadBytesResumable(storageRef, selectedFile as Blob);
+          const url: string = await getDownloadURL(ref(storage, `recipes/${selectedFile?.name}`));
+          recipeData.imageUrl = url;
+          }
         const response : any= createNewRecipes<Recipe>(recipeData);
-        if(response.status === 200) {
+        if(response.status === 200 || response.status === 201) {
             alert('Recipe has been created successfully');
         }
         else {
-            alert('Error in adding Recipe, please try again');
+            alert('Error in adding Recipe, please try again'+response.status);
             setRecipeData({
                 name: '',
                 chef: currentUser?.name || '',
@@ -87,6 +102,13 @@ const RecipeForm: React.FC<RecipeFormProps> = () => {
                 margin="normal"
             />
             {/* Other fields go here: chef, summary, instructions, video, gifs, comment, imageUrl */}
+            <div>
+                <Input
+                    type= "file"
+                    name="Add Recipe Photo"
+                    placeholder="Add Recipe Image"
+                    onChange={handleFileChange} />
+            </div>
             <Typography variant="body1" gutterBottom>
                 Summary
             </Typography>

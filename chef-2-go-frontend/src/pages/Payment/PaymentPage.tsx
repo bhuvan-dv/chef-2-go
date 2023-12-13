@@ -12,6 +12,7 @@ type PaymentProps = {
 
 
 const PaymentPage = (props: PaymentProps) => {
+  document.title = "Payment";
 
     let location = useLocation();
     

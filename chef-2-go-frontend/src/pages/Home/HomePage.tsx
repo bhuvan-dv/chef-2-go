@@ -9,6 +9,7 @@ import SidebarNav from '../../components/SideBarNav/SidebarNav';
 const HomePage: React.FC = (): ReactElement => {
 
   let [menuState, setMenuState] = React.useState(false);
+    document.title = "Home";
     return (
         <>
       <Header menuState={menuState} setMenuState={setMenuState} />

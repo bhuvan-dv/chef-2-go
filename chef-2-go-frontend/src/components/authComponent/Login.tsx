@@ -1,6 +1,6 @@
 // react imports
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { setCurrentUser, setIsLoogedIn } from '../../store/slice/user-slice';
@@ -11,6 +11,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { PersonPinCircleOutlined, EmailOutlined, VpnKeyOutlined } from '@mui/icons-material';
+import Alert from '@mui/material/Alert';
 
 //css import
 import './Login.css';
@@ -24,15 +25,29 @@ const Login = (props: Props) => {
 
     // React Hooks
     // State hooks to handle the current state of the component
+    const location = useLocation();
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
+    
+    
     const [email, setEmail] = useState<string>("");
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [btnVarinat, setBtnVariant] = useState<'contained' | 'outlined'>('outlined');
     const [showPassword, setShowPassword] = useState(false);
-    const dispatch = useDispatch();
+    const [redirectTo, setRedirectTo] = useState('/');
+    const [isError, setIsError] = useState(false);
 
-    const navigate = useNavigate();
-
+    useEffect(() => {
+        // If the user directly lands on the login page, set redirectTo to home page
+        if (location.state && location.state.from === '/') {
+          setRedirectTo('/'); // Set to home page
+        } else {
+          // Otherwise, set redirectTo to the previous page
+          setRedirectTo(location.state?.from || '/');
+        }
+      }, [location.state]);
     // event handlers for mouse events and keyboard events
     const handleMouseEnter = () => {
         setBtnVariant('contained');
@@ -70,18 +85,23 @@ const Login = (props: Props) => {
             username: username,
             password: password
         }
+        try{
         const response = await loginUserService(reqBody);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
         dispatch(setIsLoogedIn(true));
         dispatch(setCurrentUser(response.data.user));
-        console.log(response);
-        navigate(-1);
+        setIsError(false);
+        navigate(redirectTo);
+        } catch (error) {
+            setIsError(true)
+        };
     }
 
 
     return (
         <div className="flex flex-col">
+            {isError && <Alert severity="error">Please check your credentials and try again</Alert>}
             <CardContent >
                 <form onSubmit={handleLogin} className="signin-form flex flex-col justify-center h-screen items-center gap-5">
                     <div className="tagline-container">

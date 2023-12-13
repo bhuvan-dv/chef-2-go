@@ -25,6 +25,7 @@ type OTPVerificationPageProps = {
 
 // OTP Verification Component
 const OTPVerificationPage: React.FC = () => {
+  document.title = "OTP Verification";
   const state = useLocation().state as OTPVerificationPageProps;
 
   console.log(state);
@@ -107,10 +108,10 @@ const OTPVerificationPage: React.FC = () => {
           setIsOTPVerified(true);
           toast.success('OTP Verified Successfully!');
           setTimeout(() => {
-            navigate("/");
+            navigate("/login");
           }, 1000);
         } else {
-          console.log("Invalid OTP");
+          toast.error('Please enter correct OTP!');
         }
       })
       .catch((err) => {

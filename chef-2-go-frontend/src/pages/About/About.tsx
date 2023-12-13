@@ -17,6 +17,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({ name, image }) => {
 };
 
 const About: React.FC = () => {
+    document.title = 'About Us';
     return (
         <div className="about-us">
             {/* <div className="welcome-box"> */}

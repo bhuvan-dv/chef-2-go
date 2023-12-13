@@ -9,6 +9,7 @@ import Header from '../../components/Header/Header';
 
 
 const PricingPage: React.FC = () => {
+  document.title = "premium";
   let [menuState, setMenuState] = React.useState(false);
   return (
     <div className="background-container h-screen flex flex-col items-center justify-center text-white ">

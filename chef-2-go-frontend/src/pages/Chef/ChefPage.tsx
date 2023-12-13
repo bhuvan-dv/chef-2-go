@@ -17,6 +17,7 @@ interface TopChefsProps {
 }
 
 const ChefPage: React.FC<TopChefsProps> = ({ chefs }) => {
+  document.title = "Top Chefs";
   let [menuState, setMenuState] = React.useState(false);
 
   return (
