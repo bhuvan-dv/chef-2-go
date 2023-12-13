@@ -5,6 +5,7 @@ import signInImage from './resources/signin-page-image.png';
 import './Login.css';
 import { Header } from 'semantic-ui-react';
 import SidebarNav from '../../components/SideBarNav/SidebarNav';
+import LoginLoader from '../../components/Login/LoginLoader';
 
 
 
@@ -20,8 +21,9 @@ const LoginPage = () => {
         <SidebarNav menuState={menuState} setMenuState={setMenuState}/>
             <Login/>
         </div>
-        <div className="left-container w-1/2">
+        <div className="left-container w-1/2" style={{margin:"auto auto"}}>
             {/* <img src={signInImage} alt="chef-2-go Signup page" className="h-screen w-full" /> */}
+            <LoginLoader/>
         </div>
     </div>
   )
