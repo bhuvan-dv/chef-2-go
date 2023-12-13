@@ -22,7 +22,7 @@ import Admin from "../pages/Admin/Admin";
 import ChefSearchPage from "../pages/ChefsSearchPage/ChefSearchPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import Videos from "../pages/VideosPage/Videos";
-import PaymentPage from "../pages/PaymentPage";
+import PaymentPage from "../pages/Payment/PaymentPage";
 import Addrecipe from "../components/AddRecipe/Addrecipe";
 import ContactUS from "../pages/ContactUS/ContactUS";
 import IndividualChefPage from "../pages/IndividualChefPage/IndividualChefPage";

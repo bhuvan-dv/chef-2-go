@@ -15,15 +15,14 @@ const Pricing: React.FC = () => {
       navigate('/');
     } else {
       navigate('/payment', {
-        state: price
+        state: price,
       });
     }
   };
 
   return (
-    
-    <div className="flex justify-center space-x-4">
-      <div className="group relative w-1/4 h-96 p-8 bg-opacity-20 backdrop-blur-md bg-white text-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:shadow-xl hover:-translate-y-1 flex flex-col justify-around items-center">
+    <div className="flex justify-between mx-auto ">
+      <div className="group relative w-1/4 h-96 p-8 bg-opacity-20 backdrop-blur-md bg-white text-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:shadow-xl hover:-translate-y-1 mx-auto">
         <div className="before absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 opacity-0 group-hover:opacity-100"></div>
         <h2 className="text-2xl font-bold mb-4 relative z-1 text-center">Explorer</h2>
         <div className="text-gray-300 mb-4 relative z-1">
@@ -39,7 +38,7 @@ const Pricing: React.FC = () => {
         </Button>
       </div>
 
-      <div className="group relative w-1/4 h-96 p-8 bg-opacity-20 backdrop-blur-md bg-white text-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:shadow-xl hover:-translate-y-1 flex flex-col justify-around items-center">
+      <div className="group relative w-1/4 h-96 p-8 bg-opacity-20 backdrop-blur-md bg-white text-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:shadow-xl hover:-translate-y-1 mx-auto">
         <div className="before absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 opacity-0 group-hover:opacity-100"></div>
         <h2 className="text-2xl font-bold mb-4 relative z-1 text-center">Enthusiast</h2>
         <div className="text-gray-300 mb-4 relative z-1">
@@ -57,7 +56,7 @@ const Pricing: React.FC = () => {
         </Button>
       </div>
 
-      <div className="group relative w-1/4 h-96 p-8 bg-opacity-20 backdrop-blur-md bg-white text-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:shadow-xl hover:-translate-y-1 flex flex-col justify-around items-center">
+      <div className="group relative w-1/4 h-96 p-8 bg-opacity-20 backdrop-blur-md bg-white text-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:shadow-xl hover:-translate-y-1 mx-auto">
         <div className="before absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 opacity-0 group-hover:opacity-100"></div>
         <h2 className="text-2xl text-center font-bold mb-4 relative z-1">Connoisseur</h2>
         <div className="text-gray-300 mb-4 relative z-1">
