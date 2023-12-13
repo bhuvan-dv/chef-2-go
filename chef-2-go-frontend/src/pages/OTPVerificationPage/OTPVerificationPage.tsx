@@ -105,7 +105,7 @@ const OTPVerificationPage: React.FC = () => {
           setIsOTPVerified(true);
           toast.success('OTP Verified Successfully!');
           setTimeout(() => {
-            navigate("/");
+            navigate("/login");
           }, 1000);
         } else {
           console.log("Invalid OTP");

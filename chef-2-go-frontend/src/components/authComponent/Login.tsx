@@ -70,13 +70,17 @@ const Login = (props: Props) => {
             username: username,
             password: password
         }
+        try{
         const response = await loginUserService(reqBody);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
         dispatch(setIsLoogedIn(true));
         dispatch(setCurrentUser(response.data.user));
-        console.log(response);
+        alert('Login Successful');
         navigate(-1);
+        } catch (error) {
+            alert('Please check your credentials and try again');
+        };
     }
 
 
