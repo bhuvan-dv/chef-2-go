@@ -109,6 +109,7 @@ const ProfilePage = () => {
 
         if (response) {
           setChefRecipes(response.data);
+          document.title = `${currentUser?.name} | profile`;
         }
       }
       );

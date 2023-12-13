@@ -107,3 +107,8 @@ export const deleteProfile = async (userId : string) => {
     return axiosInstance.delete(path+"/profile/"+userId);
     
 }
+
+export const getChefDetails = async (userId : string) => {
+    return axiosInstance.get(path+"/profile/"+userId);
+    
+}

@@ -15,6 +15,8 @@ type ChefPageProps = {
 
 const ChefSearchPage = () => {
 
+  document.title = 'Chef Search';
+
   const { t } = useTranslation('common');
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);

@@ -129,6 +129,7 @@ const RecipeHome = (props: RecipeProps) => {
     React.useEffect(() => {
         window.scrollTo(0, 0);
         getIndividualRecipe();
+        document.title = `${individualRecipe?.name} | Recipe`;
     }, [])
 
     const comments = [

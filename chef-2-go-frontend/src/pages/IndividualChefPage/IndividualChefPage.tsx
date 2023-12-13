@@ -4,6 +4,7 @@ import Recipe from '../../models/Recipe';
 import { getRecipesByChefId } from '../../services/recipe';
 import { use } from 'i18next';
 import { useParams } from 'react-router-dom';
+import { getChefDetails } from '../../services/UserAPI';
 
 const exampleChef: chef = {
     _id: "65610adc6a32a283430ca26d",
@@ -171,8 +172,8 @@ const exampleRecipes: Recipe[] = [
 
 
 const IndividualChefPage = () => {
-
     const [recipes, setRecipes] = useState<Recipe[]>([]);
+    const [chef, setChef] = useState<chef>(exampleChef);
     const { chefId } = useParams();
     
     const getRecipesByChef = async (chefId: string | undefined) => {
@@ -186,17 +187,31 @@ const IndividualChefPage = () => {
         }
     }
 
+
+    const getChefBbyId = async (chefId: string | undefined) => {
+        try{
+            const response:any = await getChefDetails(chefId as string);
+            setChef(response.data);
+        }
+        catch(error){
+            console.error('Error fetching chef:', error);
+        }
+    }
+
     useEffect(() => {
+        // const chef: chef =
         getRecipesByChef(chefId);
-    }, []);
+        getChefBbyId(chefId);
+        document.title = `${chef?.name} | Chef 2 Go`;
+    }, [chefId, chef]);
   return (
     <div>
         <div>
-            <img src={exampleChef.imageUrl} alt="" />
+            <img src={chef.imageUrl} alt="" />
         </div>
       <div>
-        {exampleChef.name}
-        {exampleChef.username}
+        {chef.name}
+        {chef.username}
       </div>
       <div>
         <p>Recipes:</p>

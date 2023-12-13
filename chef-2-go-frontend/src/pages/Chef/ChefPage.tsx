@@ -15,6 +15,7 @@ interface TopChefsProps {
 }
 
 const ChefPage: React.FC<TopChefsProps> = ({ chefs }) => {
+  document.title = "Top Chefs";
   return (
     <div className="container mx-auto my-8">
       {/* Rectangular Full-Width Image Section */}

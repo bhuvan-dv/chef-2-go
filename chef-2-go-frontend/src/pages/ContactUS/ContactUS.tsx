@@ -12,6 +12,7 @@ const TEMPLATE_ID = "template_jp5dc5s";
 const USER_ID = "zHEe0vj_kNIUGEsht";
 
 const ContactFormComponent = () => {
+  document.title = "Contact Us";
   const handleOnSubmit = (e:any) => {
     e.preventDefault();
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, USER_ID)

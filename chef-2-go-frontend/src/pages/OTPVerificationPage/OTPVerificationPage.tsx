@@ -23,6 +23,7 @@ type OTPVerificationPageProps = {
 
 // OTP Verification Component
 const OTPVerificationPage: React.FC = () => {
+  document.title = "OTP Verification";
   const state = useLocation().state as OTPVerificationPageProps;
 
   console.log(state);

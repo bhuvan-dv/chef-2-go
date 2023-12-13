@@ -37,6 +37,7 @@ const Login = (props: Props) => {
     const [btnVarinat, setBtnVariant] = useState<'contained' | 'outlined'>('outlined');
     const [showPassword, setShowPassword] = useState(false);
     const [redirectTo, setRedirectTo] = useState('/');
+    const [isError, setIsError] = useState(false);
 
     useEffect(() => {
         // If the user directly lands on the login page, set redirectTo to home page
@@ -90,17 +91,17 @@ const Login = (props: Props) => {
         localStorage.setItem('user', JSON.stringify(response.data.user));
         dispatch(setIsLoogedIn(true));
         dispatch(setCurrentUser(response.data.user));
-        alert('Login Successful');
+        setIsError(false);
         navigate(redirectTo);
         } catch (error) {
-            alert('Please check your credentials and try again');
+            setIsError(true)
         };
     }
 
 
     return (
         <div className="flex flex-col">
-            {true && <Alert severity="error">Please check your credentials and try again</Alert>}
+            {isError && <Alert severity="error">Please check your credentials and try again</Alert>}
             <CardContent >
                 <form onSubmit={handleLogin} className="signin-form flex flex-col justify-center h-screen items-center gap-5">
                     <div className="tagline-container">

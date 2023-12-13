@@ -12,6 +12,7 @@ interface RecipeGridProps {
   recipes : Recipe[]
 }
 const RecipeGrid = ( props: RecipeGridProps ) => {
+  document.title = 'Search Recipe';
     const { t } = useTranslation('common');
     const navigate = useNavigate();
     const dispatch = useDispatch();
