@@ -9,7 +9,7 @@ import { emailValidateStyle, sigUpButtonStyle } from './SignUp.styles';
 import './/SignUp.styles'
 
 // SignUp Component
-const SignUp: React.FC = () => {
+const SignUp = () => {
   const [username, setUserName] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
