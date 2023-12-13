@@ -136,3 +136,5 @@ docs/mongoDB.txt
 figma images
 
 .DS_Store
+# Local Netlify folder
+.netlify

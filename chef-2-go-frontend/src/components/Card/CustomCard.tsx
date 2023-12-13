@@ -17,7 +17,7 @@ type CardProps = {
 
 const CustomCard = (props: CardProps) => {
 
-  const BASEURL = 'http://localhost:3000/';
+  const BASEURL = process.env.BASE_URL || 'http://localhost:3000/';
   const { entity, styles } = props;
 
   const navigate = useNavigate();
