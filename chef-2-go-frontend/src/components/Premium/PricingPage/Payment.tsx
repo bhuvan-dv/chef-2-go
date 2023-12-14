@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { toast, ToastContainer } from 'react-toastify';
@@ -50,7 +52,7 @@ const Payment: React.FC<PaymentProps> = (props) => {
             // Wait for a few seconds before routing to /videos
             setTimeout(() => {
               navigate('/videos');
-            }, 3000);
+            }, 2000);
           } else {
             console.error('Payment failed.');
             toast.error('Payment failed. Please try again.');

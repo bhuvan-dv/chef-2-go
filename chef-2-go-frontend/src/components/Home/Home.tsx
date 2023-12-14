@@ -6,16 +6,17 @@ import Pagination from '@mui/material/Pagination';
 import './Home.css';
 import compassSvg from './resources/compass.svg';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import mainFirstImage from './resources/main-page-f-cook.png';
-import chefImage from './resources/home-page-main-2-chef.png';
-import foodImage from './resources/home-page-main-2-food.png';
+import mainFirstImage from './resources/big-hr.jpg';
+import chefImage from './resources/main-left.jpg';
+import foodImage from './resources/main-right.jpg';
 import mainPageImage from './resources/home-page-3.png';
-import meatRight from './resources/meat-right.png';
-import meatLeft from './resources/meat-left.png';
+import meatRight from './resources/long-masala.jpg';
+import meatLeft from './resources/masala.jpg';
 import { Box, Container } from '@mui/system';
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import CustomCard, { EntityDetails } from '../Card/CustomCard';
 import Carousel from '../Carousel/Carousel';
+import { Link } from 'react-router-dom';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -260,10 +261,9 @@ const Home = () => {
                 <div className="text-holder flex">
                   <div className="text-soft-mint-green w-1/6 text-2xl font-bold font-Morion">01</div>
                   <div className="flex flex-col gap-10 text-soft-mint-green w-1/2">
-                    <p className="text-3xl font-Morion font-bold text-soft-mint-green">The best meat for you & the planet.</p>
-                    <p>We partner with landowners to preserve native habitats & agricultural land by ethically harvesting Australian wild game.</p>
-                    <p>Learn more about our mission to start a conscious carnivore revolution.</p>
-                    <a href="/">DISCOVER OUR MISSION</a>
+                    <p className="text-3xl font-Morion font-bold text-soft-mint-green">Discover the art of Indian cooking in the heart of the USA, where tradition meets innovation, and every meal is a celebration of flavors.</p>
+
+                    <Link to='/search/recipes'>Checkout our recipies</Link>
                   </div>
                 </div>
                 <div className="img-holder">
@@ -302,14 +302,9 @@ const Home = () => {
           <div className="flex flex-col gap-40 items-center">
             <div className="flex flex-col gap-10 text-pale-green w-1/2">
               <p className="text-3xl font-Morion font-bol">
-                Discover the taste of wild Sambar venison from Australia's pristine high country.
+                Discover the taste of wild Sambar venison from India's pristine high country.
               </p>
-              <p>
-                Always tender with a mild nutty flavour. Distinctly complex and uniquely Australian.
-              </p>
-              <a href="/">
-                DISCOVER OUR PRODUCTS
-              </a>
+             
             </div>
             <div>
               <img ref={meatLeftRef} src={meatLeft} className="h-2/3 float-right" alt="" />
@@ -324,28 +319,29 @@ const Home = () => {
         <div className="py-40 border-y-2 bg-dark-green text-pale-green font-Morion scrolling-text-container bg-scroll-img bg-cover">
           <div className="flex flex-col items-center justify-center">
             <p className="scrolling-text test text-9xl font-extrabold leading-relaxed text-center">
-              Every bite we
+            Explore 
             </p>
             <p className="scrolling-text text-9xl font-extrabold text-center">
-              take from our
+            the legacy 
             </p>
             <p className="scrolling-text text-9xl font-extrabold leading-relaxed text-center">
-              plates forms
+            of Indian cuisine 
             </p>
             <p className="scrolling-text text-9xl font-extrabold text-center">
-              the legacy of
+            in the heart of 
             </p>
             <p className="scrolling-text text-9xl font-extrabold leading-relaxed text-center">
-              ecology we are
+            your American kitchen.
+            
             </p>
             <p className="scrolling-text text-9xl font-extrabold text-center">
-              leaving for
+            Chef-2-Go, 
             </p>
             <p className="scrolling-text text-9xl font-extrabold leading-relaxed text-center">
-              future
+            where flavors
             </p>
             <p className="scrolling-text text-9xl font-extrabold text-center">
-              generations.
+            transcend borders.
             </p>
           </div>
         </div>
@@ -360,10 +356,9 @@ const Home = () => {
             <div className="text-holder flex">
               <div className=" w-1/6 text-2xl font-bold font-Morion">03</div>
               <div className="flex flex-col gap-10  w-1/2">
-                <p className="text-3xl font-Morion font-bold ">Born to be wild.</p>
-                <p>Wild game never suffer captivity, live transport or abattoirs. Ethically harvested, free range and 100% antibiotic and hormone free, just as nature intended.</p>
-                <p>Game to try some of our recipes? Discover the ease & versatility of cooking with wild game.</p>
-                <a href="/">DISCOVER OUR RECIPES</a>
+                <p className="text-3xl font-Morion font-bold ">"Join our culinary community! Unleash your inner chef on Chef-2-Go – where home cooks transform into culinary maestros, sharing their love for Indian cuisine."</p>
+
+               <Link to= 'search/chefs'>DISCOVER OUR RECIPES</Link>
               </div>
             </div>
             <div className="img-holder">
