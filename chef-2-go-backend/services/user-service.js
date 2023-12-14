@@ -113,3 +113,9 @@ export const updateVerifcationStatus = async (email, isVerified) => {
 
     return await User.findOneAndUpdate({"email": email}, updateUser, {new: true}).exec();
 }
+
+export const updateIsPremium = async (id, isPremium) => {
+    console.log(`id in service: ${id}`);
+    console.log(`isPremium in service: ${isPremium}`);
+    return await User.findByIdAndUpdate(id, {isPremiumUser: isPremium}, {new: true}).exec();
+}

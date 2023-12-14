@@ -4,6 +4,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../store';
 
 interface PaymentProps {
   price: number;
@@ -15,6 +17,7 @@ const Payment: React.FC<PaymentProps> = (props) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const amount = props.price;
+  const userId = useSelector((state:AppState) => state.users.currentUser?._id);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -35,22 +38,22 @@ const Payment: React.FC<PaymentProps> = (props) => {
           console.error(error);
           toast.error('Failed to create payment token. Please check your card details.');
         } else {
-          const response = await fetch('http://localhost:5000/charge', {
+          const response = await fetch(`http://localhost:5000/users/premium/${userId}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ token: token.id, amount: Math.round(amount * 100) }), // Convert amount to cents
+            body: JSON.stringify({ token: token.id, amount: Math.round(amount * 100), isPremium: true }), // Convert amount to cents
           });
 
-          if (response.ok) {
+          if (response.status === 200) {
             console.log('Payment successful!');
             toast.success('Payment successful!');
 
             // Wait for a few seconds before routing to /videos
             setTimeout(() => {
               navigate('/videos');
-            }, 3000);
+            }, 2000);
           } else {
             console.error('Payment failed.');
             toast.error('Payment failed. Please try again.');
