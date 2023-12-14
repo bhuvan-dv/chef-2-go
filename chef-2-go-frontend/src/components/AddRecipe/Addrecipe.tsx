@@ -182,6 +182,7 @@ const Addrecipe = () => {
                 TransitionComponent: Fade,
               },
             }}
+            sx={{height:"80%"}}
           >
             <Fade in={open}>
               <Box sx={style}>
