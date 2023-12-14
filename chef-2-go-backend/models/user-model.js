@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-
+/**
+ * Enum defining user roles.
+ */
 const ROLES = {
     ADMIN: "admin",
     CHEF: "chef",

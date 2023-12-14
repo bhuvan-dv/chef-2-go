@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
-
+/**
+ * Recipe schema to define the structure of Recipe documents in MongoDB.
+ */
 const RecipeSchema = new Schema(
     {
         name: {

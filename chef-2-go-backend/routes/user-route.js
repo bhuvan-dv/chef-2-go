@@ -4,7 +4,7 @@ import * as UserController from '../controllers/user-controller.js';
 import * as ChefController from '../controllers/chef-controller.js'
 
 import verifyToken from '../middleware/auth.js';
-
+// Route to get all registered users
 const router = express.Router();
 router.route('/')
 .get(UserController.getAllRegisteredUsers)

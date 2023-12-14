@@ -5,7 +5,9 @@ import { createToken } from "../utilities/token.js";
 import { request, response } from "express";
 import * as otpHandler from "../utilities/otpHandler.js";
 import bcrypt from "bcrypt";
-
+/**
+ * Controller function to handle user login.
+ */
 export const loginUser = async (request, response) => {
     try {
         const { email, password, username } = request.body;
@@ -32,7 +34,9 @@ export const loginUser = async (request, response) => {
         }
     }
 }
-
+/**
+ * Controller function to handle user signup.
+ */
 export const signupUser = async (request, response) => {
     const { name, username, email, password, role } = request.body;
     try {
