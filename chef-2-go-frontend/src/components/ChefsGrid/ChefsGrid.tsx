@@ -7,12 +7,13 @@ import { AppState } from '../../store'
 import User from '../../models/user'
 import { setChefs } from '../../store/slice/user-slice'
 import chef from '../../models/chef'
+import { useTranslation } from 'react-i18next';
 
 interface ChefGridProps {
   chefs : chef[]
 }
 const ChefsGrid = ( props: ChefGridProps ) => {
-
+    const { t } = useTranslation('common');
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const chefs =props.chefs;//  useSelector((state: AppState) => state.users.chefs);
@@ -42,7 +43,7 @@ const ChefsGrid = ( props: ChefGridProps ) => {
             navigate(`/chefs/${chefId}`);
         }
     }
-
+   
   return (
     <div>
       <Grid container spacing={3}>
@@ -60,7 +61,7 @@ const ChefsGrid = ( props: ChefGridProps ) => {
               <Typography variant="h6" mb={1}>{chef.name}</Typography>
               {/* View Recipe Button */}
               <Button variant="contained" color="primary" onClick={() => handleChefView(chef._id)} sx={{ width: '100%', marginTop: 'auto' }}>
-                View Chef
+                {t("searchchef.viewchefbutton")}
               </Button>
             </CardContent>
           </Card>
