@@ -526,20 +526,24 @@ const ProfilePage = () => {
         {/* Recipes specifically for chef */}
         <>
           {currentUser?.role === "chef" ?
-            <Box>
-              <Box>
-                <Button onClick={handleAddRecipe}>Add Recipe</Button>
+            <Box p={2} sx={{}}>
+              <Box p={2}>
+                <Button onClick={handleAddRecipe} variant='contained'>Add Recipe</Button>
               </Box>
-              <Paper>
+              <Paper sx={{ mb: 4, border: "none" }}>
                 {currentUser?.role === 'chef' &&
                   <div>
-                    <Typography variant='h6'>Recipes:</Typography>
+                    <Typography variant='h5' m={4}>Recipes:</Typography>
                     {ChefRecipes && ChefRecipes.map((recipe: Recipe) => (
-                      <Card key={recipe._id}>
+                      <Card key={recipe._id} sx={{ m: 4, p:2 }}>
                         <img src={recipe.imageUrl} alt="imgURl" />
                         <CardContent>Name: {recipe.name}</CardContent>
                         <CardContent>Summary: {recipe.summary}</CardContent>
-                        <Button onClick={() => handleRecipeDelete(recipe._id as string)}>Delete Recipe</Button>
+                        <Button onClick={() => handleRecipeDelete(recipe._id as string)} sx={{
+                          color: "red", border: "0.5px solid red", '&:hover': {
+                            color: "white", bgcolor:"red"
+                          },
+                        }}>Delete Recipe</Button>
                       </Card>
                     ))}
                   </div>
