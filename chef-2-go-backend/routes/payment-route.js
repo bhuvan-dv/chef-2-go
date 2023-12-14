@@ -7,5 +7,5 @@ const Paymentrouter = express.Router();
 
 Paymentrouter.route('/')
 .post(payment)
-
+// post method for payment
 export default Paymentrouter;

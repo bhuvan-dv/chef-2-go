@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const commentSchema = new Schema(
+    /**
+ * Comment schema to define the structure of Comment documents in MongoDB.
+ */
+    
     {
         message: {
             type: String,
