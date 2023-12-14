@@ -94,7 +94,9 @@ Steps to set up Project Locally:
 
 git clone url Install all dependencies locally - cmd :
 > npm install
-and run the project using: 
+and run the project using:
+> GO to chef-to-go-frontend folder and open terminal and enter npm start to start front end
+> Go to chef-to-go-backend folder and open terminal and enter npm start to start backend server
 > npm start 
 
 
