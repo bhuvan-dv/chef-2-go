@@ -18,4 +18,8 @@ const getRecipesByChefId = async <Recipe>(chefId: string): Promise<Recipe[]> => 
     return axiosInstance.get(path+"/byChef/"+chefId);
 }
 
-export { getRecipes, getAllRecipes, createNewRecipes, getRecipesByChefId };
+const deleteRecipeById =async (recipeId: string ) => {
+    return axiosInstance.delete(path+recipeId);
+}
+
+export { getRecipes, getAllRecipes, createNewRecipes, getRecipesByChefId, deleteRecipeById };
