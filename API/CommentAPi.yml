@@ -1,0 +1,97 @@
+openapi: 3.0.0
+info:
+  title: Comment API
+  version: 1.0.0
+paths:
+  /reciperouter/{id}/comments:
+    post:
+      summary: Create a new comment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Comment:
+                  $ref: '#/components/schemas/Comment'
+      responses:
+        '201':
+          description: Comment created successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /reciperouter/{id}/comments/{id}:
+    get:
+      summary: Get a comment by ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Comment not found
+    delete:
+      summary: Delete a comment by ID
+      responses:
+        '200':
+          description: Comment deleted successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Comment not found
+    put:
+      summary: Update a comment by ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '200':
+          description: Comment updated successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Comment not found
+components:
+  schemas:
+    Comment:
+      type: object
+      properties:
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        userId:
+          type: string
+        recipeId:
+          type: string
+        parent:
+          type: string
+        children:
+          type: array
+          items:
+            type: string
+        parentId:
+          type: string
+      required:
+        - message
+        - userId
+        - recipeId
