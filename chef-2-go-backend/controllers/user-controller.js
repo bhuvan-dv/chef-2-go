@@ -212,7 +212,19 @@ export const updateUserDetails = async (request, response) => {
     }
 }
 
-
+export const updateIsPremium = async (request, response) => {
+    console.log(`entered here ${request.params.id}`);
+ try{
+    const user =  await userService.updateIsPremium(request.params.id, request.body.isPremium);
+    setResponse(user, response);
+}   catch (err) {
+    if (err.name === "CastError" && err.kind === "ObjectId") {
+        setErrorResponse(404, "User Not Found", response);
+    } else {
+        setErrorResponse(500, "Internal Server Error", response);
+    }
+}
+}
 
 //function to take user details and verify his password
 const validCredentials = async (user, password) => {
