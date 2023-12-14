@@ -88,7 +88,7 @@ The Ingredient API is a Node.js-based application utilizing Express and MongoDB 
 
 ### Object Model
 
-![alt text](https://github.com/info-6150-fall-2023/final-project-peri-peri/blob/main/docs/Food.png)
+![alt text](https://github.com/info-6150-fall-2023/final-project-peri-peri/blob/main/docs/Chef2go.png)
 
 ## Authors
 
