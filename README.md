@@ -1,11 +1,11 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/OuSBNpwM)
 
-# Chef2go
+# Project Title: Chef2go
 
 Welcome to the Chef2go website repository.
 
 ### Project Description
-Chef2go serves as a comprehensive online platform tailored specifically for students, functioning as a convenient one-stop shop for ordering food. The platform goes beyond mere food delivery, offering students exclusive deals and granting them access to premium experiences. One standout feature is the ability to explore a curated collection of chef-created recipes, providing a unique and enriching culinary experience. Whether students are looking for a quick meal or seeking inspiration for their own cooking endeavors, this platform is designed to cater to their diverse needs, making it a go-to destination for food enthusiasts on campus.
+Chef2go is a dedicated online platform designed exclusively for students, serving as a convenient all-in-one solution for culinary needs. Beyond just cooking, the platform provides students with access to premium subscription videos. A standout feature includes the opportunity to delve into a thoughtfully curated assortment of recipes crafted by chefs, offering a distinctive and enriching culinary journey. Whether students are in search of a swift meal or seeking inspiration for their culinary ventures, this platform is intricately crafted to address their diverse needs. It stands as the ultimate destination for food enthusiasts on campus.
 
 Key Features:
 1.Login:
@@ -90,7 +90,17 @@ The Ingredient API is a Node.js-based application utilizing Express and MongoDB 
 
 ![alt text](https://github.com/info-6150-fall-2023/final-project-peri-peri/blob/main/docs/Chef2go.png)
 
-## Authors
+Steps to set up Project Locally:
+
+git clone url Install all dependencies locally - cmd :
+> npm install
+and run the project using: 
+> npm start 
+
+
+check changes with help of ide. git add . ( to add changes in your local branch) git commit -m "give approriate msg" ( cmd to stage changes) git push origin main ( cmd to push changes to global branch)
+
+## TEAM MEMBERS
 
 - [@Basavaraj Patil](https://github.com/basupatil1213)
 - [@Bhuvan Dama Venkatesh Raj](https://github.com/BhuvanDV)
