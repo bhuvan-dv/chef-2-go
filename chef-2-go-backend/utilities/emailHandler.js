@@ -5,11 +5,11 @@ import * as dotenv from 'dotenv/config';
 const sendEmail = async (senderEmail, otp) => {
   try {
 
-    const CLIENT_ID = process.env.CLIENT_ID; 
-    const CLIENT_SECRET = process.env.CLIENT_SECRET; 
-    const REDIRECT_URL = process.env.REDIRECT_URL;
-    const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
-    const SENDER_EMAIL = process.env.SENDER_EMAIL;
+    const CLIENT_ID = "494767139204-5p1s4771192p08obvbnfol0njnlabfqg.apps.googleusercontent.com";
+    const CLIENT_SECRET = "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";
+    const REDIRECT_URL = "https://developers.google.com/oauthplayground";
+    const REFRESH_TOKEN = "1//04dFGZYG7FwSBCgYIARAAGAQSNwF-L9IrT5ec6I4g54SWKpSzHDdISI6JMWw0o6RRssGGpso10Q--dUGOWqvi6-_NO9EhJY1oP78";
+    const SENDER_EMAIL = "patilbasavaraj293@gmail.com";
 
     const oauth2Client = new google.auth.OAuth2(
         CLIENT_ID,
