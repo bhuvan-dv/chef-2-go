@@ -26,6 +26,7 @@ import PaymentPage from "../pages/Payment/PaymentPage";
 import Addrecipe from "../components/AddRecipe/Addrecipe";
 import ContactUS from "../pages/ContactUS/ContactUS";
 import { createBrowserRouter, redirectDocument } from 'react-router-dom';
+import IndividualChefPage from "../pages/IndividualChefPage/IndividualChefPage";
 let ChefRoutes = () => {
     // Use the useRoutes hook to define routes
     let ChefTwoGoRoutes = useRoutes([
@@ -123,6 +124,10 @@ let ChefRoutes = () => {
         {
             path:"contact",
             element:<ContactUS/>
+        },
+        {
+            path: "chefs/:chefId",
+            element: <IndividualChefPage />
         }
     ]);
 
