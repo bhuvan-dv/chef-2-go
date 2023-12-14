@@ -5,7 +5,7 @@ import { getRecipesByChefId } from '../../services/recipe';
 import { use } from 'i18next';
 import { useParams } from 'react-router-dom';
 import { getChefDetails } from '../../services/UserAPI';
-
+// Define an example chef object for initial state
 const exampleChef: chef = {
     _id: "65610adc6a32a283430ca26d",
     name: "Chef Name",
@@ -40,7 +40,7 @@ const exampleRecipe: Recipe = {
     comment: null,
     chefId: "134",
 }
-
+// Define an example array of recipes for initial state
 const exampleRecipes: Recipe[] = [
     {
         _id: "123",
@@ -186,6 +186,7 @@ const IndividualChefPage = () => {
             console.error('Error fetching recipes:', error);
         }
     }
+    // Function to fetch chef details by chefId
 
 
     const getChefBbyId = async (chefId: string | undefined) => {

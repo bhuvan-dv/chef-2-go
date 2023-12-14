@@ -5,7 +5,9 @@ import VideoCard from './VideoCard';
 interface VideoListProps {
   videos: { videoUrl: string; title: string }[];
 }
-
+/**
+   * Render the VideoList component with a grid of VideoCard components.
+   */
 const VideoList: React.FC<VideoListProps> = ({ videos }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

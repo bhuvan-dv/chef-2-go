@@ -12,7 +12,9 @@ const trans = (x: number, y: number) =>
 type CircleProps={
     children: React.ReactNode;
 }
-
+  /**
+   * State to measure the position of the component.
+   */
 export default function Circle(props: CircleProps) {
     const [trail, api] = useTrail(3, i => ({
         xy: [0, 0],
@@ -23,7 +25,9 @@ export default function Circle(props: CircleProps) {
     const handleMouseMove = (e:any) => {
         api.start({ xy: [e.clientX - left, e.clientY - top] })
     }
-
+ /**
+   * Render the Circle component with the particle effect and children.
+   */
     return (
         <>
         <div className={styles.container}>

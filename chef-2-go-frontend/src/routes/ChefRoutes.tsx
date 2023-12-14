@@ -28,8 +28,10 @@ import ContactUS from "../pages/ContactUS/ContactUS";
 import IndividualChefPage from "../pages/IndividualChefPage/IndividualChefPage";
 import { createBrowserRouter, redirectDocument } from 'react-router-dom';
 let ChefRoutes = () => {
+    // Use the useRoutes hook to define routes
     let ChefTwoGoRoutes = useRoutes([
         {
+    // Redirect service-worker.js to root
             path: '/service-worker.js',
             loader: () => redirectDocument("/service-worker.js")
 

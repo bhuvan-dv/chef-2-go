@@ -300,7 +300,7 @@ const Home = () => {
               <div className=" w-1/6 text-2xl font-bold font-Morion">03</div>
               <div className="flex flex-col gap-10  w-1/2">
                 <p className="text-3xl font-Morion font-bold ">"Join our culinary community! Unleash your inner chef on Chef-2-Go – where home cooks transform into culinary maestros, sharing their love for Indian cuisine."</p>
-
+{/* navigate to chefs page */}
                <Link to= 'search/chefs'>DISCOVER OUR RECIPES</Link>
               </div>
             </div>

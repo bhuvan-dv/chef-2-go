@@ -16,11 +16,15 @@ const NavBar: React.FC<NavBarProps> = (props) => {
   const navBarTimeline = useRef<gsap.core.Timeline | null>(null);
 
   const { t } = useTranslation('common');
-
+/**
+   * Translation hook for internationalization.
+   */
   useEffect(() => {
     navBarTimeline.current = initializeNavBarAnimation(navBarMenu.current!, leftNavBar.current!, rightNavBar.current!);
   }, []);
-
+/**
+   * Effect to play or reverse the NavBar animation based on navbarState.
+   */
   useEffect(() => {
     navbarState ? navBarTimeline.current?.play() : navBarTimeline.current?.reverse();
   }, [navbarState]);

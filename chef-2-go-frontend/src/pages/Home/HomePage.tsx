@@ -12,6 +12,7 @@ const HomePage: React.FC = (): ReactElement => {
     document.title = "Home";
     return (
         <>
+        {/* import header and sidenavbar */}
       <Header menuState={menuState} setMenuState={setMenuState} />
       <SidebarNav menuState={menuState} setMenuState={setMenuState} />
         <Home/>

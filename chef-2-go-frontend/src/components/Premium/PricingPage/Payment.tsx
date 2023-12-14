@@ -1,4 +1,4 @@
-
+// Handles the payment process using Stripe for a given price.
 
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
@@ -17,7 +17,7 @@ const Payment: React.FC<PaymentProps> = (props) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const amount = props.price;
-
+// Handle form submission to process payment
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -42,6 +42,7 @@ const Payment: React.FC<PaymentProps> = (props) => {
             headers: {
               'Content-Type': 'application/json',
             },
+            // // Send the payment token to the server for processing
             body: JSON.stringify({ token: token.id, amount: Math.round(amount * 100) }), // Convert amount to cents
           });
 

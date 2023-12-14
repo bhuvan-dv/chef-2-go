@@ -68,6 +68,8 @@ const Signup: React.FC<Props> = (props) => {
                 <div className="icon-container">
                     <   img src="" alt="" />
                 </div>
+
+                {/* handle name change */}
                 <div className="name-container w-1/2 flex gap-2 items-center">
                     <AccountCircleOutlined fontSize="large" />
                     <TextField
@@ -79,6 +81,8 @@ const Signup: React.FC<Props> = (props) => {
                         onChange={handleNameChange}
                     />
                 </div>
+
+                {/* handle username change */}
                 {name &&
                     <div className="username-container w-1/2 flex gap-2 items-center">
                         <PersonPinCircleOutlined fontSize="large" />
@@ -92,6 +96,8 @@ const Signup: React.FC<Props> = (props) => {
                         />
                     </div>
                 }
+
+                {/* handle email change */}
                 {username &&
                     <div className="email-container w-1/2 flex gap-2 items-center">
                         <EmailOutlined fontSize="large" />
@@ -105,6 +111,8 @@ const Signup: React.FC<Props> = (props) => {
                         />
                     </div>
                 }
+
+                {/* handle password change associated with the email */}
                 {email &&
                     <div className="password-container w-1/2 flex gap-2 items-center">
                         <VpnKeyOutlined fontSize="large" />

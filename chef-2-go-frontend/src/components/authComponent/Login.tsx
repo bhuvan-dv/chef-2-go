@@ -86,9 +86,13 @@ const Login = (props: Props) => {
             password: password
         }
         try{
+      // Call login API service
         const response = await loginUserService(reqBody);
+    // Store token and user details in local storage
+
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
+         // Update Redux store with user details and set login state
         dispatch(setIsLoogedIn(true));
         dispatch(setCurrentUser(response.data.user));
         setIsError(false);
@@ -179,6 +183,7 @@ const Login = (props: Props) => {
                                 className="signin-button"
                                 onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}
+                                // handles mouse clicked and left
                                 type='submit'
                             >Sign In
                             </Button>

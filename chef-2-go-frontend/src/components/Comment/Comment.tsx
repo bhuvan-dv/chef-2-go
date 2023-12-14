@@ -47,7 +47,7 @@ type CommentProps = {
         items?: any[];
     };
 };
-
+// CRUD operations in comments
 const Comment: React.FC<CommentProps> = ({
     handleInsertNode,
     handleEditNode,
@@ -59,7 +59,9 @@ const Comment: React.FC<CommentProps> = ({
     const [showInput, setShowInput] = useState(false);
     const [expand, setExpand] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
-
+ /**
+     * Handle displaying the input field for a new comment or reply
+     */
     useEffect(() => {
         inputRef?.current?.focus();
     }, [editMode]);
@@ -68,6 +70,10 @@ const Comment: React.FC<CommentProps> = ({
         setExpand(!expand);
         setShowInput(true);
     };
+
+     /**
+     * Handle toggling the display of replies
+     */
 
     const onAddComment = () => {
         if (editMode) {
@@ -81,6 +87,10 @@ const Comment: React.FC<CommentProps> = ({
 
         if (editMode) setEditMode(false);
     };
+
+    /**
+     * Handle deleting the current comment or reply
+     */
 
     const handleDelete = () => {
         handleDeleteNode(comment.id);

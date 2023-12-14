@@ -3,7 +3,9 @@ import { gsap, Power3 } from 'gsap';
 
 export const initializeNavBarAnimation = (navBarMenu: HTMLDivElement, leftNavBar: HTMLDivElement, rightNavBar: HTMLDivElement) => {
   const navBarTimeline = gsap.timeline({ paused: true });
-
+  /**
+   * GSAP timeline for NavBar animation, initially paused.
+   */
   navBarTimeline.fromTo(
     [navBarMenu],
     {
@@ -19,7 +21,9 @@ export const initializeNavBarAnimation = (navBarMenu: HTMLDivElement, leftNavBar
       },
     }
   );
-
+  /**
+    * Animation for showing the left and right sections.
+    */
   navBarTimeline.fromTo(
     [rightNavBar, leftNavBar],
     {
