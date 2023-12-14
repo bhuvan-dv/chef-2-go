@@ -11,7 +11,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from 'react-router-dom';
 import Recipe from '../../models/Recipe';
 import { get } from 'http';
-import { getRecipesByChefId } from '../../services/recipe';
+import { deleteRecipeById, getRecipesByChefId } from '../../services/recipe';
 import ProfileLoader from '../../components/Profile/ProfileLoader';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
@@ -81,7 +81,7 @@ const style = {
 };
 
 const ProfilePage = () => {
-  const currentUser:any = useSelector((state: AppState) => state.users.currentUser);
+  const currentUser: any = useSelector((state: AppState) => state.users.currentUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -280,10 +280,47 @@ const ProfilePage = () => {
   });
   let [menuState, setMenuState] = React.useState(false);
 
+  const handleRecipeDelete = async (recipeId: string) => {
+    try {
+      const response: any = await deleteRecipeById(recipeId);
+      setTimeout(() => {
+        getRecipesByChefId(currentUser?._id).then((response: any) => {
+          if (response) {
+            setChefRecipes(response.data);
+          }
+        })
+        toast.success("Recipe deleted Successfully!", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
+      }, 2000);
+    } catch (error) {
+      toast.error('Sorry we are not able to delete', {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+    }
+  }
+  useEffect(() => {
+
+  }, [ChefRecipes])
+
   return (
     <ThemeProvider theme={theme}>
-            <Header menuState={menuState} setMenuState={setMenuState}/>
-        <SidebarNav menuState={menuState} setMenuState={setMenuState}/>
+      <Header menuState={menuState} setMenuState={setMenuState} />
+      <SidebarNav menuState={menuState} setMenuState={setMenuState} />
       <Paper className="border p-4 my-4 rounded-md bg-gray-100" sx={{ marginTop: "10vh", marginLeft: "10vw", marginRight: "10vw", }}>
         <Typography className="block" variant="h4" sx={{ textAlign: "center", paddingTop: 2 }} gutterBottom>
           Profile Management Hub
@@ -502,6 +539,7 @@ const ProfilePage = () => {
                         <img src={recipe.imageUrl} alt="imgURl" />
                         <CardContent>Name: {recipe.name}</CardContent>
                         <CardContent>Summary: {recipe.summary}</CardContent>
+                        <Button onClick={() => handleRecipeDelete(recipe._id as string)}>Delete Recipe</Button>
                       </Card>
                     ))}
                   </div>
