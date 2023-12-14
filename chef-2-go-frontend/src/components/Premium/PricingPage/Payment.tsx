@@ -41,7 +41,7 @@ const Payment: React.FC<PaymentProps> = (props) => {
           toast.error('Failed to create payment token. Please check your card details.');
         } else {
           const response = await fetch(`http://localhost:5000/users/premium/${userId}`, {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
             },

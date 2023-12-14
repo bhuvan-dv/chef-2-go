@@ -184,12 +184,13 @@ const ProfilePage = () => {
   const handleUploadPhoto = async () => {
     try {
       // Your upload logic here...
+      // alert('Uploading photo...');
       if (selectedFile === null || selectedFile === undefined) {
         return;
       }
       // setLoader(true);
       const storageRef = ref(storage, `profile/${selectedFile?.name}`);
-      const response = await uploadBytesResumable(storageRef, selectedFile as Blob);
+      const response: any = await uploadBytesResumable(storageRef, selectedFile as Blob);
       const url = await getDownloadURL(ref(storage, `profile/${selectedFile?.name}`));
       console.log(url);
       const newUserData: RegisterUser = {
@@ -205,6 +206,7 @@ const ProfilePage = () => {
       }
       const updatedUser = await updateUserDetails(currentUser?._id, newUserData.token, newUserData);
       dispatch(setCurrentUser(updatedUser.data));
+      toast.success('Photo uploaded successfully!');
 
       setOpen(true);
 
@@ -327,7 +329,7 @@ const ProfilePage = () => {
         </Typography>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-            This is a success message!
+            Successfully Upated!
           </Alert>
         </Snackbar>
         {/* <>
@@ -498,7 +500,7 @@ const ProfilePage = () => {
                 </Typography>
                 <Button component="label" variant="contained" startIcon={<CloudUploadIcon />} sx={{ margin: 2 }}>
                   Select Your Profile Picture
-                  <VisuallyHiddenInput type="file" />
+                  <VisuallyHiddenInput type="file" onChange={handleFileChange} />
                 </Button>
               </Box>
               <Box sx={{ m: 2, display: "flex", justifyContent: "space-evenly" }}>
