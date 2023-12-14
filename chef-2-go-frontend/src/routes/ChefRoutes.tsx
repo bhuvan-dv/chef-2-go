@@ -25,7 +25,6 @@ import Videos from "../pages/VideosPage/Videos";
 import PaymentPage from "../pages/Payment/PaymentPage";
 import Addrecipe from "../components/AddRecipe/Addrecipe";
 import ContactUS from "../pages/ContactUS/ContactUS";
-import IndividualChefPage from "../pages/IndividualChefPage/IndividualChefPage";
 import { createBrowserRouter, redirectDocument } from 'react-router-dom';
 let ChefRoutes = () => {
     // Use the useRoutes hook to define routes
@@ -124,10 +123,6 @@ let ChefRoutes = () => {
         {
             path:"contact",
             element:<ContactUS/>
-        },
-        {
-            path: "chefs/:chefId",
-            element: <IndividualChefPage/>
         }
     ]);
 
