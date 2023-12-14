@@ -40,7 +40,7 @@ return (
     <div className="ContactFormComponent">
             <Header menuState={menuState} setMenuState={setMenuState}/>
         <SidebarNav menuState={menuState} setMenuState={setMenuState}/>
-      <Form onSubmit={handleOnSubmit}>
+      <Form id="ContactForm" onSubmit={handleOnSubmit}>
         <Form.Field
           id='form-input-control-email'
           control={Input}
