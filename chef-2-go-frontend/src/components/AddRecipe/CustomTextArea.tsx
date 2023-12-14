@@ -2,33 +2,47 @@ import * as React from 'react';
 import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
-const CustomTextArea = () => {
+interface CustomTextAreaProps {
+  label: string;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  margin?: 'none' | 'dense' | 'normal' | undefined;
+  size?: 'small' | 'medium' | undefined;
+  // Add more specific types if necessary
+}
 
-    const blue = {
-        100: '#DAECFF',
-        200: '#b6daff',
-        400: '#3399FF',
-        500: '#007FFF',
-        600: '#0072E5',
-        900: '#003A75',
-    };
+const CustomTextArea: React.FC<CustomTextAreaProps> = ({
+  label,
+  value,
+  onChange,
+  margin = 'normal',
+  size = 'large', }) => {
 
-    const grey = {
-        50: '#F3F6F9',
-        100: '#E5EAF2',
-        200: '#DAE2ED',
-        300: '#C7D0DD',
-        400: '#B0B8C4',
-        500: '#9DA8B7',
-        600: '#6B7A90',
-        700: '#434D5B',
-        800: '#303740',
-        900: '#1C2025',
-    };
+  const blue = {
+    100: '#DAECFF',
+    200: '#b6daff',
+    400: '#3399FF',
+    500: '#007FFF',
+    600: '#0072E5',
+    900: '#003A75',
+  };
 
-    const Textarea = styled(BaseTextareaAutosize)(
-        ({ theme }) => `
-    width: 320px;
+  const grey = {
+    50: '#F3F6F9',
+    100: '#E5EAF2',
+    200: '#DAE2ED',
+    300: '#C7D0DD',
+    400: '#B0B8C4',
+    500: '#9DA8B7',
+    600: '#6B7A90',
+    700: '#434D5B',
+    800: '#303740',
+    900: '#1C2025',
+  };
+
+  const Textarea = styled(BaseTextareaAutosize)(
+    ({ theme }) => `
+    width: 520px;
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 0.875rem;
     font-weight: 400;
@@ -54,17 +68,21 @@ const CustomTextArea = () => {
       outline: 0;
     }
   `,
-    );
+  );
 
-    return (
-        <Textarea
-            maxRows={4}
-            aria-label="maximum height"
-            placeholder="Maximum 4 rows"
-            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+  return (
+    <Textarea
+      maxRows={20}
+      placeholder="Maximum 4 rows"
+      defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua."
-        />
-    );
+      value={value}
+      onChange={onChange}
+      aria-label={label}
+      id={label}
+      style={{ margin: `var(--spacing-${margin})`, width: `var(--width-${size})`, }}
+    />
+  );
 }
 
 export default CustomTextArea
