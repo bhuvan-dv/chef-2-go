@@ -21,7 +21,7 @@ interface NodeFunctions {
     deleteNode: (tree: any, id: any) => any;
 }
 
-const App: React.FC = () => {
+const CommentApp: React.FC = () => {
     const [commentsData, setCommentsData] = useState<CommentData>(comments);
 
     const { insertNode, editNode, deleteNode }: NodeFunctions = useNode();
@@ -58,4 +58,4 @@ const App: React.FC = () => {
     );
 };
 
-export default App;
+export default CommentApp;
