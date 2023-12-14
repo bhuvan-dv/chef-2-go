@@ -19,7 +19,9 @@ const Pricing: React.FC = () => {
       });
     }
   };
-
+ /**
+   * Render the Pricing component with different subscription plans.
+   */
   return (
     <div className="flex justify-between mx-auto ">
       <div className="group relative w-1/4 h-96 p-8 bg-opacity-20 backdrop-blur-md bg-white text-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:shadow-xl hover:-translate-y-1 mx-auto">

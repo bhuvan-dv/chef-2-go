@@ -13,9 +13,11 @@ type PaymentProps = {
 
 const PaymentPage = (props: PaymentProps) => {
   document.title = "Payment";
+  // Get the location object from react-router-dom
 
     let location = useLocation();
-    
+      // Extract the price from the location state
+
     const currPrice = location.state;
 
     let [menuState, setMenuState] = React.useState(false);

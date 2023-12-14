@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Loader from '../loader/Loader';
 import Confetti from 'react-confetti'
 
+
+// Header component used in every pages
 interface HeaderProps {
   menuState: boolean;
   setMenuState: (state: boolean) => void;
@@ -28,6 +30,7 @@ const Header: FC<HeaderProps> = ({ menuState, setMenuState }) => {
           <span className="text-3xl" style={{fontFamily:"Morion"}}>CHEF2GO</span>
         </Link>
       </div>
+      {/* Menu trigger button */}
       <div>
         <button
           className={`menu-trigger ${menuState ? 'menu-close' : ''}`}

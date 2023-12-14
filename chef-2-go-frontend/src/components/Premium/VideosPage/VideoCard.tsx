@@ -6,10 +6,14 @@ interface VideoCardProps {
   videoUrl: string;
   title: string;
 }
-
+ /**
+   * State to manage video playing status.
+   */
 const VideoCard: React.FC<VideoCardProps> = ({ videoUrl, title }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-
+ /**
+   * Event handler for starting video playback.
+   */
   const handlePlay = () => {
     setIsPlaying(true);
   };
@@ -18,6 +22,9 @@ const VideoCard: React.FC<VideoCardProps> = ({ videoUrl, title }) => {
     setIsPlaying(false);
   };
 
+  /**
+   * Extract video ID from the YouTube URL for thumbnail display.
+   */
   const videoId = videoUrl.includes('youtu.be')
     ? videoUrl.split('youtu.be/')[1]
     : videoUrl.split('v=')[1];

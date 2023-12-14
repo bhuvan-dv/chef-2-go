@@ -22,6 +22,9 @@ const ChefsGrid = ( props: ChefGridProps ) => {
         chef?.name?.toLowerCase().includes(searchTerm!.toLowerCase())
     );
 
+    /**
+     * Fetch initial list of registered chefs from the API
+     */
     const getInitialRecipes = async () => {
         try {
             const response = await getAllRegisteredUsers();

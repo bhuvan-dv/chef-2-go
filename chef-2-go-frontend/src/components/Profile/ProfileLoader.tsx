@@ -18,6 +18,7 @@ const ProfileLoader = () => {
     }, []);
 
     return (
+        // LOTTIE ANIMATION AND STYLING IT ACCORDING TO NEEDS
         <div className='lottieContainer flex justify-center align-middle' style={{ height: 0.75 * screenDimensions.height, width: '50%', margin:"auto 0px"}} >
             <Lottie animationData={animationData} />
         </div>

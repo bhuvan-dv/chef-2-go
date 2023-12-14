@@ -11,7 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+// Define an example chef object for initial state
 const exampleChef: chef = {
   _id: "65610adc6a32a283430ca26d",
   name: "Chef Name",

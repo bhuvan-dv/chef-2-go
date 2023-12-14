@@ -3,7 +3,9 @@ import Lottie from 'lottie-react';
 import animationData from './Animation - 1702480562531.json';
 const VerificationLoader = () => {
     const [screenDimensions, setScreenDimensions] = useState({ width: 0, height: 0 });
-
+ /**
+   * State to store screen dimensions for responsive rendering.
+   */
     useEffect(() => {
         const updateDimensions = () => {
             setScreenDimensions({ width: window.innerWidth, height: window.innerHeight });

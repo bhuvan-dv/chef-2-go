@@ -19,9 +19,12 @@ const CustomCard = (props: CardProps) => {
 
   const BASEURL = process.env.BASE_URL || 'http://localhost:3000/';
   const { entity, styles } = props;
-
+ // React Router's navigation hook
   const navigate = useNavigate();
 
+   /**
+   * Handle click event to navigate to entity details page
+   */
   const handleClick = () => {
     navigate(`${BASEURL}${entity.type}/${entity.id}`);
   };

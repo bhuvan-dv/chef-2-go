@@ -25,7 +25,7 @@ const VideosPage: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSearchSticky, setIsSearchSticky] = useState(false);
   let [menuState, setMenuState] = React.useState(false);
-
+ // Handle search functionality
   const handleSearch = () => {
     const filteredVideos = initialVideos.filter((video) =>
       video.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -46,7 +46,7 @@ const VideosPage: React.FC = () => {
     const scrollPosition = window.scrollY;
     setIsSearchSticky(scrollPosition > 0);
   };
-
+// useEffect to add scroll event listener and clean up on unmoun
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {

@@ -1,3 +1,5 @@
+// Handles the payment process using Stripe for a given price.
+
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { toast, ToastContainer } from 'react-toastify';
@@ -18,7 +20,7 @@ const Payment: React.FC<PaymentProps> = (props) => {
   const navigate = useNavigate();
   const amount = props.price;
   const userId = useSelector((state:AppState) => state.users.currentUser?._id);
-
+// Handle form submission to process payment
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -43,6 +45,7 @@ const Payment: React.FC<PaymentProps> = (props) => {
             headers: {
               'Content-Type': 'application/json',
             },
+            // // Send the payment token to the server for processing
             body: JSON.stringify({ token: token.id, amount: Math.round(amount * 100), isPremium: true }), // Convert amount to cents
           });
 

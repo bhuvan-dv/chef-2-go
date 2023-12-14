@@ -20,6 +20,8 @@ const Footer = () => {
                 </li>
             </ul>
         </nav>
+
+        {/* Footer component  */}
         <nav className="right-footer-content-container">
             <ul className="right-footer-content-ul">
                 <li>

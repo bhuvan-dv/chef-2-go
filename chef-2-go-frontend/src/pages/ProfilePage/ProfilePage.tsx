@@ -97,6 +97,7 @@ const ProfilePage = () => {
   const [open, setOpen] = React.useState(false);
   const [showPasswordRequired, setShowPasswordRequired] = useState(false);
   const [ChefRecipes, setChefRecipes] = useState<Recipe[]>([]);
+  // Use react-spring for animation
 
   useEffect(() => {
     setEditedUser(currentUser);
