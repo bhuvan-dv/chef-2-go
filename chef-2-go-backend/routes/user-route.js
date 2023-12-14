@@ -26,4 +26,6 @@ router.route('/email')
     .post(UserController.reSendOTP);
 router.route('/:userId')
     .put(UserController.updateUser);
+router.route('/premium/:id')
+    .patch(UserController.updateIsPremium);
 export default router;
