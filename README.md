@@ -32,7 +32,7 @@ In essence, Chef2go redefines the online food platform landscape by offering not
 Clone the project
 
 ```bash
-  git clone https://github.com/info-6150-fall-2023/final-project-peri-peri
+  git clone https://github.com/bhuvan-dv/chef-2-go.git
 ```
 
 Go to the project directory
